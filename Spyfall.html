@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="Spyfall.css"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Rubik&family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title> Red Koala Spyfall</title>
+    <link rel="icon" href="1Spyfall.png">
+    <style>
+        body {
+          overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <audio id="myAudio" preload="auto" autoplay loop onerror="audioError()">
+        <source src="audio/SongLofi.mp3" type="audio/mp3">
+      </audio>
+        <div class="leftboxcontainer">
+            <div class="leftbox changediv">
+                <image src="1Spyfall.png" class="leftboxlogo logowiggle">
+                <div class="leftboxheader1 changefont">red koala</div>
+                <div class="leftboxheader2 changefont">Spyfall</div>
+                <button class="leftboxbutton leftboxbutton1 redbuttonhover">Contact</button>
+                <button class="leftboxbutton leftboxbutton2 redbuttonhover">Donate</button>
+                <p class="leftboxdescription changefont">description : This game website create it by Kim and my friend Mozart as an assistant, we both doing since we're grade 11 and still studying in Bangkok Christian College ,this  website create for testing our knowlegde , would you mind donate some tip for our inspiration , we both will keep improve our skill , there is playing guide on top of the right side , so have fun.<br><br>คำบรรยาย : เว็ปนี้สร้างขึ้นโดย คิม & โมสาท ในฐานะผู้ช่วย เราทั้งคู่สร้างเว็ปนี้เมื่อมัธยม 5 และกำลังศึกษาอยู่ที่โรงเรียนกรุงเทพคริสเตียนวิทยาลัย  เว็ปไซต์นี้สร้างขึ้นมาเพื่อทดสอบความรู้ของเราทั้งคู่ หากคุณพอจะบริจาคทิปเล็กๆน้อยเพื่อสร้างแรงบันดาลใจให้พวกเรา เราทั้งสองจะพัฒนาทักษะของเราอยู่เรื่อยๆวิธีเล่นอยู่ทางด้านขวาบน ขอให้สนุก</p>    </p>
+                <button class="leftboxbutton leftboxbutton3 redbuttonhover" onclick="window.location.href='mailto:pranchayutnetsawang@gmail.com?subject=The%20subject%20of%20the%20mail'">Send Feedback</button>
+            </div>
+            <button class="leftboxhide changefont changedivsmol">HIDE</button>
+        </div>
+        <div class="middlecontainer">
+            <div class="middleheader">
+                <image src="1Spyfall.png" class="middlelogo logowiggle">
+                <div class="middlehead middleheader1 changefont">red koala</div>
+                <div class="middlehead middleheader2 changefont">Spyfall</div>
+            </div>
+            <div class="middlebuttoncontainer">
+                <button class="middlebutton hostbutton redbuttonhover">Host Game</button>
+                <button class="middlebutton joinbutton redbuttonhover">Join Game</button>
+                <button class="middlebutton offlinebutton redbuttonhover">Offline Game</button>
+            </div>
+        </div>
+        <div class="toprightbuttoncontainer">
+            <button class="toprightbutton toprightguidebutton redbuttonhover">How to Play</button>
+            <button class="toprightbutton toprightbrightbutton redbuttonhover">
+                    <div id="moon" class="gg-moon toprighticonscale toprighticonscalemoon"></div>
+                    <div id="sun" class="gg-sun toprighticonscale"></div>
+            </button>
+            <button class="toprightbutton toprightsoundbutton redbuttonhover">
+                <div class="gg-volume toprighticonscale"></div>
+            </button>
+        </div>
+        <div class="bottomrightcontainer">
+            <div class="bottomrightcode redborderbottomright changefont changedivsp">
+                <div class="bottomrightsource">
+                    <div class="bottomrightgithubtext changefont">View Source</div>
+                    <image src="1Github.png" class="bottomrightgithubicon">
+                </div>
+            </div>
+        </div>
+        <div class="alertbox alertbox1 redborder changediv">
+            <div class="alertboxclose alertboxclose1 changedivsmol changefont"></div>
+            <div class="alertboxcontactIG1 alertboxhover" onclick="window.location.href='https://instagram.com/kimmuie_?utm_source=qr&igshid=ZDc4ODBmNjlmNQ%3D%3D'">
+                <image src="1Instagram.png" class="alertboxcontactIG1 alertboxicon">
+                <div class="alertboxcontacttextIG1 alertboxtext changefont">kimmuie</div>
+            </div>
+            <div class="alertboxcontactIG2 alertboxhover" onclick="window.location.href='https://instagram.com/mozart_ko?igshid=NzZhOTFlYzFmZQ=='">
+                <image src="1Instagram.png" class="alertboxcontactIG2 alertboxicon">
+                <div class="alertboxcontacttextIG2 alertboxtext changefont">mozart</div>
+            </div>
+            <div class="alertboxcontactGH1 alertboxhover" onclick="window.location.href='https://github.com/Kimmuie'">
+                <image src="1Github.png" class="alertboxcontactGH1 alertboxicon">
+                <div class="alertboxcontacttextGH1 alertboxtext changefont">kimmuie</div>
+            </div>
+            <div class="alertboxcontactGH2 alertboxhover" onclick="window.location.href='https://github.com/democraz20'">
+                <image src="1Github.png" class="alertboxcontactGH2 alertboxicon">
+                <div class="alertboxcontacttextGH2 alertboxtext changefont">mozart</div>
+            </div>
+        </div>
+        <div class="alertbox alertbox2 redborder changediv">
+            <div class="alertboxQRcode noqrcode">
+                <image src="#" class="alertboxQR">
+            </div>
+            <div class="alertboxclose alertboxclose2 changedivsmol changefont"></div>
+            <div class="alertboxcontact alertboxcontactTM alertboxhover">
+                <image src="1TrueMoney.png" class="alertboxcontactTM alertboxicon">
+                <div class="alertboxcontacttextTM alertboxtext changefont">Truemoney</div>
+            </div>
+            <div class="alertboxcontact alertboxcontactPM alertboxhover">
+                <image src="1Promptpay.png" class="alertboxcontactPM alertboxicon">
+                <div class="alertboxcontacttextPM alertboxtext changefont">Promptpay</div>
+            </div>
+            <div class="alertboxcontact alertboxcontactPP alertboxhover" onclick="window.location.href='https://www.paypal.me/pranchayut172'">
+                <image src="1Palpay.png" class="alertboxcontactPP alertboxicon">
+                <div class="alertboxcontacttextPP alertboxtext changefont">Paypal</div>
+            </div>
+        </div>
+        <div class="guideboxcontainer">
+            <div class="guideboxinner">
+                <div class="guideboxinside redborder changediv">
+                    <label class="switch guideboxswitch">
+                        <input type="checkbox" class="checkbox" onchange="checkBoxChanged()">
+                        <span class="slider round guideslider"></span>
+                      </label> 
+                    <div class="guideboxclose changedivsmol changefont"></div>
+                    <p class="guideboxtext changefont" data-default-content="1. ผู้เล่นจะได้บทบาทคนล่ะ 1 บท แต่สถานที่จะเหมือนกันทุกคน<br><br>2. Spy ต้องสืบหาให้ได้ว่าสถานที่นี้คือที่ไหนก่อนเวลาหมดเพื่อเอาชนะ หรือ ปิดบังตัวเองไม่ให้ถูกโหวตหลังเวลาหมด<br><br>3. เริ่มคำถามเพื่อหาคนต้องสงสัยที่อาจเป็น Spy โดยคำถามต้องเกี่ยวกับสถานที่และบทบาท<br><br>4. หลังจากคนโดนถามคนๆนั้นต้องเป็นคนถามคนต่อไปวนอย่างนี้ไปเรื่อยๆจนกว่าเวลาหมดหรือพร้อมโหวต<br><br>5. ก่อนหมดเวลาหาก Spy รู้ว่าสถานที่นี้คือที่ไหนแล้วเปิดเผยตัวและตอบชื่อสถานที่ หากตอบถูก Spy ชนะ <br><br>6. หมดเวลาผู้เล่นทุกคนต้องโหวต หากโหวตถูกต้องผู้เล่นทุกคนชนะยกเว้น Spy แต่หากโหวตผิด Spy เป็นผู้ชนะแทน"></p>
+                </div>
+            </div>
+        </div>
+        <div class="soundbox redbordersoundbox changedivsp">
+            <div class="soundboxonoff changefont">On <br><br><br><br> Off</div>
+            <label class="switch soundboxswitch">
+                <input type="checkbox" class="checkbox">
+                <span class="slider round soundslider"></span>
+              </label> 
+            <input class="soundboxslider"
+            type="range" min="0" max="1" step="0.01" value="1">
+        </div>
+        <div class="changegif bg"></div>
+    <script src="Offlinemode.js"></script>
+    <script src="Spyfall.js"></script>
+</body>
+</html>
