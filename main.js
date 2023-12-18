@@ -307,12 +307,12 @@ function checkBoxChanged() {
         guideboxswitch[i].style.setProperty("--transform", "scaleX(-1)");
         guideboxtext[i].style.transform = "rotateY(180deg)";
         guideboxtext[i].innerHTML = "1. Each player will get 1 role, but the location will be the same for everyone.<br><br>2. The Spy must determine the location before time runs out to secure victory or conceal themselves to avoid being voted out after the time expires.<br><br>3. Start the question for searching suspect that can be spy, also the question must depend on location and role.<br><br>4. After being questioned, the person questioned becomes the next to ask, and this cycle continues until the time runs out or everyone is ready to vote.<br><br>5. Before the time expires, if the Spy knows the location, they can reveal themselves and answer the name of the location. If the answer is correct, the Spy wins.<br><br>6. When the time is up, all players must vote. If the vote is correct, all players win except the Spy. However, if the vote is incorrect, the Spy becomes the winner.";
-        if (window.matchMedia("(max-height: 1400px) and (orientation: portrait)").matches) {
+        if (window.matchMedia("(max-height: 1400px) and (min-height: 951px) and (orientation: portrait)").matches) {
           guideboxswitch[i].style.left = "58.5dvh";
-          guideboxtext[i].style.fontSize = "2.5dvh";
+          guideboxtext[i].style.fontSize = "2.5dvh";//eng
         }else if (window.matchMedia("(max-height: 950px) and (orientation: portrait)").matches){
-          guideboxswitch[i].style.left = "5dvh";
-          guideboxtext[i].style.fontSize = "5dvh";
+          guideboxswitch[i].style.left = "35dvh";
+          guideboxtext[i].style.fontSize = "2dvh";
         }else{
           guideboxswitch[i].style.left = "69dvh";
           guideboxtext[i].style.fontSize = "2.5dvh";
@@ -336,8 +336,11 @@ function checkBoxChanged() {
         guideboxswitch[i].style.setProperty("--transform", "scaleX(1)");
         guideboxtext[i].style.transform = "";
         guideboxtext[i].innerHTML = originalGuideboxText;
-        if (window.matchMedia("(max-height: 1400px) and (orientation: portrait)").matches) {
-          guideboxtext[i].style.fontSize = "3dvh";
+        guideboxswitch[i].style.left = "";
+        if (window.matchMedia("(max-height: 1400px) and (min-height: 951px) and (orientation: portrait)").matches) {
+          guideboxtext[i].style.fontSize = "3dvh";//thai
+        }else if (window.matchMedia("(max-height: 950px) and (orientation: portrait)").matches){
+          guideboxtext[i].style.fontSize = "2.4dvh";
         }else{
           guideboxtext[i].style.fontSize = "3.3dvh";
         }
@@ -396,6 +399,7 @@ document.getElementsByClassName("toprightguidebutton")[0].addEventListener("clic
 
 //screensetter #ig:kimmuie_ , ig:mozart_ko
 function updateLayout() {
+  console.log("updatelayout")
   if (window.matchMedia("(max-height: 1400px) and (orientation: portrait)").matches) {
     var lbh = document.getElementsByClassName("leftboxhide")[0];
     var itemsLeftbox = document.getElementsByClassName("leftboxcontainer");
@@ -403,68 +407,157 @@ function updateLayout() {
       itemsLeftbox[i].style.transform = "translateX(-35dvh)";
     }
     lbh.textContent = "UNHIDE";
-
-    var guideboxswitch = document.getElementsByClassName("switch");
-    var guideboxtext = document.getElementsByClassName("guideboxtext");
-    var originalGuideboxText = guideboxtext[0].getAttribute("data-default-content");
-    for (var i = 0; i < guideboxtext.length; i++) {
-      var itemsGuidetext = document.getElementsByClassName("guideboxtext");
-      for (var w = 0; w < itemsGuidetext.length; w++) {
-      if(guideboxtext[i].innerHTML != originalGuideboxText){
-          itemsGuidetext[w].style.fontSize = "2.5dvh";//ENG
-          guideboxswitch[w].style.left = "58.5dvh";
-      }else{
-        itemsGuidetext[w].style.fontSize = "3dvh";//THAI
-        }
-      }
+    
+    var itemsMidbutton = document.getElementsByClassName("middlebutton");
+    for (var y = 0; y < itemsMidbutton.length; y++) {
+      itemsMidbutton[y].style.width = "40dvh";
+      itemsMidbutton[y].style.fontSize = "4dvh";
+      itemsMidbutton[y].style.height = "10dvh";
     }
-    if (window.matchMedia("(max-height: 950px) and (orientation: portrait)").matches){
-      var itemsMidbutton = document.getElementsByClassName("middlebutton");
-      var itemsJoinbutton = document.getElementsByClassName("joinbutton");
-      var itemsOfflinebutton = document.getElementsByClassName("offlinebutton");
-      for (var h = 0; h < itemsMidbutton.length; h++) {
-      itemsJoinbutton[h].style.top = "48dvh";
-      itemsOfflinebutton[h].style.top = "60dvh";
-      }
-
-    var guideboxswitch = document.getElementsByClassName("switch");
-    var guideboxtext = document.getElementsByClassName("guideboxtext");
-    var originalGuideboxText = guideboxtext[0].getAttribute("data-default-content");
-    for (var i = 0; i < guideboxtext.length; i++) {
-      var itemsGuidetext = document.getElementsByClassName("guideboxtext");
-      for (var w = 0; w < itemsGuidetext.length; w++) {
-      if(guideboxtext[i].innerHTML != originalGuideboxText){
-          itemsGuidetext[w].style.fontSize = "1dvh";//ENG
-          guideboxswitch[w].style.left = "";
-      }else{
-        itemsGuidetext[w].style.fontSize = "1.3dvh";//THAI
-        }
-      }
+    var itemsMidhead = document.getElementsByClassName("middlehead"); 
+    for (var f = 0; f < itemsMidhead.length; f++) {
+      itemsMidhead[f].style.top = "15dvh";
     }
+    var itemsMidlogo = document.getElementsByClassName("middlelogo");
+    for (var r = 0; r < itemsMidlogo.length; r++) {
+      itemsMidlogo[r].style.top = "-39dvh";
+      itemsMidlogo[r].style.height = "8dvh";
+      itemsMidlogo[r].style.marginRight = "0dvh";
+    }
+    var itemsTR = document.getElementsByClassName("toprightbutton");
+    for (var t = 0; t < itemsTR.length; t++) {
+      itemsTR[t].style.top = "1dvh";
+      itemsTR[t].style.right = "1dvh";
+      itemsTR[t].style.height = "4dvh";
+    }
+    var itemsTRGuide = document.getElementsByClassName("toprightguidebutton");
+    for (var g = 0; g < itemsTRGuide.length; g++) {
+      itemsTRGuide[g].style.width = "12dvh";
+      itemsTRGuide[g].style.marginRight = "14dvh";
+      itemsTRGuide[g].style.fontSize = "2dvh";
+    }
+    var itemsTRBright = document.getElementsByClassName("toprightbrightbutton");
+    for (var d = 0; d < itemsTRBright.length; d++) {
+      itemsTRBright[d].style.width = "6dvh";
+      itemsTRBright[d].style.marginRight = "7dvh";
+    }
+    var itemsTRSound = document.getElementsByClassName("toprightsoundbutton");
+    for (var v = 0; v < itemsTRSound.length; v++) {
+      itemsTRSound[v].style.width = "6dvh";
+    }
+    var itemsTRscale = document.getElementsByClassName("toprighticonscale");
+    for (var e = 0; e < itemsTRscale.length; e++) {
+      itemsTRscale[e].style.transform = "scale(var(--ggs, 0.8))";
+    }
+    var itemsTRscalemoon = document.getElementsByClassName("toprighticonscalemoon");
+    for (var k = 0; k < itemsTRscalemoon.length; k++) {
+      itemsTRscalemoon[k].style.transform = "rotate(-135deg) scale(var(--ggs, 0.8))";
+    }
+    var itemsBRcode = document.getElementsByClassName("bottomrightcode");
+    for (var g = 0; g < itemsBRcode.length; g++) {
+      itemsBRcode[g].style.top = "96dvh";
+      itemsBRcode[g].style.width = "20dvh";
+      itemsBRcode[g].style.height = "6dvh";
+      itemsBRcode[g].style.borderRadius = "2dvh 2dvh 0dvh 0dvh";
+      itemsBRcode[g].style.setProperty("--before-BR-fontsize", "1.5dvh");
+      itemsBRcode[g].style.setProperty("--before-BR-padding", "1dvh");
+    }
+    var itemsBRicon = document.getElementsByClassName("bottomrightgithubicon");
+    for (var l = 0; l < itemsBRicon.length; l++) {
+      itemsBRicon[l].style.height = "6dvh";
+      itemsBRicon[l].style.top = "4dvh";
+    }
+    var itemsBRtext = document.getElementsByClassName("bottomrightgithubtext");
+    for (var m = 0; m < itemsBRtext.length; m++) {
+      itemsBRtext[m].style.fontSize = "1.5dvh";
+      itemsBRtext[m].style.top = "6.5vh";
+    }
+    var itemsSoundbox = document.getElementsByClassName("soundbox");
+    var itemsSoundboxonoff = document.getElementsByClassName("soundboxonoff");
+    var itemsSoundboxswitch = document.getElementsByClassName("soundboxswitch");
+    for (var j = 0; j < itemsSoundbox.length; j++) {
+      itemsSoundbox[j].style.top = "3.5dvh";
+      itemsSoundbox[j].style.right = "1dvh";
+      itemsSoundbox[j].style.width = "6dvh";
+      itemsSoundboxonoff[j].style.padding = "0dvh 0dvh 0dvh 1dvh";
+      itemsSoundboxswitch[j].style.left = "-1dvh";
+    }
+    var itemsSoundboxslider = document.getElementsByClassName("soundboxslider");
+    for (var p = 0; p < itemsSoundboxslider.length; p++) {
+      itemsSoundboxslider[p].style.left = "-7dvh";
+    }
+    var itemsRedborderBR = document.getElementsByClassName("redborderbottomright");
+    for (var b = 0; b < itemsRedborderBR.length; b++) {
+      itemsRedborderBR[b].style.setProperty("--before-BR-top", "0.5dvh");
+      itemsRedborderBR[b].style.setProperty("--before-BR-left", "0.5dvh");      
+      itemsRedborderBR[b].style.setProperty("--before-BR-right", "0.5dvh");
+    }
+    var itemsRedborderSB = document.getElementsByClassName("redbordersoundbox");
+    for (var s = 0; s < itemsRedborderSB.length; s++) {
+      itemsRedborderSB[s].style.setProperty("--before-SB-top", "0.5dvh");
+      itemsRedborderSB[s].style.setProperty("--before-SB-left", "0.5dvh");      
+      itemsRedborderSB[s].style.setProperty("--before-SB-right", "0.5dvh");
+      itemsRedborderSB[s].style.setProperty("--before-SB-bottom", "0.5dvh");
+    }
+    
+    var checkBox = document.getElementsByClassName("checkbox");
+    var guideboxtext = document.getElementsByClassName("guideboxtext");
+    var guideboxswitch = document.getElementsByClassName("switch");
+      for (var i = 0; i < checkBox.length; i++) {
+          for (var i = 0; i < guideboxtext.length; i++) {
+              if (checkBox[i].checked) {
+                if (window.matchMedia("(max-height: 1400px) and (min-height: 951px) and (orientation: portrait)").matches) {
+                  guideboxtext[i].style.fontSize = "2.5dvh"; // ENG
+                  guideboxswitch[i].style.left = "58.5dvh";
+                }
+                if (window.matchMedia("(max-height: 950px) and (orientation: portrait)").matches) {
+                  guideboxtext[i].style.fontSize = "2dvh"; // ENG
+                  guideboxswitch[i].style.left = "35dvh";
+                }
+              } else {
+                if (window.matchMedia("(max-height: 1400px) and (min-height: 951px) and (orientation: portrait)").matches) {
+                  guideboxtext[i].style.fontSize = "3dvh"; // THAI
+                }
+                else if (window.matchMedia("(max-height: 950px) and (orientation: portrait)").matches) {
+                  guideboxtext[i].style.fontSize = "2.4dvh"; // THAI
+                }
+              }
+          }
+        }
+    if (window.matchMedia("(max-height: 950px) and (orientation: portrait)").matches) {
+        var itemsMidbutton = document.getElementsByClassName("middlebutton");
+        var itemsJoinbutton = document.getElementsByClassName("joinbutton");
+        var itemsOfflinebutton = document.getElementsByClassName("offlinebutton");
+    
+        for (var h = 0; h < itemsMidbutton.length; h++) {
+            itemsJoinbutton[h].style.top = "48dvh";
+            itemsOfflinebutton[h].style.top = "61dvh";
+        }
     }
     //elseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
   } else if (window.matchMedia("(max-width: 1400px) and (orientation: landscape)").matches){
     var lbh = document.getElementsByClassName("leftboxhide")[0];
     var itemsLeftbox = document.getElementsByClassName("leftboxcontainer");
     for (var i = 0; i < itemsLeftbox.length; i++) {
-      itemsLeftbox[i].style.transform = "translateX(0%)";
+      itemsLeftbox[i].style.transform = "translateX(0dvh)";
     }
     lbh.textContent = "HIDE";
+    
     var itemsMidbutton = document.getElementsByClassName("middlebutton");
     for (var y = 0; y < itemsMidbutton.length; y++) {
       itemsMidbutton[y].style.width = "60dvh";
       itemsMidbutton[y].style.fontSize = "6dvh";
       itemsMidbutton[y].style.height = "13dvh";
     }
-    var itemsMidhead = document.getElementsByClassName("middlehead");
+    var itemsMidhead = document.getElementsByClassName("middlehead"); 
     for (var f = 0; f < itemsMidhead.length; f++) {
       itemsMidhead[f].style.top = "";
     }
     var itemsMidlogo = document.getElementsByClassName("middlelogo");
-    for (var g = 0; g < itemsMidlogo.length; g++) {
-      itemsMidlogo[g].style.top = "-38dvh";
-      itemsMidlogo[g].style.height = "13dvh";
-      itemsMidlogo[g].style.marginRight = "45dvh";
+    for (var r = 0; r < itemsMidlogo.length; r++) {
+      itemsMidlogo[r].style.top = "-38dvh";
+      itemsMidlogo[r].style.height = "13dvh";
+      itemsMidlogo[r].style.marginRight = "45dvh";
     }
     var itemsTR = document.getElementsByClassName("toprightbutton");
     for (var t = 0; t < itemsTR.length; t++) {
@@ -482,12 +575,10 @@ function updateLayout() {
     for (var d = 0; d < itemsTRBright.length; d++) {
       itemsTRBright[d].style.width = "12dvh";
       itemsTRBright[d].style.marginRight = "13dvh";
-      itemsTRBright[d].style.padding = "0dvh 2% 0dvh 2%";
     }
     var itemsTRSound = document.getElementsByClassName("toprightsoundbutton");
     for (var v = 0; v < itemsTRSound.length; v++) {
       itemsTRSound[v].style.width = "12dvh";
-      itemsTRSound[v].style.padding = "0dvh 2% 0dvh 2%";
     }
     var itemsTRscale = document.getElementsByClassName("toprighticonscale");
     for (var e = 0; e < itemsTRscale.length; e++) {
@@ -504,10 +595,10 @@ function updateLayout() {
       itemsBRcode[g].style.height = "12dvh";
       itemsBRcode[g].style.borderRadius = "6dvh 6dvh 0dvh 0dvh";
       itemsBRcode[g].style.setProperty("--before-BR-fontsize", "3dvh");
-      itemsBRcode[g].style.setProperty("--before-BR-padding", "2dvh 0dvh 0dvh 2dvh");
+      itemsBRcode[g].style.setProperty("--before-BR-padding", "2dvh 0svh 0svh 2svh");
     }
     var itemsBRicon = document.getElementsByClassName("bottomrightgithubicon");
-    for (var l = 0; l < itemsBRcode.length; l++) {
+    for (var l = 0; l < itemsBRicon.length; l++) {
       itemsBRicon[l].style.height = "10dvh";
       itemsBRicon[l].style.top = "10dvh";
     }
@@ -515,6 +606,20 @@ function updateLayout() {
     for (var m = 0; m < itemsBRtext.length; m++) {
       itemsBRtext[m].style.fontSize = "2.7dvh";
       itemsBRtext[m].style.top = "13vh";
+    }
+    var itemsSoundbox = document.getElementsByClassName("soundbox");
+    var itemsSoundboxonoff = document.getElementsByClassName("soundboxonoff");
+    var itemsSoundboxswitch = document.getElementsByClassName("soundboxswitch");
+    for (var j = 0; j < itemsSoundbox.length; j++) {
+      itemsSoundbox[j].style.top = "5dvh";
+      itemsSoundbox[j].style.right = "3dvh";
+      itemsSoundbox[j].style.width = "10dvh";
+      itemsSoundboxonoff[j].style.padding = "0dvh 0dvh 2.7dvh 2.7dvh";
+      itemsSoundboxswitch[j].style.left = "1dvh";
+    }
+    var itemsSoundboxslider = document.getElementsByClassName("soundboxslider");
+    for (var p = 0; p < itemsSoundboxslider.length; p++) {
+      itemsSoundboxslider[p].style.left = "-5dvh";
     }
     var itemsRedborderBR = document.getElementsByClassName("redborderbottomright");
     for (var b = 0; b < itemsRedborderBR.length; b++) {
@@ -529,18 +634,33 @@ function updateLayout() {
       itemsRedborderSB[s].style.setProperty("--before-SB-right", "1dvh");
       itemsRedborderSB[s].style.setProperty("--before-SB-bottom", "1dvh");
     }
-    var itemsMidbutton = document.getElementsByClassName("middlebutton");
-    var itemsJoinbutton = document.getElementsByClassName("joinbutton");
-    var itemsOfflinebutton = document.getElementsByClassName("offlinebutton");
-    for (var h = 0; h < itemsMidbutton.length; h++) {
-    itemsJoinbutton[h].style.top = "52.5dvh";
-    itemsOfflinebutton[h].style.top = "70dvh";
-    }
+    
+    var checkBox = document.getElementsByClassName("checkbox");
+    var guideboxtext = document.getElementsByClassName("guideboxtext");
+    var guideboxswitch = document.getElementsByClassName("switch");
+      for (var i = 0; i < checkBox.length; i++) {
+          for (var i = 0; i < guideboxtext.length; i++) {
+              if (checkBox[i].checked) {
+                  guideboxtext[i].style.fontSize = "2.5dvh"; // ENG
+                  guideboxswitch[i].style.left = "69dvh";
+                
+              } else {
+                  guideboxtext[i].style.fontSize = "3.3dvh"; // THAI
+              }
+          }
+        }
+      var itemsMidbutton = document.getElementsByClassName("middlebutton");
+      var itemsJoinbutton = document.getElementsByClassName("joinbutton");
+      var itemsOfflinebutton = document.getElementsByClassName("offlinebutton");
+      for (var h = 0; h < itemsMidbutton.length; h++) {
+          itemsJoinbutton[h].style.top = "52.5dvh";
+          itemsOfflinebutton[h].style.top = "70dvh";
+      }
   }
 }
 updateLayout();
 
-window.addEventListener("resize", function() {
+window.addEventListener('resize', function () {
   updateLayout();
 });
 
