@@ -397,6 +397,10 @@ document.getElementsByClassName("toprightguidebutton")[0].addEventListener("clic
   }
 });
 
+window.addEventListener("resize", function () {
+  updateLayout();
+});
+
 //screensetter #ig:kimmuie_ , ig:mozart_ko
 function updateLayout() {
   console.log("updatelayout")
@@ -660,9 +664,7 @@ function updateLayout() {
 }
 updateLayout();
 
-window.addEventListener('resize', function () {
-  updateLayout();
-});
+
 
 //soundboxUXopen-close #ig:kimmuie_ , ig:mozart_ko
 document.getElementsByClassName("toprightsoundbutton")[0].addEventListener("click", function () {
