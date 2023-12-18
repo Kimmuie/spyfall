@@ -8,51 +8,9 @@
 
 /*Ipad Portriat*/
 @media only screen and (max-height: 1400px) and (orientation: portrait) {
-  button.middlebutton {
-  width: 40dvh;
-  font-size: 4dvh;
-  height: 10dvh;
-  }
-  div.middlehead {
-    top: 15dvh;
-  }
-  img.middlelogo{
-    top: -39dvh;
-    height: 8dvh;
-    margin-right: 0dvh;
-  }
-  button.toprightbutton {
-    top: 1dvh;
-    right: 1dvh;
-    height: 4dvh;
-  }
-  button.toprightguidebutton {
-    width: 12dvh;
-    margin-right: 14dvh;
-    font-size: 2dvh;
-  }
-  button.toprightbrightbutton {
-    width: 6dvh;
-    margin-right: 7dvh;
-  }
-  button.toprightsoundbutton {
-    width: 6dvh;
-  }
-  div.toprighticonscale {
-    transform: scale(var(--ggs, 0.8));
-  }
-  div.toprighticonscalemoon {
-    transform: (-135deg) scale(var(--ggs, 0.8));
-  }
-  div.bottomrightcode {
-    top: 96dvh;
-    width: 20dvh;
-    height: 6dvh;
-    border-radius: 3dvh 3dvh 0dvh 0dvh;
-  }
-  div.bottomrightcode::before {
-    font-size: 1.5dvh;
-    padding: 1dvh;
+  div.alertbox1,
+  div.alertbox2  {
+    left: 25dvh;
   }
 } 
 
@@ -152,6 +110,7 @@ body {
 }
 
 .leftbox {
+  left: 0dvh;
   width: 39dvh;
   height: 100vh;
   position: absolute;
@@ -537,12 +496,12 @@ body {
 }
 
 .bottomrightcode::before {
-  font-size: 3dvh;
+  font-size:  var(--before-BR-fontsize,3dvh);
   font-family: "Rubik", sans-serif;
   font-weight: bold;
   content: "HTML,CSS,JAVASCRIPT";
   position: absolute;
-  padding: 2dvh 0dvh 0dvh 2dvh;
+  padding: var(--before-BR-padding,2dvh 0dvh 0dvh 2dvh);
 }
 
 .bottomrightcode::after {
