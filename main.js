@@ -1,52 +1,59 @@
-//hide-unhide ig:kimmuie_ , ig:mozart_ko
+function setStyles(selector, styles) {
+  var elements = document.getElementsByClassName(selector);
+  for (var i = 0; i < elements.length; i++) {
+    Object.assign(elements[i].style, styles);
+  }
+}
+
+function setProperty(selector, styles) {
+  var elements = document.getElementsByClassName(selector);
+  for (var i = 0; i < elements.length; i++) {
+    var style = elements[i].style;
+    for (var property in styles) {
+      style.setProperty(property, styles[property]);
+    }
+  }
+}
+
+//leftboxUXopen-close ***ig:kimmuie_  ig:mozart_ko***
 document.getElementsByClassName("leftboxhide")[0].addEventListener("click", function () {
-  var lbh = document.getElementsByClassName("leftboxhide")[0]; // Access the first element in the collection
-  var items = document.getElementsByClassName("leftboxcontainer");
+  var lbh = document.getElementsByClassName("leftboxhide")[0];
 
   if (lbh.textContent === "HIDE") {
-    for (var i = 0; i < items.length; i++) {
       console.log("Hide Leftbox");
-      items[i].style.transform = "translateX(-35dvh)";
-    }
+      setStyles("leftboxcontainer", { transform: "translateX(-35dvh)" });
     lbh.textContent = "UNHIDE";
   } else if (lbh.textContent === "UNHIDE") {
-    for (var i = 0; i < items.length; i++) {
       console.log("Unhide Leftbox");
-      items[i].style.transform = "translateX(0%)";
-    }
+      setStyles("leftboxcontainer", { transform: "translateX(0dvh)" });
     lbh.textContent = "HIDE";
   }
 });
   
-//contactUXopen-close #ig:kimmuie_ , ig:mozart_ko
+//contactUXopen-close ***ig:kimmuie_  ig:mozart_ko***
 document.getElementsByClassName("leftboxbutton1")[0].addEventListener("click", function () {
   var items = document.getElementsByClassName("alertbox1");
   for (var i = 0; i < items.length; i++) {
     if (items[i].style.display === "none" || items[i].style.display === "") {
-      var otherbox = document.getElementsByClassName("alertbox2");
-      var guidebox = document.getElementsByClassName("guideboxinside");
-      console.log("Popup contact");
-      for (var h = 0; h < otherbox.length; h++) {
-        if (otherbox[h].style.display === "block") {
-          console.log("Popout donate");
-          otherbox[h].style.animation = "pop-out 0.3s ease-in-out";
-          otherbox[h].addEventListener("animationend", function animationEndHandler() {
-            console.log("Popout leftboxbutton");
-            this.style.display = "none";
-            this.removeEventListener("animationend", animationEndHandler);
-          });
-        }
+      var alertbox2 = document.getElementsByClassName("alertbox2");
+      if (alertbox2.length > 0 && alertbox2[0].style.display === "block") {
+        console.log("Hide donate");
+        setStyles("alertbox2", { animation: "pop-out 0.3s ease-in-out" });
+        alertbox2[0].addEventListener("animationend", function animationEndHandler() {
+          this.style.display = "none";
+          this.removeEventListener("animationend", animationEndHandler);
+        });
       }
-      for (var u = 0; u < guidebox.length; u++) {
-        if (guidebox[u].style.display === "block") {
-          console.log("Popout guide");
-          guidebox[u].style.animation = "pop-out 0.3s ease-in-out";
-          guidebox[u].addEventListener("animationend", function animationEndHandler() {
-            this.style.display = "none";
-            this.removeEventListener("animationend", animationEndHandler);
-          });
-        }
+      var guideboxinside = document.getElementsByClassName("guideboxinside");
+      if (guideboxinside.length > 0 && guideboxinside[0].style.display === "block") {
+        console.log("Hide guide");
+        setStyles("guideboxinside", { animation: "pop-out 0.3s ease-in-out" });
+        guideboxinside[0].addEventListener("animationend", function animationEndHandler() {
+          this.style.display = "none";
+          this.removeEventListener("animationend", animationEndHandler);
+        });
       }
+      console.log("Show contact");
       items[i].style.display = "block";
       items[i].style.animation = "pop-in 1s ease-in-out";
       items[i].addEventListener("animationend", function animationEndHandler() {
@@ -54,7 +61,7 @@ document.getElementsByClassName("leftboxbutton1")[0].addEventListener("click", f
         this.removeEventListener("animationend", animationEndHandler);
       });
     } else {
-      console.log("Popout contact");
+      console.log("Hide contact");
       items[i].style.animation = "pop-out 0.3s ease-in-out";
       items[i].addEventListener("animationend", function animationEndHandler() {
         this.style.display = "none";
@@ -64,43 +71,38 @@ document.getElementsByClassName("leftboxbutton1")[0].addEventListener("click", f
   }
 });
 
-//donateUXopen-close #ig:kimmuie_ , ig:mozart_ko
+//donateUXopen-close ***ig:kimmuie_  ig:mozart_ko***
 document.getElementsByClassName("leftboxbutton2")[0].addEventListener("click", function () {
   var items = document.getElementsByClassName("alertbox2");
-
   for (var i = 0; i < items.length; i++) {
     if (items[i].style.display === "none" || items[i].style.display === "") {
-      var otherbox = document.getElementsByClassName("alertbox1");
-      var guidebox = document.getElementsByClassName("guideboxinside");
-      console.log("Popup donate");
-      for (var h = 0; h < otherbox.length; h++) {
-        if (otherbox[h].style.display === "block") {
-          console.log("Popout contact");
-          otherbox[h].style.animation = "pop-out 0.3s ease-in-out";
-          otherbox[h].addEventListener("animationend", function animationEndHandler() {
-            this.style.display = "none";
-            this.removeEventListener("animationend", animationEndHandler);
-          });
-        }
+      var alertbox1 = document.getElementsByClassName("alertbox1");
+      if (alertbox1.length > 0 && alertbox1[0].style.display === "block") {
+        console.log("Hide contact");
+        setStyles("alertbox1", { animation: "pop-out 0.3s ease-in-out" });
+        alertbox1[0].addEventListener("animationend", function animationEndHandler() {
+          this.style.display = "none";
+          this.removeEventListener("animationend", animationEndHandler);
+        });
       }
-      for (var u = 0; u < guidebox.length; u++) {
-        if (guidebox[u].style.display === "block") {
-          console.log("Popout guide");
-          guidebox[u].style.animation = "pop-out 0.3s ease-in-out";
-          guidebox[u].addEventListener("animationend", function animationEndHandler() {
-            this.style.display = "none";
-            this.removeEventListener("animationend", animationEndHandler);
-          });
-        }
+      var guideboxinside = document.getElementsByClassName("guideboxinside");
+      if (guideboxinside.length > 0 && guideboxinside[0].style.display === "block") {
+        console.log("Hide guide");
+        setStyles("guideboxinside", { animation: "pop-out 0.3s ease-in-out" });
+        guideboxinside[0].addEventListener("animationend", function animationEndHandler() {
+          this.style.display = "none";
+          this.removeEventListener("animationend", animationEndHandler);
+        });
       }
+      console.log("Show donate");
       items[i].style.display = "block";
       items[i].style.animation = "pop-in 1s ease-in-out";
       items[i].addEventListener("animationend", function animationEndHandler() {
         this.style.display = "block";
         this.removeEventListener("animationend", animationEndHandler);
       });
-    } else if(items[i].style.display === "block"){
-      console.log("Popout donate");
+    } else {
+      console.log("Hide donate");
       items[i].style.animation = "pop-out 0.3s ease-in-out";
       items[i].addEventListener("animationend", function animationEndHandler() {
         this.style.display = "none";
@@ -110,90 +112,150 @@ document.getElementsByClassName("leftboxbutton2")[0].addEventListener("click", f
   }
 });
 
-//addbgandclosebutton #ig:kimmuie_ , ig:mozart_ko
+//guideUXopen-close ***ig:kimmuie_  ig:mozart_ko***
+document.getElementsByClassName("toprightguidebutton")[0].addEventListener("click", function () {
+  var items = document.getElementsByClassName("guideboxinside");
+  for (var i = 0; i < items.length; i++) {
+    if (items[i].style.display === "none" || items[i].style.display === "") {
+      var alertbox1 = document.getElementsByClassName("alertbox1");
+      if (alertbox1.length > 0 && alertbox1[0].style.display === "block") {
+        console.log("Hide contact");
+        setStyles("alertbox1", { animation: "pop-out 0.3s ease-in-out" });
+        alertbox1[0].addEventListener("animationend", function animationEndHandler() {
+          this.style.display = "none";
+          this.removeEventListener("animationend", animationEndHandler);
+        });
+      }
+      var alertbox2 = document.getElementsByClassName("alertbox2");
+      if (alertbox2.length > 0 && alertbox2[0].style.display === "block") {
+        console.log("Hide donate");
+        setStyles("alertbox2", { animation: "pop-out 0.3s ease-in-out" });
+        alertbox2[0].addEventListener("animationend", function animationEndHandler() {
+          this.style.display = "none";
+          this.removeEventListener("animationend", animationEndHandler);
+        });
+      }
+      console.log("Show guide");
+      items[i].style.display = "block";
+      items[i].style.animation = "pop-in 1s ease-in-out";
+      items[i].addEventListener("animationend", function animationEndHandler() {
+        this.style.display = "block";
+        this.removeEventListener("animationend", animationEndHandler);
+      });
+    } else {
+      console.log("Hide guide");
+      items[i].style.animation = "pop-out 0.3s ease-in-out";
+      items[i].addEventListener("animationend", function animationEndHandler() {
+        this.style.display = "none";
+        this.removeEventListener("animationend", animationEndHandler);
+      });
+    }
+  }
+});
+
+//soundboxUXopen-close ***ig:kimmuie_  ig:mozart_ko***
+document.getElementsByClassName("toprightsoundbutton")[0].addEventListener("click", function () {
+  var items = document.getElementsByClassName("soundbox");
+
+  for (var i = 0; i < items.length; i++) {
+    if (items[i].style.display === "none" || items[i].style.display === "") {
+      console.log("Seek Soundbox");
+      // Set styles using setStyles function
+      setStyles("soundbox", { display: "block" ,animation: "soundboxoff 0.5s ease-in-out reverse" });
+      setStyles("soundbox", { "--before-animation": "soundboxbeforeoff 0.5s ease-in-out reverse" });
+      setStyles("soundboxonoff", { animation: "fadein 0.2s ease-in-out" });
+      setStyles("soundboxswitch", { animation: "fadein 0.2s ease-in-out" });
+      setStyles("soundboxslider", { animation: "fadein 0.2s ease-in-out" });
+
+      items[i].addEventListener("animationend", function animationEndHandler() {
+        setStyles("soundboxonoff", { display: "block" });
+        setStyles("soundboxswitch", { display: "block" });
+        setStyles("soundboxslider", { display: "block" });
+        this.style.animation = "";
+        this.style.setProperty("--before-animation", "");
+        this.removeEventListener("animationend", animationEndHandler);
+      });
+    } else if (items[i].style.display === "block") {
+      console.log("Hide Soundbox");
+      closesoundbox()
+    }
+  }
+});
+
+//addBGandClosebutton ***ig:kimmuie_  ig:mozart_ko***
 var alertboxclose1 = document.getElementsByClassName("alertboxclose1")[0];
 var alertboxclose2 = document.getElementsByClassName("alertboxclose2")[0];
 var guideboxclose = document.getElementsByClassName("guideboxclose")[0];
-var bg = document.getElementsByClassName("bg")[0];
+var backgroundclose = document.getElementsByClassName("bg")[0];
 
-function closealertbox1(){
-  var items = document.getElementsByClassName("alertbox1");
-  for (var j = 0; j < items.length; j++) {
-    console.log("Popout contact");
-    items[j].style.animation = "pop-out 0.3s ease-in-out";
-    items[j].addEventListener("animationend", function animationEndHandler() {
+function closecontactbox(){
+    console.log("Hide contact");
+    setStyles("alertbox1", { animation: "pop-out 0.3s ease-in-out" });
+    var items = document.getElementsByClassName("alertbox1")[0];
+    items.addEventListener("animationend", function animationEndHandler() {
       this.style.display = "none";
       this.removeEventListener("animationend", animationEndHandler);
     });
-}}
+}
 
-function closealertbox2(){
-  var items = document.getElementsByClassName("alertbox2");
-  for (var j = 0; j < items.length; j++) {
-    console.log("Popout donate");
-    items[j].style.animation = "pop-out 0.3s ease-in-out";
-    items[j].addEventListener("animationend", function animationEndHandler() {
+function closedonatebox(){
+    console.log("Hide donate");
+    setStyles("alertbox2", { animation: "pop-out 0.3s ease-in-out" });
+    var items = document.getElementsByClassName("alertbox2")[0];
+    items.addEventListener("animationend", function animationEndHandler() {
       this.style.display = "none";
       this.removeEventListener("animationend", animationEndHandler);
     });
-}}
+}
 
 function closeguidebox(){
-  var items = document.getElementsByClassName("guideboxinside");
-  for (var j = 0; j < items.length; j++) {
-    console.log("Popout guide");
-    items[j].style.animation = "pop-out 0.3s ease-in-out";
-    items[j].addEventListener("animationend", function animationEndHandler() {
+    console.log("Hide guide");
+    setStyles("guideboxinside", { animation: "pop-out 0.3s ease-in-out" });
+    var items = document.getElementsByClassName("guideboxinside")[0];
+    items.addEventListener("animationend", function animationEndHandler() {
       this.style.display = "none";
       this.removeEventListener("animationend", animationEndHandler);
     });
-}}
+}
 
 function closesoundbox(){
-  var items = document.getElementsByClassName("soundbox");
-  var fadeout1 = document.getElementsByClassName("soundboxonoff");
-  var fadeout2 = document.getElementsByClassName("soundboxswitch");
-  var fadeout3 = document.getElementsByClassName("soundboxslider");
-  for (var i = 0; i < items.length; i++) {
-    items[i].style.animation = "soundboxoff 0.5s ease-in-out normal";
-    items[i].style.setProperty("--before-animation", "soundboxbeforeoff 0.5s ease-in-out normal");
-    fadeout1[i].style.display = "none";
-    fadeout2[i].style.display = "none";
-    fadeout3[i].style.display = "none";
-    items[i].addEventListener("animationend", function animationEndHandler() {
-      this.style.display = "none";
-      this.style.animation = "";
-      this.style.setProperty("--before-animation", "");
-      this.removeEventListener("animationend", animationEndHandler);
-    });
-  }
+  console.log("Hide soundbox");
+  setStyles("soundbox", { animation : "soundboxoff 0.5s ease-in-out normal" });
+  setProperty("soundbox" , {"--before-animation": "soundboxbeforeoff 0.5s ease-in-out normal"});
+  setStyles("soundboxonoff", { display: "none" });
+  setStyles("soundboxswitch", { display: "none" });
+  setStyles("soundboxslider", { display: "none" });
+  var items = document.getElementsByClassName("soundbox")[0];
+  items.addEventListener("animationend", function animationEndHandler() {
+    this.style.display = "none";
+    this.style.animation = "";
+    this.style.setProperty("--before-animation", "");
+    this.removeEventListener("animationend", animationEndHandler);
+  });
 }
 
 function closebottomrightbox(){
-  var items = document.getElementsByClassName("bottomrightcode");
-  for (var j = 0; j < items.length; j++) {
     console.log("Popout bottomrightcode");
     if (window.matchMedia("(max-height: 1400px) and (orientation: portrait)").matches) {
-      items[j].style.top = "96dvh";
-      items[j].style.height = "6dvh";
-      items[j].style.setProperty("--before-BR-height", "8dvh");
+      setStyles("bottomrightcode", { top: "96dvh", height: "6dvh" });
+      setProperty("bottomrightcode", {"--before-BR-height": "8dvh"});
     }else{
-      items[j].style.top = "92dvh";
-      items[j].style.height = "12dvh";
+      setStyles("bottomrightcode", { top: "92dvh", height: "12dvh" });
     }
-    items[j].classList.remove("popup");
-}}
+    var items = document.getElementsByClassName("bottomrightcode")[0];
+    items.classList.remove("popup");
+}
 
-alertboxclose1.addEventListener("click", closealertbox1);
-bg.addEventListener("click", closealertbox1);
-alertboxclose2.addEventListener("click", closealertbox2);
-bg.addEventListener("click", closealertbox2);
+alertboxclose1.addEventListener("click", closecontactbox);
+backgroundclose.addEventListener("click", closecontactbox);
+alertboxclose2.addEventListener("click", closedonatebox);
+backgroundclose.addEventListener("click", closedonatebox);
 guideboxclose.addEventListener("click", closeguidebox);
-bg.addEventListener("click", closeguidebox);
-bg.addEventListener("click", closesoundbox);
-bg.addEventListener("click", closebottomrightbox);
+backgroundclose.addEventListener("click", closeguidebox);
+backgroundclose.addEventListener("click", closesoundbox);
+backgroundclose.addEventListener("click", closebottomrightbox);
 
-//TruemoneyQRopen-close #ig:kimmuie_ , ig:mozart_ko
+//TruemoneyQRopen-close ***ig:kimmuie_  ig:mozart_ko***
 document.getElementsByClassName("alertboxcontactTM")[0].addEventListener("click", function () {
   var items = document.getElementsByClassName("alertboxQRcode");
   var itemsIMG = document.getElementsByClassName("alertboxQR");
@@ -362,341 +424,118 @@ function getCurrentRotation(element) {
   }
 }
 
-//guideUXopen-close #ig:kimmuie_ , ig:mozart_ko
-document.getElementsByClassName("toprightguidebutton")[0].addEventListener("click", function () {
-  var items = document.getElementsByClassName("guideboxinside");
 
-  for (var i = 0; i < items.length; i++) {
-    if (items[i].style.display === "none" || items[i].style.display === "") {
-      var otherbox = document.getElementsByClassName("alertbox");
-      console.log("Popup guide");
-      for (var h = 0; h < otherbox.length; h++) {
-        if (otherbox[h].style.display === "block") {
-          console.log("Popout leftboxbutton");
-          otherbox[h].style.animation = "pop-out 0.3s ease-in-out";
-          otherbox[h].addEventListener("animationend", function animationEndHandler() {
-            this.style.display = "none";
-            this.removeEventListener("animationend", animationEndHandler);
-          });
+//screensetter #ig:kimmuie_ , ig:mozart_ko
+  function updateLayout() {
+    console.log("updatelayout");
+    
+    var lbh = document.getElementsByClassName("leftboxhide")[0];
+    if (window.matchMedia("(max-height: 1400px) and (orientation: portrait)").matches) {
+      lbh.textContent = "UNHIDE";
+      setStyles("leftboxcontainer", { transform: "translateX(-35dvh)" });
+      setStyles("middlebutton", { width: "40dvh", height: "10dvh", fontSize: "4dvh" });
+      setStyles("middlehead", { top: "15dvh" });
+      setStyles("middlelogo", { top: "-39dvh", height: "8dvh", marginRight: "0dvh" });
+      setStyles("toprightbutton", { right: "1dvh", height: "4dvh" });
+      setStyles("toprightguidebutton", { width: "12dvh", marginRight: "14dvh", fontSize: "2dvh" });
+      setStyles("toprightbrightbutton", { width: "6dvh", marginRight: "7dvh" });
+      setStyles("toprightsoundbutton", { width: "6dvh" });
+      setStyles("toprighticonscale", { transform: "scale(var(--ggs, 0.8))" });
+      setStyles("toprighticonscalemoon", { transform: "rotate(-135deg) scale(var(--ggs, 0.8))" });
+      setStyles("bottomrightcode", { top: "96dvh", width: "20dvh", height: "6dvh", borderRadius: "2dvh 2dvh 0dvh 0dvh"});
+      setProperty("bottomrightcode", {"--before-BR-fontsize": "1.5dvh","--before-BR-padding": "1dvh" });
+      setStyles("bottomrightgithubicon", { height: "6dvh", top: "4dvh" });
+      setStyles("bottomrightgithubtext", { fontSize: "1.5dvh", top: "6.5vh" });
+      setStyles("soundbox", { top: "3.5dvh", right: "1dvh", width: "6dvh" });
+      setStyles("soundboxonoff", { padding: "0dvh 0dvh 0dvh 1dvh" });
+      setStyles("soundboxswitch", { left: "-1dvh" });
+      setStyles("soundboxslider", { left: "-7dvh" });
+      setProperty("redborderbottomright", {
+        "--before-BR-top": "0.5dvh",
+        "--before-BR-left": "0.5dvh",
+        "--before-BR-right": "0.5dvh"
+      });
+  
+      setProperty("redbordersoundbox", {
+        "--before-SB-top": "0.5dvh",
+        "--before-SB-left": "0.5dvh",
+        "--before-SB-right": "0.5dvh",
+        "--before-SB-bottom": "0.5dvh"
+      });
+  
+      var checkBox = document.getElementsByClassName("checkbox");
+      for (var i = 0; i < checkBox.length; i++) {
+          if (checkBox[i].checked) {
+            if (window.matchMedia("(max-height: 1400px) and (min-height: 951px) and (orientation: portrait)").matches) {
+              setStyles("guideboxtext", { fontSize: "2.5dvh" }); // ENG
+              setStyles("guideboxswitch", { left: "58.5dvh" });
+            }
+            if (window.matchMedia("(max-height: 950px) and (orientation: portrait)").matches) {
+              setStyles("guideboxtext", { fontSize: "2dvh" }); // ENG
+              setStyles("guideboxswitch", { left: "35dvh" });
+            }
+          } else {
+            if (window.matchMedia("(max-height: 1400px) and (min-height: 951px) and (orientation: portrait)").matches) {
+              setStyles("guideboxtext", { fontSize: "3dvh" }); // THAI
+              setStyles("guideboxswitch", { left: "3dvh" });
+            } else if (window.matchMedia("(max-height: 950px) and (orientation: portrait)").matches) {
+              setStyles("guideboxtext", { fontSize: "2.4dvh" }); // THAI
+              setStyles("guideboxswitch", { left: "3dvh" });
+            }
         }
-        items[i].style.display = "block";
-        items[i].style.animation = "pop-in 1s ease-in-out";
-        items[i].addEventListener("animationend", function animationEndHandler() {
-          this.style.display = "block";
-          this.removeEventListener("animationend", animationEndHandler);
-        });
       }
-    } else {
-        console.log("Popout guide");
-        items[i].style.animation = "pop-out 0.3s ease-in-out";
-        items[i].addEventListener("animationend", function animationEndHandler() {
-          this.style.display = "none";
-          this.removeEventListener("animationend", animationEndHandler);
-        });
+      //elseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+    } else if (window.matchMedia("(max-width: 1400px) and (orientation: landscape)").matches) {
+      lbh.textContent = "HIDE";
+      setStyles("leftboxcontainer", { transform: "translateX(0dvh)" });
+      setStyles("middlebutton", { width: "60dvh", height: "13dvh", fontSize: "6dvh" });
+      setStyles("middlehead", { top: "" });
+      setStyles("middlelogo", { top: "-38dvh", height: "13dvh", marginRight: "45dvh" });
+      setStyles("toprightbutton", { right: "2dvh", height: "6dvh" });
+      setStyles("toprightguidebutton", { width: "25dvh", marginRight: "26dvh", fontSize: "3dvh" });
+      setStyles("toprightbrightbutton", { width: "12dvh", marginRight: "13dvh" });
+      setStyles("toprightsoundbutton", { width: "12dvh" });
+      setStyles("toprighticonscale", { transform: "scale(var(--ggs, 1))" });
+      setStyles("toprighticonscalemoon", { transform: "rotate(-135deg) scale(var(--ggs, 1))" });
+      setStyles("bottomrightcode", { top: "92dvh", width: "39dvh", height: "12dvh", borderRadius: "6dvh 6dvh 0dvh 0dvh"});
+      setProperty("bottomrightcode", {
+        "--before-BR-fontsize": "3dvh",
+        "--before-BR-padding": "2dvh 0dvh 0dvh 2dvh" });
+      setStyles("bottomrightgithubicon", { height: "10dvh", top: "10dvh" });
+      setStyles("bottomrightgithubtext", { fontSize: "2.7dvh", top: "13vh" });
+      setStyles("soundbox", { top: "5dvh", right: "3dvh", width: "10dvh" });
+      setStyles("soundboxonoff", { padding: "0dvh 0dvh 2.7dvh 2.7dvh" });
+      setStyles("soundboxswitch", { left: "1dvh" });
+      setStyles("soundboxslider", { left: "-5dvh" });
+      setProperty("redborderbottomright", {
+        "--before-BR-top": "1dvh",
+        "--before-BR-left": "1dvh",
+        "--before-BR-right": "1dvh"
+      });
+  
+      setProperty("redbordersoundbox", {
+        "--before-SB-top": "1dvh",
+        "--before-SB-left": "1dvh",
+        "--before-SB-right": "1dvh",
+        "--before-SB-bottom": "1dvh"
+      });
+  
+      var checkBox = document.getElementsByClassName("checkbox");
+      for (var i = 0; i < checkBox.length; i++) {
+          if (checkBox[i].checked) {
+              setStyles("guideboxtext", { fontSize: "2.5dvh" }); // ENG
+              setStyles("guideboxswitch", { left: "69dvh" });
+          } else {
+              setStyles("guideboxtext", { fontSize: "3.3dvh" }); // THAI
+              setStyles("guideboxswitch", { left: "3dvh" });
+        }
       }
+    }
   }
-});
+updateLayout();
 
 window.addEventListener("resize", function () {
   updateLayout();
-});
-
-//screensetter #ig:kimmuie_ , ig:mozart_ko
-function updateLayout() {
-  console.log("updatelayout")
-  if (window.matchMedia("(max-height: 1400px) and (orientation: portrait)").matches) {
-    var lbh = document.getElementsByClassName("leftboxhide")[0];
-    var itemsLeftbox = document.getElementsByClassName("leftboxcontainer");
-    for (var i = 0; i < itemsLeftbox.length; i++) {
-      itemsLeftbox[i].style.transform = "translateX(-35dvh)";
-    }
-    lbh.textContent = "UNHIDE";
-    
-    var itemsMidbutton = document.getElementsByClassName("middlebutton");
-    for (var y = 0; y < itemsMidbutton.length; y++) {
-      itemsMidbutton[y].style.width = "40dvh";
-      itemsMidbutton[y].style.fontSize = "4dvh";
-      itemsMidbutton[y].style.height = "10dvh";
-    }
-    var itemsMidhead = document.getElementsByClassName("middlehead"); 
-    for (var f = 0; f < itemsMidhead.length; f++) {
-      itemsMidhead[f].style.top = "15dvh";
-    }
-    var itemsMidlogo = document.getElementsByClassName("middlelogo");
-    for (var r = 0; r < itemsMidlogo.length; r++) {
-      itemsMidlogo[r].style.top = "-39dvh";
-      itemsMidlogo[r].style.height = "8dvh";
-      itemsMidlogo[r].style.marginRight = "0dvh";
-    }
-    var itemsTR = document.getElementsByClassName("toprightbutton");
-    for (var t = 0; t < itemsTR.length; t++) {
-      itemsTR[t].style.top = "1dvh";
-      itemsTR[t].style.right = "1dvh";
-      itemsTR[t].style.height = "4dvh";
-    }
-    var itemsTRGuide = document.getElementsByClassName("toprightguidebutton");
-    for (var g = 0; g < itemsTRGuide.length; g++) {
-      itemsTRGuide[g].style.width = "12dvh";
-      itemsTRGuide[g].style.marginRight = "14dvh";
-      itemsTRGuide[g].style.fontSize = "2dvh";
-    }
-    var itemsTRBright = document.getElementsByClassName("toprightbrightbutton");
-    for (var d = 0; d < itemsTRBright.length; d++) {
-      itemsTRBright[d].style.width = "6dvh";
-      itemsTRBright[d].style.marginRight = "7dvh";
-    }
-    var itemsTRSound = document.getElementsByClassName("toprightsoundbutton");
-    for (var v = 0; v < itemsTRSound.length; v++) {
-      itemsTRSound[v].style.width = "6dvh";
-    }
-    var itemsTRscale = document.getElementsByClassName("toprighticonscale");
-    for (var e = 0; e < itemsTRscale.length; e++) {
-      itemsTRscale[e].style.transform = "scale(var(--ggs, 0.8))";
-    }
-    var itemsTRscalemoon = document.getElementsByClassName("toprighticonscalemoon");
-    for (var k = 0; k < itemsTRscalemoon.length; k++) {
-      itemsTRscalemoon[k].style.transform = "rotate(-135deg) scale(var(--ggs, 0.8))";
-    }
-    var itemsBRcode = document.getElementsByClassName("bottomrightcode");
-    for (var g = 0; g < itemsBRcode.length; g++) {
-      itemsBRcode[g].style.top = "96dvh";
-      itemsBRcode[g].style.width = "20dvh";
-      itemsBRcode[g].style.height = "6dvh";
-      itemsBRcode[g].style.borderRadius = "2dvh 2dvh 0dvh 0dvh";
-      itemsBRcode[g].style.setProperty("--before-BR-fontsize", "1.5dvh");
-      itemsBRcode[g].style.setProperty("--before-BR-padding", "1dvh");
-    }
-    var itemsBRicon = document.getElementsByClassName("bottomrightgithubicon");
-    for (var l = 0; l < itemsBRicon.length; l++) {
-      itemsBRicon[l].style.height = "6dvh";
-      itemsBRicon[l].style.top = "4dvh";
-    }
-    var itemsBRtext = document.getElementsByClassName("bottomrightgithubtext");
-    for (var m = 0; m < itemsBRtext.length; m++) {
-      itemsBRtext[m].style.fontSize = "1.5dvh";
-      itemsBRtext[m].style.top = "6.5vh";
-    }
-    var itemsSoundbox = document.getElementsByClassName("soundbox");
-    var itemsSoundboxonoff = document.getElementsByClassName("soundboxonoff");
-    var itemsSoundboxswitch = document.getElementsByClassName("soundboxswitch");
-    for (var j = 0; j < itemsSoundbox.length; j++) {
-      itemsSoundbox[j].style.top = "3.5dvh";
-      itemsSoundbox[j].style.right = "1dvh";
-      itemsSoundbox[j].style.width = "6dvh";
-      itemsSoundboxonoff[j].style.padding = "0dvh 0dvh 0dvh 1dvh";
-      itemsSoundboxswitch[j].style.left = "-1dvh";
-    }
-    var itemsSoundboxslider = document.getElementsByClassName("soundboxslider");
-    for (var p = 0; p < itemsSoundboxslider.length; p++) {
-      itemsSoundboxslider[p].style.left = "-7dvh";
-    }
-    var itemsRedborderBR = document.getElementsByClassName("redborderbottomright");
-    for (var b = 0; b < itemsRedborderBR.length; b++) {
-      itemsRedborderBR[b].style.setProperty("--before-BR-top", "0.5dvh");
-      itemsRedborderBR[b].style.setProperty("--before-BR-left", "0.5dvh");      
-      itemsRedborderBR[b].style.setProperty("--before-BR-right", "0.5dvh");
-    }
-    var itemsRedborderSB = document.getElementsByClassName("redbordersoundbox");
-    for (var s = 0; s < itemsRedborderSB.length; s++) {
-      itemsRedborderSB[s].style.setProperty("--before-SB-top", "0.5dvh");
-      itemsRedborderSB[s].style.setProperty("--before-SB-left", "0.5dvh");      
-      itemsRedborderSB[s].style.setProperty("--before-SB-right", "0.5dvh");
-      itemsRedborderSB[s].style.setProperty("--before-SB-bottom", "0.5dvh");
-    }
-    
-    var checkBox = document.getElementsByClassName("checkbox");
-    var guideboxtext = document.getElementsByClassName("guideboxtext");
-    var guideboxswitch = document.getElementsByClassName("switch");
-      for (var i = 0; i < checkBox.length; i++) {
-          for (var i = 0; i < guideboxtext.length; i++) {
-              if (checkBox[i].checked) {
-                if (window.matchMedia("(max-height: 1400px) and (min-height: 951px) and (orientation: portrait)").matches) {
-                  guideboxtext[i].style.fontSize = "2.5dvh"; // ENG
-                  guideboxswitch[i].style.left = "58.5dvh";
-                }
-                if (window.matchMedia("(max-height: 950px) and (orientation: portrait)").matches) {
-                  guideboxtext[i].style.fontSize = "2dvh"; // ENG
-                  guideboxswitch[i].style.left = "35dvh";
-                }
-              } else {
-                if (window.matchMedia("(max-height: 1400px) and (min-height: 951px) and (orientation: portrait)").matches) {
-                  guideboxtext[i].style.fontSize = "3dvh"; // THAI
-                }
-                else if (window.matchMedia("(max-height: 950px) and (orientation: portrait)").matches) {
-                  guideboxtext[i].style.fontSize = "2.4dvh"; // THAI
-                }
-              }
-          }
-        }
-    if (window.matchMedia("(max-height: 950px) and (orientation: portrait)").matches) {
-        var itemsMidbutton = document.getElementsByClassName("middlebutton");
-        var itemsJoinbutton = document.getElementsByClassName("joinbutton");
-        var itemsOfflinebutton = document.getElementsByClassName("offlinebutton");
-    
-        for (var h = 0; h < itemsMidbutton.length; h++) {
-            itemsJoinbutton[h].style.top = "48dvh";
-            itemsOfflinebutton[h].style.top = "61dvh";
-        }
-    }
-    //elseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-  } else if (window.matchMedia("(max-width: 1400px) and (orientation: landscape)").matches){
-    var lbh = document.getElementsByClassName("leftboxhide")[0];
-    var itemsLeftbox = document.getElementsByClassName("leftboxcontainer");
-    for (var i = 0; i < itemsLeftbox.length; i++) {
-      itemsLeftbox[i].style.transform = "translateX(0dvh)";
-    }
-    lbh.textContent = "HIDE";
-    
-    var itemsMidbutton = document.getElementsByClassName("middlebutton");
-    for (var y = 0; y < itemsMidbutton.length; y++) {
-      itemsMidbutton[y].style.width = "60dvh";
-      itemsMidbutton[y].style.fontSize = "6dvh";
-      itemsMidbutton[y].style.height = "13dvh";
-    }
-    var itemsMidhead = document.getElementsByClassName("middlehead"); 
-    for (var f = 0; f < itemsMidhead.length; f++) {
-      itemsMidhead[f].style.top = "";
-    }
-    var itemsMidlogo = document.getElementsByClassName("middlelogo");
-    for (var r = 0; r < itemsMidlogo.length; r++) {
-      itemsMidlogo[r].style.top = "-38dvh";
-      itemsMidlogo[r].style.height = "13dvh";
-      itemsMidlogo[r].style.marginRight = "45dvh";
-    }
-    var itemsTR = document.getElementsByClassName("toprightbutton");
-    for (var t = 0; t < itemsTR.length; t++) {
-      itemsTR[t].style.top = "1dvh";
-      itemsTR[t].style.right = "2dvh";
-      itemsTR[t].style.height = "6dvh";
-    }
-    var itemsTRGuide = document.getElementsByClassName("toprightguidebutton");
-    for (var g = 0; g < itemsTRGuide.length; g++) {
-      itemsTRGuide[g].style.width = "25dvh";
-      itemsTRGuide[g].style.marginRight = "26dvh";
-      itemsTRGuide[g].style.fontSize = "3dvh";
-    }
-    var itemsTRBright = document.getElementsByClassName("toprightbrightbutton");
-    for (var d = 0; d < itemsTRBright.length; d++) {
-      itemsTRBright[d].style.width = "12dvh";
-      itemsTRBright[d].style.marginRight = "13dvh";
-    }
-    var itemsTRSound = document.getElementsByClassName("toprightsoundbutton");
-    for (var v = 0; v < itemsTRSound.length; v++) {
-      itemsTRSound[v].style.width = "12dvh";
-    }
-    var itemsTRscale = document.getElementsByClassName("toprighticonscale");
-    for (var e = 0; e < itemsTRscale.length; e++) {
-      itemsTRscale[e].style.transform = "scale(var(--ggs, 1))";
-    }
-    var itemsTRscalemoon = document.getElementsByClassName("toprighticonscalemoon");
-    for (var k = 0; k < itemsTRscalemoon.length; k++) {
-      itemsTRscalemoon[k].style.transform = "rotate(-135deg) scale(var(--ggs, 1))";
-    }
-    var itemsBRcode = document.getElementsByClassName("bottomrightcode");
-    for (var g = 0; g < itemsBRcode.length; g++) {
-      itemsBRcode[g].style.top = "92dvh";
-      itemsBRcode[g].style.width = "39dvh";
-      itemsBRcode[g].style.height = "12dvh";
-      itemsBRcode[g].style.borderRadius = "6dvh 6dvh 0dvh 0dvh";
-      itemsBRcode[g].style.setProperty("--before-BR-fontsize", "3dvh");
-      itemsBRcode[g].style.setProperty("--before-BR-padding", "2dvh 0svh 0svh 2svh");
-    }
-    var itemsBRicon = document.getElementsByClassName("bottomrightgithubicon");
-    for (var l = 0; l < itemsBRicon.length; l++) {
-      itemsBRicon[l].style.height = "10dvh";
-      itemsBRicon[l].style.top = "10dvh";
-    }
-    var itemsBRtext = document.getElementsByClassName("bottomrightgithubtext");
-    for (var m = 0; m < itemsBRtext.length; m++) {
-      itemsBRtext[m].style.fontSize = "2.7dvh";
-      itemsBRtext[m].style.top = "13vh";
-    }
-    var itemsSoundbox = document.getElementsByClassName("soundbox");
-    var itemsSoundboxonoff = document.getElementsByClassName("soundboxonoff");
-    var itemsSoundboxswitch = document.getElementsByClassName("soundboxswitch");
-    for (var j = 0; j < itemsSoundbox.length; j++) {
-      itemsSoundbox[j].style.top = "5dvh";
-      itemsSoundbox[j].style.right = "3dvh";
-      itemsSoundbox[j].style.width = "10dvh";
-      itemsSoundboxonoff[j].style.padding = "0dvh 0dvh 2.7dvh 2.7dvh";
-      itemsSoundboxswitch[j].style.left = "1dvh";
-    }
-    var itemsSoundboxslider = document.getElementsByClassName("soundboxslider");
-    for (var p = 0; p < itemsSoundboxslider.length; p++) {
-      itemsSoundboxslider[p].style.left = "-5dvh";
-    }
-    var itemsRedborderBR = document.getElementsByClassName("redborderbottomright");
-    for (var b = 0; b < itemsRedborderBR.length; b++) {
-      itemsRedborderBR[b].style.setProperty("--before-BR-top", "1dvh");
-      itemsRedborderBR[b].style.setProperty("--before-BR-left", "1dvh");      
-      itemsRedborderBR[b].style.setProperty("--before-BR-right", "1dvh");
-    }
-    var itemsRedborderSB = document.getElementsByClassName("redbordersoundbox");
-    for (var s = 0; s < itemsRedborderSB.length; s++) {
-      itemsRedborderSB[s].style.setProperty("--before-SB-top", "1dvh");
-      itemsRedborderSB[s].style.setProperty("--before-SB-left", "1dvh");      
-      itemsRedborderSB[s].style.setProperty("--before-SB-right", "1dvh");
-      itemsRedborderSB[s].style.setProperty("--before-SB-bottom", "1dvh");
-    }
-    
-    var checkBox = document.getElementsByClassName("checkbox");
-    var guideboxtext = document.getElementsByClassName("guideboxtext");
-    var guideboxswitch = document.getElementsByClassName("switch");
-      for (var i = 0; i < checkBox.length; i++) {
-          for (var i = 0; i < guideboxtext.length; i++) {
-              if (checkBox[i].checked) {
-                  guideboxtext[i].style.fontSize = "2.5dvh"; // ENG
-                  guideboxswitch[i].style.left = "69dvh";
-                
-              } else {
-                  guideboxtext[i].style.fontSize = "3.3dvh"; // THAI
-              }
-          }
-        }
-      var itemsMidbutton = document.getElementsByClassName("middlebutton");
-      var itemsJoinbutton = document.getElementsByClassName("joinbutton");
-      var itemsOfflinebutton = document.getElementsByClassName("offlinebutton");
-      for (var h = 0; h < itemsMidbutton.length; h++) {
-          itemsJoinbutton[h].style.top = "52.5dvh";
-          itemsOfflinebutton[h].style.top = "70dvh";
-      }
-  }
-}
-updateLayout();
-
-
-
-//soundboxUXopen-close #ig:kimmuie_ , ig:mozart_ko
-document.getElementsByClassName("toprightsoundbutton")[0].addEventListener("click", function () {
-  var items = document.getElementsByClassName("soundbox");
-  var fadeout1 = document.getElementsByClassName("soundboxonoff");
-  var fadeout2 = document.getElementsByClassName("soundboxswitch");
-  var fadeout3 = document.getElementsByClassName("soundboxslider");
-
-  for (var i = 0; i < items.length; i++) {
-    if (items[i].style.display === "none" || items[i].style.display === "") {
-      console.log("Seek Soundbox");
-      items[i].style.display = "block";
-      items[i].style.animation = "soundboxoff 0.5s ease-in-out reverse";
-      items[i].style.setProperty("--before-animation", "soundboxbeforeoff 0.5s ease-in-out reverse");
-      fadeout1[i].style.animation = "fadein 0.2s ease-in-out";
-      fadeout2[i].style.animation = "fadein 0.2s ease-in-out";
-      fadeout3[i].style.animation = "fadein 0.2s ease-in-out";
-      items[i].addEventListener("animationend", function animationEndHandler() {
-        for (var j = 0; j < fadeout1.length; j++) {
-          fadeout1[j].style.display = "block";
-          fadeout2[j].style.display = "block";
-          fadeout3[j].style.display = "block";
-        }
-        this.style.animation = "";
-        this.style.setProperty("--before-animation", "");
-        this.removeEventListener("animationend", animationEndHandler);
-      });
-    } else if (items[i].style.display === "block") {
-      console.log("Hide Soundbox");
-      closesoundbox()
-    }
-  }
 });
 
 //changetheme #ig:kimmuie_ , ig:mozart_ko
@@ -705,68 +544,22 @@ document.getElementsByClassName("toprightbrightbutton")[0].addEventListener("cli
   for (var i = 0; i < sun.length; i++) {
     if (sun[i].style.display === "block" || sun[i].style.display === "") {
       console.log("Turn Dark");
-      
-      var itemsSun = document.getElementsByClassName("gg-sun");
-      for (var j = 0; j < itemsSun.length; j++) {
-        itemsSun[j].style.display = "none";
-      }
-      var itemsMoon = document.getElementsByClassName("gg-moon");
-      for (var k = 0; k < itemsMoon.length; k++) {
-        itemsMoon[k].style.display = "block";
-      }
-      var itemsFont = document.getElementsByClassName("changefont");
-      for (var l = 0; l < itemsFont.length; l++) {
-        itemsFont[l].style.setProperty("--before-font","white");
-      }
-      var itemsDiv = document.getElementsByClassName("changediv");
-      for (var d = 0; d < itemsDiv.length; d++) {
-        itemsDiv[d].style.setProperty("--before-backgroundchange","linear-gradient(to bottom, #272829, #61677A, #272829)");
-      }
-      var itemsDivbeforesp = document.getElementsByClassName("changedivsp");
-      for (var s = 0; s < itemsDivbeforesp.length; s++) {
-        itemsDivbeforesp[s].style.setProperty("--before-backgroundchangesp1","linear-gradient(to bottom, #61677A, #272829)");
-        itemsDivbeforesp[s].style.setProperty("--before-backgroundchangesp2","linear-gradient(to bottom, #61677A, #272829)");
-      }
-      var itemsDivsmol = document.getElementsByClassName("changedivsmol");
-      for (var x = 0; x < itemsDivsmol.length; x++) {
-        itemsDivsmol[x].style.setProperty("--before-backgroundchangesmol","#272829");
-      }
-      var itemsGif = document.getElementsByClassName("changegif");
-      for (var v = 0; v < itemsGif.length; v++) {
-        itemsGif[v].style.backgroundImage = "url(./1BGblack.gif)";
-      }
-      //elseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+      setStyles("gg-sun", { display: "none" });
+      setStyles("gg-moon", { display: "block" });
+      setProperty("changefont", { "--before-font": "white" });
+      setProperty("changediv", { "--before-backgroundchange": "linear-gradient(to bottom, #272829, #61677A, #272829)" });
+      setProperty("changedivsp", { "--before-backgroundchangesp1": "linear-gradient(to bottom, #61677A, #272829)", "--before-backgroundchangesp2": "linear-gradient(to bottom, #61677A, #272829)" });
+      setProperty("changedivsmol", { "--before-backgroundchangesmol": "#272829" });
+      setStyles("changegif", { backgroundImage: "url(./1BGblack.gif)" });
     } else if (sun[i].style.display === "none") {
       console.log("Turn Bright");
-      var itemsSun = document.getElementsByClassName("gg-sun");
-      for (var j = 0; j < itemsSun.length; j++) {
-        itemsSun[j].style.display = "block";
-      }
-      var itemsMoon = document.getElementsByClassName("gg-moon");
-      for (var k = 0; k < itemsMoon.length; k++) {
-        itemsMoon[k].style.display = "none";
-      }
-      var itemsFont = document.getElementsByClassName("changefont");
-      for (var l = 0; l < itemsFont.length; l++) {
-        itemsFont[l].style.setProperty("--before-font","black");
-      }
-      var itemsDiv = document.getElementsByClassName("changediv");
-      for (var d = 0; d < itemsDiv.length; d++) {
-        itemsDiv[d].style.setProperty("--before-backgroundchange","linear-gradient(to bottom, #6C737E, #CFD2CF, #6C737E)");
-      }
-      var itemsDivbeforesp = document.getElementsByClassName("changedivsp");
-      for (var s = 0; s < itemsDivbeforesp.length; s++) {
-        itemsDivbeforesp[s].style.setProperty("--before-backgroundchangesp1","linear-gradient(to bottom, #CFD2CF, #6C737E)");
-        itemsDivbeforesp[s].style.setProperty("--before-backgroundchangesp2","linear-gradient(to bottom, #CFD2CF, #6C737E)");
-      }
-      var itemsDivsmol = document.getElementsByClassName("changedivsmol");
-      for (var x = 0; x < itemsDivsmol.length; x++) {
-        itemsDivsmol[x].style.setProperty("--before-backgroundchangesmol","#6C737E");
-      }
-      var itemsGif = document.getElementsByClassName("changegif");
-      for (var v = 0; v < itemsGif.length; v++) {
-        itemsGif[v].style.backgroundImage = "url(./1BGwhite.gif)";
-      }
+      setStyles("gg-sun", { display: "block" });
+      setStyles("gg-moon", { display: "none" });
+      setProperty("changefont", { "--before-font": "black" });
+      setProperty("changediv", { "--before-backgroundchange": "linear-gradient(to bottom, #6C737E, #CFD2CF, #6C737E)" });
+      setProperty("changedivsp", { "--before-backgroundchangesp1": "linear-gradient(to bottom, #CFD2CF, #6C737E)", "--before-backgroundchangesp2": "linear-gradient(to bottom, #CFD2CF, #6C737E)" });
+      setProperty("changedivsmol", { "--before-backgroundchangesmol": "#6C737E" });
+      setStyles("changegif", { backgroundImage: "url(./1BGwhite.gif)" });
     }
   }
 });
@@ -777,20 +570,16 @@ document.getElementsByClassName("bottomrightcode")[0].addEventListener("click", 
   for (var i = 0; i < items.length; i++) {
     var hasPopupClass = items[i].classList.contains("popup");
     if (!hasPopupClass) {
-      console.log("Popup bottomrightcode");
+      console.log("Show bottomrightcode");
       if (window.matchMedia("(max-height: 1400px) and (orientation: portrait)").matches) {
-        items[i].style.top = "90dvh";
-        items[i].style.height = "10dvh";
-        items[i].style.setProperty("--before-BR-height", "8dvh");
-      }else{
-        items[i].style.top = "80dvh";
-        items[i].style.height = "20dvh";
+        setStyles("bottomrightcode", { top: "90dvh", height: "10dvh" });
+        setProperty("bottomrightcode", { "--before-BR-height": "8dvh" });
+      } else {
+        setStyles("bottomrightcode", { top: "80dvh", height: "20dvh" });
       }
-      
       items[i].classList.add("popup");
-    } else if(hasPopupClass){
-      console.log("Popout bottomrightcode");
-      closebottomrightbox()
+    } else if (hasPopupClass) {
+      closebottomrightbox();
     }
   }
 });
