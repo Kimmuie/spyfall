@@ -34,6 +34,7 @@
 body {
   overflow: hidden;
   margin: 0;
+  user-select: none;
 }
 
 .bg {
@@ -44,8 +45,11 @@ body {
   display: block;
 }
 
-.logowiggle:hover,
-.logowiggle:active {
+.logowiggle:hover{
+  animation: wiggle 1s ease-in-out;
+}
+
+.wiggle {
   animation: wiggle 1s ease-in-out;
 }
 
@@ -122,7 +126,7 @@ body {
   overflow-wrap: break-word;
   z-index: 5;
   overflow: hidden; 
-  transition: transform 0.1s ease-in-out;
+  transition: left 0.3s ease-in-out;
 }
 
 .leftbox::before {
@@ -148,6 +152,7 @@ body {
   border: 0.8dvh solid #750E21;
   background: var(--before-backgroundchangesmol,#6C737E);
   cursor: pointer;
+  transition: left 0.3s ease-in-out;
   z-index: 4;
 }
 
@@ -212,6 +217,7 @@ body {
 .redbuttonhover:active {
   color: white;
   background: linear-gradient(to right, #750E21, #750E21, #750E21);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 10);
 }
 
 .redbuttonhover::before {
@@ -233,6 +239,7 @@ body {
 .redbuttonhover:active::before {
   opacity: 1;
   transform: scaleX(1) scaleY(1);
+  box-shadow: 0 0 2dvh rgba(0, 0, 0, 10);
 }
 
 .leftboxdescription {
@@ -288,6 +295,10 @@ body {
   top: 70dvh;
 }
 
+.unavailable {
+  position: absolute;
+  font-size: 3dvh;
+}
 .middlelogo {
   height: 13dvh;
   width: auto;
@@ -1013,7 +1024,6 @@ input:checked + .slider:before {
   padding: 0dvh 0dvh 2.7dvh 2.7dvh;
   display: none;
   position: absolute;
-  cursor: pointer;
   z-index: 2;
 }
 
@@ -1057,3 +1067,142 @@ input:checked + .slider:before {
   }
 }
 
+.offlinemenu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  height: 270dvh;
+  width: 100dvw;
+  color: Black;
+  perspective: 200dvh;
+  z-index: 3;
+  pointer-events: none;
+  transition: ease-in-out 0.5s;
+}
+
+
+.offlinebox {
+  display: block;
+  position: relative;
+  width: 50dvh;
+  height: 70dvh;
+  background: linear-gradient(to bottom, #750E21, #FF4949, #750E21);
+  border-radius: 6dvh 6dvh 0dvh 0dvh;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  pointer-events: auto;
+  box-sizing: border-box;
+}
+
+.offlinebox::after {
+  content: "";
+  position: absolute;
+  width: 99%;
+  height: 98%;
+  top: 1dvh;
+  left: 1dvh  ;
+  background: repeating-linear-gradient(45deg, transparent, transparent 50%, white 500%) 0/2dvh 2dvh;
+  border-radius: var(--after-border-radius, 7dvh 0dvh 7dvh 7dvh);
+  z-index: 1;
+  overflow: hidden; 
+}
+
+.offlineheader {
+  font-size: 6dvh;
+  margin-top: 3dvh;
+  margin-left: 10dvh;
+  display: block;
+  position: relative;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  z-index: 2;
+  color: var(--before-font,black);
+}
+
+.offlineoption {
+  font-size: 1.8dvh;
+  font-family: 'Kanit', sans-serif;
+}
+
+.offlinelabel{
+  font-size: 2.5dvh;
+  position: relative;
+  margin-left: 4dvh;
+  margin-top: 2dvh;
+  z-index: 2;
+  display:block;
+  font-family: 'Kanit', sans-serif;
+  align-items: center;
+  justify-content: center;
+  color: var(--before-font,black);
+}
+
+.offlineinput::placeholder {
+  color: black;
+  font-size: 2dvh;
+}
+
+.nameInput {
+  font-size: 2dvh;
+  z-index: 2;
+  border: 0.4dvh solid black;
+  padding: 1dvh;
+  margin-top: 1dvh;
+  margin-left: 3dvh;
+  width: 36dvh;
+  border-radius: 2dvh;
+  background-color: #ff4444;
+  cursor: pointer;
+  transition: ease-in-out 0.5s;
+  font-family: 'Kanit', sans-serif;
+  position: relative;
+}
+.addname{
+  font-size: 2dvh;
+  border: 0.4dvh solid black;
+  padding: 1dvh;
+  width: 7dvh;
+  border-radius: 2dvh;
+  background-color: #ff4444;
+  position: relative;
+  margin-top: 1dvh;
+  z-index: 2;
+  cursor: pointer;
+  transition: ease-in-out 0.5s;
+  font-family: 'Kanit', sans-serif;
+}
+
+.Input {
+  font-size: 2dvh;
+  z-index: 2;
+  border: 0.4dvh solid black;
+  padding: 1dvh;
+  width: 44dvh;
+  border-radius: 2dvh;
+  margin-top: 1dvh;
+  margin-left: 3dvh;
+  background-color: #ff4444;
+  cursor: pointer;
+  transition: ease-in-out 0.5s;
+  font-family: 'Kanit', sans-serif;
+  position: relative;
+}
+
+.offlinestartbutton{
+  z-index: 2;
+  border: 0.4dvh solid black;
+  font-size: 3dvh;
+  border-radius: 50px;
+  background-color: #ff4444;
+  position: relative;
+  margin-top: 1dvh;
+  margin-left: 10dvh;
+  margin-top: 30px;
+  width: 30dvh;
+  height: 10dvh;
+  color: black;
+  transition: ease-in-out 0.5s;
+  cursor: pointer;
+  position: relative;
+}
