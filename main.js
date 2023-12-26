@@ -15,18 +15,25 @@ function setProperty(selector, styles) {
   }
 }
 
+
+var audiopu = document.getElementById("Soundpopup");
+
 //leftboxUXopen-close ***ig:kimmuie_  ig:mozart_ko***
 document.getElementsByClassName("leftboxhide")[0].addEventListener("click", function () {
   var lbh = document.getElementsByClassName("leftboxhide")[0];
 
   if (lbh.textContent === "HIDE") {
       console.log("Hide Leftbox");
-      setStyles("leftboxcontainer", { transform: "translateX(-35dvh)" });
+      setStyles("leftbox", { left: "-35dvh" });
+      setStyles("leftboxhide", { left: "3dvh" });
     lbh.textContent = "UNHIDE";
+    audiopu.play();
   } else if (lbh.textContent === "UNHIDE") {
       console.log("Unhide Leftbox");
-      setStyles("leftboxcontainer", { transform: "translateX(0dvh)" });
+      setStyles("leftbox", { left: "0dvh" });
+      setStyles("leftboxhide", { left: "38dvh" });
     lbh.textContent = "HIDE";
+    audiopu.play();
   }
 });
   
@@ -54,6 +61,7 @@ document.getElementsByClassName("leftboxbutton1")[0].addEventListener("click", f
         });
       }
       console.log("Show contact");
+      audiopu.play();
       items[i].style.display = "block";
       items[i].style.animation = "pop-in 1s ease-in-out";
       items[i].addEventListener("animationend", function animationEndHandler() {
@@ -95,6 +103,7 @@ document.getElementsByClassName("leftboxbutton2")[0].addEventListener("click", f
         });
       }
       console.log("Show donate");
+      audiopu.play();
       items[i].style.display = "block";
       items[i].style.animation = "pop-in 1s ease-in-out";
       items[i].addEventListener("animationend", function animationEndHandler() {
@@ -136,6 +145,7 @@ document.getElementsByClassName("toprightguidebutton")[0].addEventListener("clic
         });
       }
       console.log("Show guide");
+      audiopu.play();
       items[i].style.display = "block";
       items[i].style.animation = "pop-in 1s ease-in-out";
       items[i].addEventListener("animationend", function animationEndHandler() {
@@ -159,25 +169,39 @@ document.getElementsByClassName("toprightsoundbutton")[0].addEventListener("clic
 
   for (var i = 0; i < items.length; i++) {
     if (items[i].style.display === "none" || items[i].style.display === "") {
+      audiopu.play();
       console.log("Seek Soundbox");
-      // Set styles using setStyles function
       setStyles("soundbox", { display: "block" ,animation: "soundboxoff 0.5s ease-in-out reverse" });
       setStyles("soundbox", { "--before-animation": "soundboxbeforeoff 0.5s ease-in-out reverse" });
-      setStyles("soundboxonoff", { animation: "fadein 0.2s ease-in-out" });
-      setStyles("soundboxswitch", { animation: "fadein 0.2s ease-in-out" });
-      setStyles("soundboxslider", { animation: "fadein 0.2s ease-in-out" });
-
       items[i].addEventListener("animationend", function animationEndHandler() {
-        setStyles("soundboxonoff", { display: "block" });
-        setStyles("soundboxswitch", { display: "block" });
-        setStyles("soundboxslider", { display: "block" });
         this.style.animation = "";
-        this.style.setProperty("--before-animation", "");
+      setStyles("soundboxonoff", { display: "block" , animation: "fadein 0.2s ease-in-out" });
+      setStyles("soundboxswitch", { display: "block" , animation: "fadein 0.2s ease-in-out" });
+      setStyles("soundboxslider", { display: "block" , animation: "fadein 0.2s ease-in-out" });
         this.removeEventListener("animationend", animationEndHandler);
       });
-    } else if (items[i].style.display === "block") {
-      console.log("Hide Soundbox");
+    } else {
       closesoundbox()
+    }
+  }
+});
+
+//BRcodeUXopen-close ***ig:kimmuie_  ig:mozart_ko***
+document.getElementsByClassName("bottomrightcode")[0].addEventListener("click", function () {
+  var items = document.getElementsByClassName("bottomrightcode");
+  for (var i = 0; i < items.length; i++) {
+    var hasPopupClass = items[i].classList.contains("popup");
+    if (!hasPopupClass) {
+      console.log("Show bottomrightcode");
+      if (window.matchMedia("(max-height: 1400px) and (orientation: portrait)").matches) {
+        setStyles("bottomrightcode", { top: "90dvh", height: "10dvh" });
+        setProperty("bottomrightcode", { "--before-BR-height": "8dvh" });
+      } else {
+        setStyles("bottomrightcode", { top: "80dvh", height: "20dvh" });
+      }
+      items[i].classList.add("popup");
+    } else if (hasPopupClass) {
+      closebottomrightbox();
     }
   }
 });
@@ -189,53 +213,55 @@ var guideboxclose = document.getElementsByClassName("guideboxclose")[0];
 var backgroundclose = document.getElementsByClassName("bg")[0];
 
 function closecontactbox(){
-    console.log("Hide contact");
     setStyles("alertbox1", { animation: "pop-out 0.3s ease-in-out" });
     var items = document.getElementsByClassName("alertbox1")[0];
     items.addEventListener("animationend", function animationEndHandler() {
+      console.log("Hide contact");
       this.style.display = "none";
       this.removeEventListener("animationend", animationEndHandler);
     });
 }
 
 function closedonatebox(){
-    console.log("Hide donate");
     setStyles("alertbox2", { animation: "pop-out 0.3s ease-in-out" });
     var items = document.getElementsByClassName("alertbox2")[0];
     items.addEventListener("animationend", function animationEndHandler() {
+      console.log("Hide donate");
       this.style.display = "none";
       this.removeEventListener("animationend", animationEndHandler);
     });
 }
 
 function closeguidebox(){
-    console.log("Hide guide");
     setStyles("guideboxinside", { animation: "pop-out 0.3s ease-in-out" });
     var items = document.getElementsByClassName("guideboxinside")[0];
     items.addEventListener("animationend", function animationEndHandler() {
+      console.log("Hide guide");
       this.style.display = "none";
       this.removeEventListener("animationend", animationEndHandler);
     });
 }
 
 function closesoundbox(){
-  console.log("Hide soundbox");
-  setStyles("soundbox", { animation : "soundboxoff 0.5s ease-in-out normal" });
-  setProperty("soundbox" , {"--before-animation": "soundboxbeforeoff 0.5s ease-in-out normal"});
-  setStyles("soundboxonoff", { display: "none" });
-  setStyles("soundboxswitch", { display: "none" });
-  setStyles("soundboxslider", { display: "none" });
-  var items = document.getElementsByClassName("soundbox")[0];
-  items.addEventListener("animationend", function animationEndHandler() {
-    this.style.display = "none";
-    this.style.animation = "";
-    this.style.setProperty("--before-animation", "");
-    this.removeEventListener("animationend", animationEndHandler);
-  });
+  var items = document.getElementsByClassName("soundbox");
+  for (var i = 0; i < items.length; i++) {
+    if  (items[i].style.display === "none" || items[i].style.display === "") {
+    }else{
+      console.log("Hide soundbox");
+      setStyles("soundbox", { animation : "soundboxoff 0.5s ease-in-out normal" });
+      setProperty("soundbox" , {"--before-animation": "soundboxbeforeoff 0.5s ease-in-out normal"});
+      setStyles("soundboxonoff", { display: "none" });
+      setStyles("soundboxswitch", { display: "none" });
+      setStyles("soundboxslider", { display: "none" });
+      items[i].addEventListener("animationend", function animationEndHandler() {
+      this.style.display = "none";
+      this.removeEventListener("animationend", animationEndHandler);
+      });
+    }
+  }
 }
 
 function closebottomrightbox(){
-    console.log("Popout bottomrightcode");
     if (window.matchMedia("(max-height: 1400px) and (orientation: portrait)").matches) {
       setStyles("bottomrightcode", { top: "96dvh", height: "6dvh" });
       setProperty("bottomrightcode", {"--before-BR-height": "8dvh"});
@@ -296,7 +322,7 @@ document.getElementsByClassName("alertboxcontactTM")[0].addEventListener("click"
   }
 });
 
-//PropmptpayQRopen-close #ig:kimmuie_ , ig:mozart_ko
+//PropmptpayQRopen-close ***ig:kimmuie_  ig:mozart_ko***
 document.getElementsByClassName("alertboxcontactPM")[0].addEventListener("click", function () {
   var items = document.getElementsByClassName("alertboxQRcode");
   var itemsIMG = document.getElementsByClassName("alertboxQR");
@@ -337,14 +363,14 @@ document.getElementsByClassName("alertboxcontactPM")[0].addEventListener("click"
   }
 });
 
-//setguidecontext #ig:kimmuie_ , ig:mozart_ko
+//setguidecontext ***ig:kimmuie_  ig:mozart_ko***
 var guideboxtext = document.getElementsByClassName("guideboxtext");
 var originalGuideboxText = guideboxtext[0].getAttribute("data-default-content");
 for (var i = 0; i < guideboxtext.length; i++) {
     guideboxtext[i].innerHTML = originalGuideboxText;
 }
 
-//guidechangelanguage #ig:kimmuie_ , ig:mozart_ko
+//guidechangelanguage ***ig:kimmuie_  ig:mozart_ko***
 function checkBoxChanged() {
   var checkBox = document.getElementsByClassName("checkbox");
   var guideboxinner = document.getElementsByClassName("guideboxinner");
@@ -412,7 +438,7 @@ function checkBoxChanged() {
     }
 }
 
-//getoriginalrotationdegree #ig:kimmuie_ , ig:mozart_ko
+//getoriginalrotationdegree ***ig:kimmuie_  ig:mozart_ko***
 function getCurrentRotation(element) {
   var transformValue = element.style.transform;
   var match = transformValue.match(/rotateY\(([-?\d]+)deg\)/);
@@ -425,15 +451,17 @@ function getCurrentRotation(element) {
 }
 
 
-//screensetter #ig:kimmuie_ , ig:mozart_ko
+//screensetter ***ig:kimmuie_  ig:mozart_ko***
   function updateLayout() {
     console.log("updatelayout");
     
     var lbh = document.getElementsByClassName("leftboxhide")[0];
     if (window.matchMedia("(max-height: 1400px) and (orientation: portrait)").matches) {
       lbh.textContent = "UNHIDE";
-      setStyles("leftboxcontainer", { transform: "translateX(-35dvh)" });
+      setStyles("leftbox", { left: "-35dvh" });
+      setStyles("leftboxhide", { left: "3dvh" });
       setStyles("middlebutton", { width: "40dvh", height: "10dvh", fontSize: "4dvh" });
+      setStyles("unavailable", { fontSize: "2dvh" });
       setStyles("middlehead", { top: "15dvh" });
       setStyles("middlelogo", { top: "-39dvh", height: "8dvh", marginRight: "0dvh" });
       setStyles("toprightbutton", { right: "1dvh", height: "4dvh" });
@@ -487,8 +515,10 @@ function getCurrentRotation(element) {
       //elseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
     } else if (window.matchMedia("(max-width: 1400px) and (orientation: landscape)").matches) {
       lbh.textContent = "HIDE";
-      setStyles("leftboxcontainer", { transform: "translateX(0dvh)" });
+      setStyles("leftbox", { left: "0dvh" });
+      setStyles("leftboxhide", { left: "38dvh" });
       setStyles("middlebutton", { width: "60dvh", height: "13dvh", fontSize: "6dvh" });
+      setStyles("unavailable", { fontSize: "3dvh" });
       setStyles("middlehead", { top: "" });
       setStyles("middlelogo", { top: "-38dvh", height: "13dvh", marginRight: "45dvh" });
       setStyles("toprightbutton", { right: "2dvh", height: "6dvh" });
@@ -538,7 +568,7 @@ window.addEventListener("resize", function () {
   updateLayout();
 });
 
-//changetheme #ig:kimmuie_ , ig:mozart_ko
+//changetheme ***ig:kimmuie_  ig:mozart_ko***
 document.getElementsByClassName("toprightbrightbutton")[0].addEventListener("click", function () {
   var sun = document.getElementsByClassName("gg-sun");
   for (var i = 0; i < sun.length; i++) {
@@ -564,22 +594,82 @@ document.getElementsByClassName("toprightbrightbutton")[0].addEventListener("cli
   }
 });
 
-//BRcodeUXopen-close #ig:kimmuie_ , ig:mozart_ko
-document.getElementsByClassName("bottomrightcode")[0].addEventListener("click", function () {
-  var items = document.getElementsByClassName("bottomrightcode");
-  for (var i = 0; i < items.length; i++) {
-    var hasPopupClass = items[i].classList.contains("popup");
-    if (!hasPopupClass) {
-      console.log("Show bottomrightcode");
-      if (window.matchMedia("(max-height: 1400px) and (orientation: portrait)").matches) {
-        setStyles("bottomrightcode", { top: "90dvh", height: "10dvh" });
-        setProperty("bottomrightcode", { "--before-BR-height": "8dvh" });
+//sound ***ig:kimmuie_  ig:mozart_ko***
+document.addEventListener('DOMContentLoaded', function () {
+  var logowiggle = document.getElementsByClassName("logowiggle");
+  var body = document.getElementsByClassName("body");
+  var addsoundbutton = document.getElementsByClassName("addsoundbutton");
+  var audiologo = document.getElementById("Soundsneeze");
+  var audiobg = document.getElementById("Soundbackground");
+  var audiobt = document.getElementById("Soundbutton");
+  var audiopu = document.getElementById("Soundpopup");
+  var soundswitch = document.getElementsByClassName("soundboxswitchbox");
+  var soundslider = document.getElementsByClassName("soundboxslider");
+
+  for (var i = 0; i < soundslider.length; i++) {
+    soundslider[i].addEventListener("change", function () {
+      audiobg.volume = this.value;
+      audiologo.volume = this.value;
+      audiobt.volume = this.value;
+      audiopu.volume = this.value;
+    });
+  }
+
+  for (var i = 0; i < soundswitch.length; i++) {
+    soundswitch[i].addEventListener('change', function () {
+      if (this.checked) {
+        console.log("Soundmute");
+        audiobg.muted = true;
+        audiologo.muted = true;
+        audiobt.muted = true;
+        audiopu.muted = true;
       } else {
-        setStyles("bottomrightcode", { top: "80dvh", height: "20dvh" });
+        console.log("Soundon");
+        audiobg.play();
+        audiologo.muted = false;
+        audiobt.muted = false;
+        audiopu.muted = false;
       }
-      items[i].classList.add("popup");
-    } else if (hasPopupClass) {
-      closebottomrightbox();
+    });
+  }
+
+  function handleVisibilityChange() {
+    if (document.visibilityState === "hidden") {
+      console.log("Tab Switched Soundoff");
+      audiobg.pause();
+    } else {
+      console.log("Tab Switched Soundon");
+      audiobg.play();
     }
+}
+document.addEventListener("visibilitychange", handleVisibilityChange);
+
+  for (var i = 0; i < body.length; i++) {
+    body[i].addEventListener("mouseenter", function () {
+      console.log("Soundbody");
+      audiobg.play();
+    });
+  }
+
+  for (var i = 0; i < addsoundbutton.length; i++) {
+    addsoundbutton[i].addEventListener("mouseenter", function () {
+      console.log("Soundbutton");
+      audiobt.play();
+    });
+  }
+
+  for (var i = 0; i < logowiggle.length; i++) {
+    logowiggle[i].addEventListener("click", function () {
+      console.log("Soundsneeze");
+      audiologo.play();
+      this.style.animation = "none";
+      void this.offsetWidth;
+      this.style.animation = "wiggle 1s ease-in-out";
+    });
   }
 });
+
+document.getElementsByClassName("offlinebutton")[0].addEventListener("click", function () {
+  setStyles("middlebuttoncontainer", { display: "none" });
+  setStyles("offlinemenu", { height: "130dvh" });
+})
