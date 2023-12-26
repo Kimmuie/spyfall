@@ -17,41 +17,42 @@
         }
     </style>
 </head>
-<body>
-    <audio id="myAudio" preload="auto" autoplay loop onerror="audioError()">
-        <source src="audio/SongLofi.mp3" type="audio/mp3">
-      </audio>
+<body class="body">
+    <audio id="Soundsneeze" src="1Soundsneeze.mp3"></audio>
+    <audio id="Soundbackground" src="SongLofi.mp3"></audio>
+    <audio id="Soundbutton" src="1Soundbutton.mp3"></audio>
+    <audio id="Soundpopup" src="1Soundpopup.mp3"></audio>
         <div class="leftboxcontainer">
             <div class="leftbox changediv">
-                <image src="1Spyfall.png" class="leftboxlogo logowiggle">
+                <img src="1Spyfall.png" class="leftboxlogo logowiggle">
                 <div class="leftboxheader1 changefont">red koala</div>
                 <div class="leftboxheader2 changefont">Spyfall</div>
-                <button class="leftboxbutton leftboxbutton1 redbuttonhover">Contact</button>
-                <button class="leftboxbutton leftboxbutton2 redbuttonhover">Donate</button>
+                <button class="leftboxbutton leftboxbutton1 redbuttonhover addsoundbutton">Contact</button>
+                <button class="leftboxbutton leftboxbutton2 redbuttonhover addsoundbutton">Donate</button>
                 <p class="leftboxdescription changefont">description : This game website create it by Kim and my friend Mozart as an assistant, we both doing since we're grade 11 and still studying in Bangkok Christian College ,this  website create for testing our knowlegde , would you mind donate some tip for our inspiration , we both will keep improve our skill , there is playing guide on top of the right side , so have fun.<br><br>คำบรรยาย : เว็ปนี้สร้างขึ้นโดย คิม & โมสาท ในฐานะผู้ช่วย เราทั้งคู่สร้างเว็ปนี้เมื่อมัธยม 5 และกำลังศึกษาอยู่ที่โรงเรียนกรุงเทพคริสเตียนวิทยาลัย  เว็ปไซต์นี้สร้างขึ้นมาเพื่อทดสอบความรู้ของเราทั้งคู่ หากคุณพอจะบริจาคทิปเล็กๆน้อยเพื่อสร้างแรงบันดาลใจให้พวกเรา เราทั้งสองจะพัฒนาทักษะของเราอยู่เรื่อยๆวิธีเล่นอยู่ทางด้านขวาบน ขอให้สนุก</p>    </p>
-                <button class="leftboxbutton leftboxbutton3 redbuttonhover" onclick="window.location.href='mailto:pranchayutnetsawang@gmail.com?subject=The%20subject%20of%20the%20mail'">Send Feedback</button>
+                <button class="leftboxbutton leftboxbutton3 redbuttonhover addsoundbutton" onclick="window.location.href='mailto:pranchayutnetsawang@gmail.com?subject=The%20subject%20of%20the%20mail'">Send Feedback</button>
             </div>
             <button class="leftboxhide changefont changedivsmol">HIDE</button>
         </div>
         <div class="middlecontainer">
             <div class="middleheader">
-                <image src="1Spyfall.png" class="middlelogo logowiggle">
+                <img src="1Spyfall.png" class="middlelogo logowiggle">
                 <div class="middlehead middleheader1 changefont">red koala</div>
                 <div class="middlehead middleheader2 changefont">Spyfall</div>
             </div>
             <div class="middlebuttoncontainer">
-                <button class="middlebutton hostbutton redbuttonhover">Host Game</button>
-                <button class="middlebutton joinbutton redbuttonhover">Join Game</button>
-                <button class="middlebutton offlinebutton redbuttonhover">Offline Game</button>
+                <button class="middlebutton hostbutton redbuttonhover addsoundbutton">Host Game<span class="unavailable">(unavailable)</span></button>
+                <button class="middlebutton joinbutton redbuttonhover addsoundbutton">Join Game<span class="unavailable">(unavailable)</span></button>
+                <button class="middlebutton offlinebutton redbuttonhover addsoundbutton">Offline Game</button>
             </div>
         </div>
         <div class="toprightbuttoncontainer">
-            <button class="toprightbutton toprightguidebutton redbuttonhover">How to Play</button>
-            <button class="toprightbutton toprightbrightbutton redbuttonhover">
+            <button class="toprightbutton toprightguidebutton redbuttonhover addsoundbutton">How to Play</button>
+            <button class="toprightbutton toprightbrightbutton redbuttonhover addsoundbutton">
                     <div id="moon" class="gg-moon toprighticonscale toprighticonscalemoon"></div>
                     <div id="sun" class="gg-sun toprighticonscale"></div>
             </button>
-            <button class="toprightbutton toprightsoundbutton redbuttonhover">
+            <button class="toprightbutton toprightsoundbutton redbuttonhover addsoundbutton">
                 <div class="gg-volume toprighticonscale"></div>
             </button>
         </div>
@@ -65,19 +66,19 @@
         </div>
         <div class="alertbox alertbox1 redborder changediv">
             <div class="alertboxclose alertboxclose1 changedivsmol changefont"></div>
-            <div class="alertboxcontactIG1 alertboxhover" onclick="window.location.href='https://instagram.com/kimmuie_?utm_source=qr&igshid=ZDc4ODBmNjlmNQ%3D%3D'">
+            <div class="alertboxcontactIG1 alertboxhover addsoundbutton" onclick="window.location.href='https://instagram.com/kimmuie_?utm_source=qr&igshid=ZDc4ODBmNjlmNQ%3D%3D'">
                 <image src="1Instagram.png" class="alertboxcontactIG1 alertboxicon">
                 <div class="alertboxcontacttextIG1 alertboxtext changefont">kimmuie</div>
             </div>
-            <div class="alertboxcontactIG2 alertboxhover" onclick="window.location.href='https://instagram.com/mozart_ko?igshid=NzZhOTFlYzFmZQ=='">
+            <div class="alertboxcontactIG2 alertboxhover addsoundbutton" onclick="window.location.href='https://instagram.com/mozart_ko?igshid=NzZhOTFlYzFmZQ=='">
                 <image src="1Instagram.png" class="alertboxcontactIG2 alertboxicon">
                 <div class="alertboxcontacttextIG2 alertboxtext changefont">mozart</div>
             </div>
-            <div class="alertboxcontactGH1 alertboxhover" onclick="window.location.href='https://github.com/Kimmuie'">
+            <div class="alertboxcontactGH1 alertboxhover addsoundbutton" onclick="window.location.href='https://github.com/Kimmuie'">
                 <image src="1Github.png" class="alertboxcontactGH1 alertboxicon">
                 <div class="alertboxcontacttextGH1 alertboxtext changefont">kimmuie</div>
             </div>
-            <div class="alertboxcontactGH2 alertboxhover" onclick="window.location.href='https://github.com/democraz20'">
+            <div class="alertboxcontactGH2 alertboxhover addsoundbutton" onclick="window.location.href='https://github.com/democraz20'">
                 <image src="1Github.png" class="alertboxcontactGH2 alertboxicon">
                 <div class="alertboxcontacttextGH2 alertboxtext changefont">mozart</div>
             </div>
@@ -87,15 +88,15 @@
                 <image src="#" class="alertboxQR">
             </div>
             <div class="alertboxclose alertboxclose2 changedivsmol changefont"></div>
-            <div class="alertboxcontact alertboxcontactTM alertboxhover">
+            <div class="alertboxcontact alertboxcontactTM alertboxhover addsoundbutton">
                 <image src="1TrueMoney.png" class="alertboxcontactTM alertboxicon">
                 <div class="alertboxcontacttextTM alertboxtext changefont">Truemoney</div>
             </div>
-            <div class="alertboxcontact alertboxcontactPM alertboxhover">
+            <div class="alertboxcontact alertboxcontactPM alertboxhover addsoundbutton">
                 <image src="1Promptpay.png" class="alertboxcontactPM alertboxicon">
                 <div class="alertboxcontacttextPM alertboxtext changefont">Promptpay</div>
             </div>
-            <div class="alertboxcontact alertboxcontactPP alertboxhover" onclick="window.location.href='https://www.paypal.me/pranchayut172'">
+            <div class="alertboxcontact alertboxcontactPP alertboxhover addsoundbutton" onclick="window.location.href='https://www.paypal.me/pranchayut172'">
                 <image src="1Palpay.png" class="alertboxcontactPP alertboxicon">
                 <div class="alertboxcontacttextPP alertboxtext changefont">Paypal</div>
             </div>
@@ -115,14 +116,40 @@
         <div class="soundbox redbordersoundbox changedivsp">
             <div class="soundboxonoff changefont">On <br><br><br><br> Off</div>
             <label class="switch soundboxswitch">
-                <input type="checkbox" class="checkbox">
+                <input type="checkbox" class="checkbox soundboxswitchbox">
                 <span class="slider round soundslider"></span>
               </label> 
             <input class="soundboxslider"
             type="range" min="0" max="1" step="0.01" value="1">
         </div>
+        <div class="offlinemenu">
+            <div class="offlinebox redborder changediv">
+                <div class="offlineheader changefont">Offline Mode</div>
+                <form onsubmit="return false;">
+                    <label class="offlinelabel label1 changefont" for="nameInput">Add Player:</label>
+                    <input class="offlineinput nameInput" type="text" placeholder="Type a name here" onkeydown="if(event.keyCode == 13) displayAndClear()">
+                    <button class="addname" type="button" onclick="displayAndClear()">Add</button>
+                </form>   
+                <label class="offlinelabel label2 changefont">Game Duration:</label>
+                <select type="number" class="offlineinput timeInput Input" onchange="if (this.value === '') customtime();">
+                    <option class="offlineoption" value="300">5 minute</option>
+                    <option class="offlineoption" value="360">6 minute</option>
+                    <option class="offlineoption" value="420">7 minute</option>
+                    <option class="offlineoption" value="480">8 minute</option>
+                    <option class="offlineoption" value="540">9 minute</option>
+                    <option class="offlineoption" value="600">10 minute</option>
+                    <option class="offlineoption" value="" id="customtimeoption">Custom</option>
+                    <option class="offlineoption" value="9999999" id="nolimittimeoption">Infinite</option>
+                </select>
+                <label class="offlinelabel label3 changefont">Spy Amount:</label>
+                <select type="number" class="offlineinput spyInput Input">
+                    <option class="offlineoption" value="1Spy">1 Spy</option>
+                    <option class="offlineoption" value="2Spy">2 Spy (coming soon)</option>
+                </select>
+                <button onclick="startGame()" class="offlinesetting offlinestartbutton">Start Game</button> 
+            </div>
+        </div>
         <div class="changegif bg"></div>
-    <script src="Offlinemode.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
