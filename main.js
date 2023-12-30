@@ -450,6 +450,13 @@ function getCurrentRotation(element) {
   }
 }
 
+//homeicon  ***ig:kimmuie_  ig:mozart_ko***
+document.getElementsByClassName("homeicon")[0].addEventListener("click", function () {
+  var userWantsToGoBack = confirm("Do you want to return to the main menu?");
+  if (userWantsToGoBack) {
+    location.reload();
+  }
+});
 
 //screensetter ***ig:kimmuie_  ig:mozart_ko***
   function updateLayout() {
@@ -478,6 +485,7 @@ function getCurrentRotation(element) {
       setStyles("soundboxonoff", { padding: "0dvh 0dvh 0dvh 1dvh" });
       setStyles("soundboxswitch", { left: "-1dvh" });
       setStyles("soundboxslider", { left: "-7dvh" });
+      setStyles("BGicon", { right: "1dvh" , height: "5dvh"});
       setProperty("redborderbottomright", {
         "--before-BR-top": "0.5dvh",
         "--before-BR-left": "0.5dvh",
@@ -512,6 +520,14 @@ function getCurrentRotation(element) {
             }
         }
       }
+      if (window.matchMedia("(max-height: 950px) and (orientation: portrait)").matches) {
+        setStyles("offlinebox", { width: "35dvh" });
+        setStyles("offlineheader", { fontSize: "5dvh" , marginLeft: "5dvh"});
+        setStyles("nameInput", { width: "21.5dvh" });
+        setStyles("Input", { width: "29dvh" });
+        setStyles("offlinestartbutton", { marginLeft: "2.5dvh" });
+        setStyles("nameDisplay", { left: "35dvh" });
+      }
       //elseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
     } else if (window.matchMedia("(max-width: 1400px) and (orientation: landscape)").matches) {
       lbh.textContent = "HIDE";
@@ -537,6 +553,7 @@ function getCurrentRotation(element) {
       setStyles("soundboxonoff", { padding: "0dvh 0dvh 2.7dvh 2.7dvh" });
       setStyles("soundboxswitch", { left: "1dvh" });
       setStyles("soundboxslider", { left: "-5dvh" });
+      setStyles("BGicon", { right: "4dvh" , height: "7dvh"});
       setProperty("redborderbottomright", {
         "--before-BR-top": "1dvh",
         "--before-BR-left": "1dvh",
@@ -560,6 +577,12 @@ function getCurrentRotation(element) {
               setStyles("guideboxswitch", { left: "3dvh" });
         }
       }
+      setStyles("offlinebox", { width: "50dvh" });
+      setStyles("offlineheader", { fontSize: "6dvh" , marginLeft: "10dvh"});
+      setStyles("nameInput", { width: "36dvh" });
+      setStyles("Input", { width: "44dvh" });
+      setStyles("offlinestartbutton", { marginLeft: "10dvh" });
+      setStyles("nameDisplay", { left: "49.9dvh" });
     }
   }
 updateLayout();
@@ -581,6 +604,7 @@ document.getElementsByClassName("toprightbrightbutton")[0].addEventListener("cli
       setProperty("changedivsp", { "--before-backgroundchangesp1": "linear-gradient(to bottom, #61677A, #272829)", "--before-backgroundchangesp2": "linear-gradient(to bottom, #61677A, #272829)" });
       setProperty("changedivsmol", { "--before-backgroundchangesmol": "#272829" });
       setStyles("changegif", { backgroundImage: "url(./1BGblack.gif)" });
+      setStyles("nameborderlist", { background: "linear-gradient(to right,  #272829, #61677A)" });
     } else if (sun[i].style.display === "none") {
       console.log("Turn Bright");
       setStyles("gg-sun", { display: "block" });
@@ -590,6 +614,7 @@ document.getElementsByClassName("toprightbrightbutton")[0].addEventListener("cli
       setProperty("changedivsp", { "--before-backgroundchangesp1": "linear-gradient(to bottom, #CFD2CF, #6C737E)", "--before-backgroundchangesp2": "linear-gradient(to bottom, #CFD2CF, #6C737E)" });
       setProperty("changedivsmol", { "--before-backgroundchangesmol": "#6C737E" });
       setStyles("changegif", { backgroundImage: "url(./1BGwhite.gif)" });
+      setStyles("nameborderlist", { background: "linear-gradient(to right, #6C737E, #CFD2CF)" });
     }
   }
 });
@@ -670,6 +695,103 @@ document.addEventListener("visibilitychange", handleVisibilityChange);
 });
 
 document.getElementsByClassName("offlinebutton")[0].addEventListener("click", function () {
+  var audiopu = document.getElementById("Soundpopup");
   setStyles("middlebuttoncontainer", { display: "none" });
   setStyles("offlinemenu", { height: "130dvh" });
+  setStyles("offlinebox", { display:"block"});
+  setStyles("homeicon", { display:"block"});
+  audiopu.play();
 })
+
+var displayedNames = [];
+
+    function displayAndClear() {
+      var nameInput = document.querySelector(".nameInput").value;
+      var items = document.querySelector(".offlinebox");
+      items.style.transform = "translateX(-20%)";
+      
+      if (displayedNames.length < 15) {
+        if (nameInput.trim() !== "") {
+          if (nameInput.length <= 20) {
+            var nextNumber = findNextNumber();
+
+            displayedNames.push({ number: nextNumber, name: nameInput });
+            displayedNames.sort(function (a, b) {
+              return a.number - b.number;
+            });
+
+            document.querySelector(".nameInput").value = "";
+            displayNames();
+            var items = document.querySelector(".nameDisplay");
+            items.style.display = "block";
+          } else {
+            alert("Please enter a name with 20 characters or fewer.");
+          }
+        } else {
+          alert("Please enter a name before adding.");
+        }
+      } else {
+        alert("You have reached the limit of 15 players.");
+      }
+    }
+
+    function removeName(number) {
+      displayedNames = displayedNames.filter(function (item) {
+        return item.number !== number;
+      });
+    
+      displayedNames.forEach(function (item, index) {
+        item.number = index + 1;
+      });
+    
+      displayNames();
+    
+      // Check if displayedNames is empty, and if true, reset translateX to 0
+      if (displayedNames.length === 0) {
+        var items = document.querySelector(".offlinebox");
+        items.style.transform = "translateX(0)";
+      } else {
+        // If there are still names, set translateX to -20%
+        var items = document.querySelector(".offlinebox");
+        items.style.transform = "translateX(-20%)";
+      }
+    }
+
+    function displayNames() {
+      var nameDisplay = document.querySelector(".nameDisplay");
+      nameDisplay.innerHTML = "";
+
+      displayedNames.forEach(function (item) {
+        var nameParagraph = document.createElement("p");
+        nameParagraph.textContent = item.number + ". " + item.name;
+        nameParagraph.classList.add("paragraph-gap");
+        nameParagraph.classList.add("deletenamehover");
+        nameParagraph.classList.add("nameborderlist");
+
+        nameParagraph.addEventListener("click", function () {
+          removeName(item.number);
+        });
+
+        nameDisplay.appendChild(nameParagraph);
+      });
+    }
+
+    function findNextNumber() {
+      var usedNumbers = displayedNames.map(function (item) {
+        return item.number;
+      });
+
+      for (var i = 1; i <= displayedNames.length + 1; i++) {
+        if (!usedNumbers.includes(i)) {
+          return i;
+        }
+      }
+    }
+
+function startGame() {
+  if (displayedNames.length < 3) {
+      alert("You need at least 3 players to start the game.");
+  } else if (displayedNames.length >= 3) {
+    setStyles("offlinebox", { display:"none"});
+  }
+}
