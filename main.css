@@ -604,7 +604,7 @@ body {
   background: #750E21;
   border-radius: 0dvh 0dvh 0dvh 3dvh;
   cursor: pointer;
-  z-index: 2;
+  z-index: 3;
 }
 
 .alertboxclose::before {
@@ -1225,6 +1225,7 @@ input:checked + .slider:before {
 
 .nameborderlist{
   font-size: 2dvh;
+  color: black;
   cursor: pointer;
   font-family: 'Kanit', sans-serif;
   font-weight: bold;
@@ -1265,7 +1266,7 @@ input:checked + .slider:before {
 }
 .listicon{
   top: 18dvh;
-  display: block;
+  display: none;
 }
 
 .packet {
@@ -1273,10 +1274,10 @@ input:checked + .slider:before {
   height: 85dvh;
   width: auto;
   cursor: pointer;
-  display: none;
+  display: none;/*HERE*/
   z-index: 5;
-  transition: ease-in-out 1s;
-  top: 18dvh;
+  transition: ease-in-out 0.9s;
+  top: 100dvh;
 }
 
 .thepacket {
@@ -1286,13 +1287,24 @@ input:checked + .slider:before {
   text-align: center;
 }
 
+.card {
+  background-color: rgba(0,0,0, .05);
+  box-shadow: -.1dvh 1.7dvh 6.6dvh -3.2dvh rgba(0,0,0,0.5);
+  height: 50dvh;
+  position: relative;
+  transition: all 1s ease;
+  width: 32.5dvh;
+  display: none;/*Here*/
+  z-index: 4;
+}
+
 .main {
   background-color: transparent;
   position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100dvh;
+  height: 120dvh;
   width: 100%;
 }
 
@@ -1313,18 +1325,9 @@ input:checked + .slider:before {
   width: 100%;
 }
 
-.card {
-  background-color: rgba(0,0,0, .05);
-  box-shadow: -.1rem 1.7rem 6.6rem -3.2rem rgba(0,0,0,0.5);
-  height: 50dvh;
-  position: relative;
-  transition: all 1s ease;
-  width: 32.5dvh;
-}
-
 .flip-card {
   height: 50dvh;
-  perspective: 100rem;
+  perspective: 100dvh;
   position: absolute;
   right: 0;
   transition: all 1s ease;
@@ -1360,27 +1363,20 @@ input:checked + .slider:before {
 .card-front {
   background-color: #fafbfa;
   height: 50dvh;
-  width: 32.5dvh;
+  width: 32.55dvh;
 }
 
 .card-front__tp {
-  align-items: center;
   clip-path: polygon(0 0, 100% 0, 100% 90%, 70% 90%, 50% 100%, 30% 90%, 0 90%);
   display: flex;
+  align-items: center;
   flex-direction: column;
+  text-align: center; 
   height: 42dvh;
   justify-content: center;
   padding: .3dvh;
+  background: linear-gradient(to bottom, #750E21, #FF4949)
 }
-
-.card-front__tp--ski {
-  background: linear-gradient(
-    to bottom,
-    #47c2d7,
-    #279eb2
-  );
-}
-
 
 .card-back {
   background-color: #fafbfa;
@@ -1389,7 +1385,7 @@ input:checked + .slider:before {
 
 .image__container {
   clip-path: polygon(0% 0%, 100% 0%, 90% 50%, 100% 100%, 0% 100%);
-  height: auto;
+  height: 100%;
   min-height: 100%;
   object-fit: cover;
   width: 100%;
@@ -1398,14 +1394,14 @@ input:checked + .slider:before {
 
 .inside-page {
   background-color: #fafbfa;
-  box-shadow: inset 20rem 0px 5rem -2.5rem rgba(0,0,0,0.25);
+  box-shadow: inset 2dvh 0px 5dvh -2.5dvh rgba(0,0,0,0.25);
   height: 100%;
-  padding: 1rem;
+  padding: 1.5dvh;
   position: absolute;
   right: 0;
   transition: all 1s ease;
-  width: 15rem;
-  z-index: 1;
+  width: 32.5dvh;
+  z-index: 3;
 }
 
 .inside-page__container {
@@ -1419,8 +1415,8 @@ input:checked + .slider:before {
 
 .card:hover {
   box-shadow:
-  -.1rem 1.7rem 6.6rem -3.2rem rgba(0,0,0,0.75);
-  width: 30rem;
+  -.1dvh 1.7dvh 6.6dvh -3.2dvh rgba(0,0,0,0.75);
+  width: 60dvh;
 }
 
 .card:hover .flip-card__container {
@@ -1428,49 +1424,136 @@ input:checked + .slider:before {
 }
 
 .card:hover .inside-page {
-  box-shadow: inset 1rem 0px 5rem -2.5rem rgba(0,0,0,0.1);
+  box-shadow: inset 1dvh 0px 5dvh -2.5dvh rgba(0,0,0,0.1);
 }
 
 .card-front__heading {
-  font-size: 1.5rem;
-  margin-top: .25rem;
+  font-size: 2.5dvh;
+  margin-top: .25dvh;
+  font-family: "Kanit", sans-serif;
 }
 
 .inside-page__heading { 
-  padding-bottom: 1rem; 
+  padding-bottom: 1dvh; 
   width: 100%;
 }
 
 .inside-page__heading,
 .card-front__text-view {
-  font-size: 1.3rem;
-  font-weight: 800;
-  margin-top: .2rem;
+  font-size: 2.5dvh;
+  margin-top: 3dvh;
   font-family: "Kanit", sans-serif;
-  color: #2aaac1;
+  color: #FF4949;
 }
 
 .card-front__tp { color: #fafbfa; }
 
 .card-front__text-price {
-  font-size: 1.2rem;
-  margin-top: -.2rem;
+  font-size: 2.9dvh;
+  margin-top: -.2dvh;
+  font-family: "Kanit", sans-serif;
 }
 
 .inside-page__text {
   color: #333;
-}
-
-.card-front__icon {
-  fill: #fafbfa;
-  font-size: 3vw;
-  height: 3.25rem;
-  margin-top: -.5rem;
-  width: 3.25rem;
+  font-family: "Kanit", sans-serif;
+  font-size: 2dvh
 }
 
 .card-front__bt {
-  align-items: center;
   display: flex;
+  align-items: center;
   justify-content: center;
+}
+
+.dual-ring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100dvh;
+  width: 100%;
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+}
+
+
+.lds-dual-ring {
+  position: absolute;
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  display: none;
+}
+.lds-dual-ring:after {
+  content: " ";
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  display: block;
+  border-radius: 50%;
+  border: 6px solid #fafbfa;
+  border-color: #fafbfa transparent #fafbfa transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.namecontainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nameshown {
+  display: none;
+  top: 175dvh;
+  font-size: 4dvh;
+  font-family: "Kanit", sans-serif;
+  position: absolute;
+  z-index: 6;
+  color: #fafbfa;
+  font-weight: bold;
+  transition: all ease-in-out 0.9s;
+}
+
+.amnesia {
+  display: block;
+  top: 0dvh;
+  font-size: 1.3dvh;
+  font-family: "Kanit", sans-serif;
+  position: absolute;
+  z-index: 8;
+  color: #FF4949;
+  font-weight: bold;
+}
+
+.nextbutton {
+  z-index: -1;
+  display: none;
+  top: 42dvh;
+  font-size: 3.5dvh;
+  left: 0;
+  width:32.5dvh;
+  height: 8dvh;
+  position: absolute;
+  border-radius: 0 0 5dvh 5dvh;
+  background: #fafbfa;
+  color: #FF4949;
+  transition: top ease-in-out 0.5s , hover ease-in-out 0s;
+  cursor: pointer;
+  border-color: transparent;
+}
+
+.nextbutton:hover,
+.nextbutton:active {
+  background: #750E21;
+  color: #fafbfa;
 }
