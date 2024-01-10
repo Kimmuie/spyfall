@@ -479,7 +479,9 @@ document.getElementsByClassName("listicon")[0].addEventListener("click", functio
   setStyles("offlinebox", { display:"block"});
   setStyles("offlinemenu", { height: "130dvh" });
   setStyles("packet", { display:"none", top:"95dvh"});
+  setStyles("nameshown", { display:"none", top:"175dvh"});
   setStyles("card", { display:"none",});
+  setStyles("card-front__tp", { background:"linear-gradient(to bottom, #750E21, #FF4949)"});
   var audiopu = document.getElementById("Soundpopup");
   audiopu.play()
 });
@@ -491,6 +493,11 @@ document.getElementsByClassName("listicon")[0].addEventListener("click", functio
     var lbh = document.getElementsByClassName("leftboxhide")[0];
     if (window.matchMedia("(max-height: 1400px) and (orientation: portrait)").matches) {
       lbh.textContent = "UNHIDE";
+      if (window.matchMedia("(max-height: 1400px) and (min-height: 951px) and (orientation: portrait)").matches) {
+        setStyles("alertbox", { transform: "scale(0.65)" });
+      } else if (window.matchMedia("(max-height: 950px) and (orientation: portrait)").matches) {
+        setStyles("alertbox", { transform: "scale(0.45)" });
+      }
       setStyles("leftbox", { left: "-35dvh" });
       setStyles("leftboxhide", { left: "3dvh" });
       setStyles("middlebutton", { width: "40dvh", height: "10dvh", fontSize: "4dvh" });
@@ -552,11 +559,12 @@ document.getElementsByClassName("listicon")[0].addEventListener("click", functio
         setStyles("nameInput", { width: "21.5dvh" });
         setStyles("Input", { width: "29dvh" });
         setStyles("offlinestartbutton", { marginLeft: "2.5dvh" });
-        setStyles("nameDisplay", { left: "35dvh" });
+        setStyles("nameDisplay", { left: "34.2dvh" });
       }
       //elseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
     } else if (window.matchMedia("(max-width: 1400px) and (orientation: landscape)").matches) {
       lbh.textContent = "HIDE";
+      setStyles("alertbox", { transform: "scale(1)" });
       setStyles("leftbox", { left: "0dvh" });
       setStyles("leftboxhide", { left: "38dvh" });
       setStyles("middlebutton", { width: "60dvh", height: "13dvh", fontSize: "6dvh" });
@@ -592,7 +600,7 @@ document.getElementsByClassName("listicon")[0].addEventListener("click", functio
         "--before-SB-right": "1dvh",
         "--before-SB-bottom": "1dvh"
       });
-  
+    
       var checkBox = document.getElementsByClassName("checkbox");
       for (var i = 0; i < checkBox.length; i++) {
           if (checkBox[i].checked) {
@@ -608,7 +616,7 @@ document.getElementsByClassName("listicon")[0].addEventListener("click", functio
       setStyles("nameInput", { width: "36dvh" });
       setStyles("Input", { width: "44dvh" });
       setStyles("offlinestartbutton", { marginLeft: "10dvh" });
-      setStyles("nameDisplay", { left: "49.9dvh" });
+      setStyles("nameDisplay", { left: "49.2dvh" });
     }
   }
 updateLayout();
@@ -625,7 +633,10 @@ document.getElementsByClassName("toprightbrightbutton")[0].addEventListener("cli
       console.log("Turn Dark");
       setStyles("gg-sun", { display: "none" });
       setStyles("gg-moon", { display: "block" });
+      setProperty("changeblur", { "--blurbg": "rgb(0, 0, 0, 0.3)"});
       setProperty("changefont", { "--before-font": "white" });
+      setProperty("nameborderlist", { "--before-fontsp": "white" });
+      setProperty("labelvote", { "--before-fontsp": "white" });
       setProperty("changediv", { "--before-backgroundchange": "linear-gradient(to bottom, #272829, #61677A, #272829)" });
       setProperty("changedivsp", { "--before-backgroundchangesp1": "linear-gradient(to bottom, #61677A, #272829)", "--before-backgroundchangesp2": "linear-gradient(to bottom, #61677A, #272829)" });
       setProperty("changedivsmol", { "--before-backgroundchangesmol": "#272829" });
@@ -634,7 +645,10 @@ document.getElementsByClassName("toprightbrightbutton")[0].addEventListener("cli
       console.log("Turn Bright");
       setStyles("gg-sun", { display: "block" });
       setStyles("gg-moon", { display: "none" });
+      setProperty("changeblur", { "--blurbg": "rgb(255, 255, 255, 0.3)"});
       setProperty("changefont", { "--before-font": "black" });
+      setProperty("nameborderlist", { "--before-fontsp": "black" });
+      setProperty("labelvote", { "--before-fontsp": "black" });
       setProperty("changediv", { "--before-backgroundchange": "linear-gradient(to bottom, #6C737E, #CFD2CF, #6C737E)" });
       setProperty("changedivsp", { "--before-backgroundchangesp1": "linear-gradient(to bottom, #CFD2CF, #6C737E)", "--before-backgroundchangesp2": "linear-gradient(to bottom, #CFD2CF, #6C737E)" });
       setProperty("changedivsmol", { "--before-backgroundchangesmol": "#6C737E" });
@@ -642,6 +656,18 @@ document.getElementsByClassName("toprightbrightbutton")[0].addEventListener("cli
     }
   }
 });
+
+function brightrerun() {
+  var sun = document.getElementsByClassName("gg-sun");
+  for (var i = 0; i < sun.length; i++) {
+    if (sun[i].style.display === "block" || sun[i].style.display === "") {
+      setProperty("nameborderlist", { "--before-fontsp": "black" });
+      setProperty("labelvote", { "--before-fontsp": "black" });
+    } else if (sun[i].style.display === "none") {
+      setProperty("nameborderlist", { "--before-fontsp": "white" });
+      setProperty("labelvote", { "--before-fontsp": "white" });
+    }
+}}
 
 //sound ***ig:kimmuie_  ig:mozart_ko***
 document.addEventListener('DOMContentLoaded', function () {
@@ -757,6 +783,7 @@ var displayedNames = [];
       } else {
         alert("You have reached the limit of 15 players.");
       }
+      brightrerun();
     }
 
     function removeName(number) {
@@ -779,6 +806,7 @@ var displayedNames = [];
         var items = document.querySelector(".offlinebox");
         items.style.transform = "translateX(-20%)";
       }
+      brightrerun();
     }
 
     function displayNames() {
@@ -815,6 +843,7 @@ var displayedNames = [];
 function movepacket() {
   console.log("movepacket called")
   var audiopk = document.getElementById("Soundpacket");
+  setStyles("packet", { pointerEvents:"none"});
   setStyles("packettop", { transform:"translateX(300%)"});
   setStyles("listicon", { display:"none"});
   audiopk.play()
@@ -822,7 +851,7 @@ function movepacket() {
     setStyles("nameshown", { top:"175dvh"});  
     setStyles("packetbot", { transform:"translateY(100%)"});
     setStyles("card", { display:"block"});
-    setStyles("nextbutton", { display:"block"});
+    setStyles("nextbutton", { display:"block" , pointerEvents:"none"});
     setTimeout(function (){
       setStyles("nameshown", { display:"none",});
       setStyles("packet", { display:"none",});
@@ -830,16 +859,21 @@ function movepacket() {
       setStyles("packetbot", { transform:"translateY(0%)"});
       setTimeout(function (){
         setStyles("nextbutton", { top:"50dvh"});
+        setTimeout(function (){
+          setStyles("nextbutton", { pointerEvents:"auto"});
+        },250);
       },500);
     },900);
   },700);
 }
 
 function startGame() {
+  const selectedValue = document.getElementById("spySelector").value;
   if (displayedNames.length < 3) {
-      alert("You need at least 3 players to start the game.");
+      alert("You need at least 3 players to start the game");
+  }else if (displayedNames.length < 5 && selectedValue === "twospy") {
+      alert("You need at least 5 players to start the game with 2 spy.");
   } else if (displayedNames.length >= 3) {
-    
     const selectedValue = document.getElementById("spySelector").value;
     let randomSpyIndex1;
     let randomSpyIndex2;
@@ -932,187 +966,271 @@ function startGame() {
         setImage("Cardimage", Cardimage);
       }
       document.getElementsByClassName("nextbutton")[0].addEventListener("click", function () {
-        setStyles("card-front__tp", { background:"linear-gradient(to bottom, #750E21, #FF4949)"});
-        setStyles("nextbutton", { color:"#FF4949"});
-        setStyles("nextbutton", { top:"42dvh"});
-        setStyles("card", { display:"none"});
-        setStyles("nextbutton", { display:"none"});
-        setStyles("packet", { display:"block", top:"100dvh"});
-        setStyles("nameshown", { display:"block",});  
-        setTimeout(function (){
-          setStyles("packet", { top:"18dvh"});
-          setStyles("nameshown", { top:"80dvh"});  
-        },1000);
-        console.log("nextplayer")
-        currentIdx += 1;
-        var currentPlayer = displayedNames[currentIdx].name;
-        currentNumber += 1;
-        const randomRole = Math.floor(Math.random() * role.length);
-        const chosenRole = role[randomRole];
-        role.splice(randomRole, 1);
-        if (currentIdx === displayedNames.length - 1) {
-          setInnerHTML("nextbutton", "Start Timer");
-        }        
-        if (currentIdx === randomSpyIndex1 || currentIdx === randomSpyIndex2) {
-          setStyles("card-front__tp", { background:"linear-gradient(to bottom, black, grey)"});
-          setStyles("nextbutton", { color:"black"});
-          setInnerHTML("nameshown", currentNumber + ". " + currentPlayer);
-          setInnerHTML("Cardplayer", currentNumber + ". " + currentPlayer);
-          setInnerHTML("Cardrole", "Spy");
-          setInnerHTML("Cardplace", "");
-          setInnerHTML("Carddescription", "Defend your role if suspected, guess the location wisely.<br><br>ป้องกันบทบาทของคุณหากมีข้อสงสัย เดาสถานที่อย่างมีเหตุผล");
-          setImage("Cardimage", "1CardSpy.png");
+        setStyles("packet", { pointerEvents:"auto"});
+        if (document.getElementsByClassName("nextbutton")[0].innerHTML === "Start Timer"){
+          setStyles("card", { display:"none"});
+          setStyles("timesectioncontainer", { display:"flex"});
+          setTimeout(function (){
+            setStyles("timesectioncontainer", { top: "0dvh"});
+          },500);
+          gettime()
         } else {
-          setInnerHTML("nameshown", currentNumber + ". " + currentPlayer);
-          setInnerHTML("Cardplayer", currentNumber + ". " + currentPlayer);
-          setInnerHTML("Cardrole", chosenRole.roleused + chosenRole.thairoleused);
-          setInnerHTML("Cardplace", chosenPlace);
-          setInnerHTML("Carddescription", chosenRole.roledescriptionused);
-          setImage("Cardimage", Cardimage);
+          setStyles("card-front__tp", { background:"linear-gradient(to bottom, #750E21, #FF4949)"});
+          setStyles("nextbutton", { color:"#FF4949" , top:"42dvh"});
+          setStyles("card", { display:"none"});
+          setStyles("nextbutton", { display:"none"});
+          setStyles("packet", { display:"block", top:"100dvh"});
+          setStyles("nameshown", { display:"block",});  
+          setTimeout(function (){
+            setStyles("packet", { top:"18dvh"});
+            setStyles("nameshown", { top:"80dvh"});  
+          },1000);
+          console.log("nextplayer")
+          currentIdx += 1;
+          var currentPlayer = displayedNames[currentIdx].name;
+          currentNumber += 1;
+          const randomRole = Math.floor(Math.random() * role.length);
+          const chosenRole = role[randomRole];
+          role.splice(randomRole, 1);
+          if (currentIdx === displayedNames.length - 1) {
+            setInnerHTML("nextbutton", "Start Timer");
+          }        
+          if (currentIdx === randomSpyIndex1 || currentIdx === randomSpyIndex2) {
+            setStyles("card-front__tp", { background:"linear-gradient(to bottom, black, grey)"});
+            setStyles("nextbutton", { color:"black"});
+            setInnerHTML("nameshown", currentNumber + ". " + currentPlayer);
+            setInnerHTML("Cardplayer", currentNumber + ". " + currentPlayer);
+            setInnerHTML("Cardrole", "Spy");
+            setInnerHTML("Cardplace", "");
+            setInnerHTML("Carddescription", "Defend your role if suspected, guess the location wisely.<br><br>ป้องกันบทบาทของคุณหากมีข้อสงสัย เดาสถานที่อย่างมีเหตุผล");
+            setImage("Cardimage", "1CardSpy.png");
+          } else {
+            setInnerHTML("nameshown", currentNumber + ". " + currentPlayer);
+            setInnerHTML("Cardplayer", currentNumber + ". " + currentPlayer);
+            setInnerHTML("Cardrole", chosenRole.roleused + chosenRole.thairoleused);
+            setInnerHTML("Cardplace", chosenPlace);
+            setInnerHTML("Carddescription", chosenRole.roledescriptionused);
+            setImage("Cardimage", Cardimage);
+          }
         }
       })
     }, 1000);
   }
 }
 
-const Hospitalrole = [
-    {roleused: 'Doctor', thairoleused: '<br>(แพทย์)', roledescriptionused: 'Medical professionals who diagnose and treat patients.<br>ผู้เชี่ยวชาญด้านการแพทย์ที่รักษาโรคและบาดเจ็บของผู้ป่วย'},
-    {roleused: 'Nurse', thairoleused: '<br>(พยาบาล)', roledescriptionused: 'Healthcare providers who care for patients and assist doctors.<br><br>ผู้ดูแลผู้ป่วยและให้การช่วยเหลือแก่แพทย์ในการดูแลสุขภาพ'},
-    {roleused: 'Patient', thairoleused: '<br>(ผู้ป่วย)', roledescriptionused: 'Individuals receiving medical treatment or care.<br><br>บุคคลที่รับการรักษาเนื่องจากมีอาการป่วยหรือบาดเจ็บ'},
-    {roleused: 'Surgeon', thairoleused: '<br>(หมอผ่าตัด)', roledescriptionused: 'Doctors specialized in surgical procedures.<br><br>แพทย์ที่ดำเนินการผ่าตัดเพื่อรักษาโรคหรือบาดเจ็บ'},
-    {roleused: 'Anesthesiologist', thairoleused: '<br>(แพทย์ดมยาสลบ)', roledescriptionused: 'Medical experts in administering anesthesia.<br><br>ผู้เชี่ยวชาญด้านการให้ยาชนิดลดความรู้สึกในผู้ป่วยในขณะที่ผ่าตัดหรือกระบวนการทางการแพทย์'},
-    {roleused: 'Radiologist', thairoleused: '<br>(แพทย์รังสี)', roledescriptionused: 'Physicians interpreting medical imaging.<br><br>แพทย์ที่ใช้รังสีเพื่อวินิจฉัยโรคและสถานะสุขภาพของผู้ป่วย'},
-    {roleused: 'Pharmacist', thairoleused: '<br>(เภสัชกร)', roledescriptionused: 'Professionals dispensing medications.<br><br>ผู้ให้ยาและให้คำแนะนำเกี่ยวกับการใช้ยาในผู้ป่วย'},
-    {roleused: 'Paramedic', thairoleused: '<br>(ผู้ช่วยแพทย์)', roledescriptionused: 'First responders providing emergency medical care.<br><br>ผู้ให้บริการการดูแลระหว่างการขนส่งผู้ป่วยหรืออุบัติเหตุ'},
-    {roleused: 'Lab Technician', thairoleused: '<br>(ช่างสิ่ววิทยา)', roledescriptionused: 'Experts conducting medical tests.<br><br>ทำงานในห้องปฏิบัติการเพื่อวิเคราะห์ตัวอย่างทางการแพทย์'},
-    {roleused: 'Hospital Director', thairoleused: '<br>(ผู้อำนวยการโรงพยาบาล)', roledescriptionused: 'Administrators overseeing hospital operations.<br><br>ผู้บริหารหรือผู้ดูแลการทำงานของโรงพยาบาล'},
-    {roleused: 'Janitor', thairoleused: '<br>(คนทำความสะอาด)', roledescriptionused: 'Individuals maintaining hospital cleanliness.<br><br>คนทำความสะอาดและบำรุงรักษาความสะอาดในโรงพยาบาล'},
-    {roleused: 'Security Guard', thairoleused: '<br>(ยาม)', roledescriptionused: 'Personnel ensuring hospital security.<br><br>คนรักษาความปลอดภัยในโรงพยาบาล'},
-    {roleused: 'Medical Student', thairoleused: '<br>(นักศึกษาแพทยศาสตร์)', roledescriptionused: 'Students studying medicine.<br><br>คนที่กำลังเรียนรู้เกี่ยวกับการแพทย์'},
-    {roleused: 'Hospital Volunteer', thairoleused: '<br>(อาสาสมัครโรงพยาบาล)', roledescriptionused: 'Volunteers assisting in hospital tasks.<br><br>คนที่ทำงานเป็นอาสาสมัครในโรงพยาบาลเพื่อช่วยเหลือผู้ป่วย'},
-    {roleused: 'Physical Therapist', thairoleused: '<br>(นักกายภาพบำบัด)', roledescriptionused: 'Specialists in physical rehabilitation.<br><br>ช่วยผู้ป่วยกู้คืนสุขภาพและความสามารถทางกาย'},
-    {roleused: 'Psychologist', thairoleused: '<br>(นักจิตวิทยา)', roledescriptionused: 'Professionals specializing in psychology.<br><br>ผู้เชี่ยวชาญในด้านจิตวิทยาและการสัมผัส'},
-    {roleused: 'Cafeteria Cook', thairoleused: '<br>(กุ๊กโรงอาหาร)', roledescriptionused: 'Staff preparing hospital meals.<br><br>ทำอาหารในโรงพยาบาล'},
-    {roleused: 'Visitor', thairoleused: '<br>(ผู้เยี่ยมชม)', roledescriptionused: 'Individuals coming to see patients.<br><br>คนที่มาเยี่ยมผู้ป่วยในโรงพยาบาล'},
-    {roleused: 'Chaplain', thairoleused: '<br>(นักบวช)', roledescriptionused: 'Spiritual advisors offering support.<br><br>บุคคลที่ให้คำปรึกษาทางศาสนาและสอนคุณค่าทางจิตใจในโรงพยาบาล'},
-    {roleused: 'Ambulance Driver', thairoleused: '<br>(คนขับรถพยาบาล)', roledescriptionused: 'Drivers of medical transport vehicles.<br><br>คนที่ขับรถพยาบาลเพื่อนำผู้ป่วยไปยังโรงพยาบาลหรือสถานที่การแพทย์'},
-];     
+function gettime(){
+  const selectedValue = document.getElementById("timeInput").value;
+  let initialTime = document.getElementById("timeInput").value;
+  const FULL_DASH_ARRAY = 283;
+  const WARNING_THRESHOLD = 60;
+  const ALERT_THRESHOLD = 20;
 
-const Schoolrole = [
-    {roleused: 'Teacher', thairoleused: '<br>(ครู)', roledescriptionused: 'Educators who guide students learning and critical thinking. ผู้สอนและให้คำแนะนำในการเรียนรู้แก่นักเรียน'},
-    {roleused: 'Student', thairoleused: '<br>(นักเรียน)', roledescriptionused: 'The learners in a school environment. ผู้เรียนในโรงเรียน'},
-    {roleused: 'Principal', thairoleused: '<br>(ผู้อำนวยการ)', roledescriptionused: 'School top administrator and visionary leader. ผู้บริหารโรงเรียน'},
-    {roleused: 'Cafeteria Cook', thairoleused: '<br>(กุ๊กโรงอาหาร)', roledescriptionused: 'Prepares school meals for students. ทำอาหารในโรงเรียน' },
-    {roleused: 'Janitor', thairoleused: '<br>(คนทำความสะอาด)', roledescriptionused: 'Maintains school cleanliness and hygiene. คนทำความสะอาดและบำรุงรักษาความสะอาดในโรงเรียน' },
-    {roleused: 'School Nurse', thairoleused: '<br>(พยาบาลโรงเรียน)', roledescriptionused: 'Provides healthcare and first aid in school. ให้บริการดูแลสุขภาพในโรงเรียน' },
-    {roleused: 'Librarian', thairoleused: '<br>(บรรณารักษ์)', roledescriptionused: 'Manages the school library and resources. ดูแลห้องสมุดและหนังสือในโรงเรียน'},
-    {roleused: 'Parent', thairoleused: '<br>(ผู้ปกครอง)', roledescriptionused: 'Supports students educational journey. บุคคลที่มีนักเรียนในโรงเรียน'},
-    {roleused: 'Guard', thairoleused: '<br>(ยาม)', roledescriptionused: 'Ensures school security. รักษาความปลอดภัยในโรงเรียน' },
-    {roleused: 'Bus Driver', thairoleused: '<br>(คนขับรถโรงเรียน)', roledescriptionused: 'Safely transports students. ทำหน้าที่ขนนักเรียนไป-กลับจากโรงเรียน'},
-    {roleused: 'Counselor Teacher', thairoleused: '<br>(ครูแนะแนว)', roledescriptionused: 'Offers guidance and counseling. ให้คำปรึกษาและแนะนำนักเรียนในด้านการเรียน'},
-    {roleused: 'Biology Teacher', thairoleused: '<br>(ครูชีวะ)', roledescriptionused: 'Teaches biology concepts. สอนเนื้อหาทางชีววิทยาให้นักเรียน'},
-    {roleused: 'Physic Teacher', thairoleused: '<br>(ครูฟิสิกส์)', roledescriptionused: 'Imparts physics knowledge. สอนเนื้อหาทางฟิสิกส์ให้นักเรียน' },
-    {roleused: 'Chemistry Teacher', thairoleused: '<br>(ครูเคมี)', roledescriptionused: 'Educates about chemistry. สอนเนื้อหาทางเคมีให้นักเรียน' },
-    {roleused: 'Art Teacher', thairoleused: '<br>(ครูศิลปะ)', roledescriptionused: 'Nurtures artistic creativity. สอนเนื้อหาทางศิลปะให้นักเรียน' },
-    {roleused: 'Music Teacher', thairoleused: '<br>(ครูดนตรี)', roledescriptionused: 'Instructs in music and rhythm. สอนเนื้อหาทางดนตรีให้นักเรียน' },
-    {roleused: 'PE Teacher', thairoleused: '<br>(ครูพละ)', roledescriptionused: 'Promotes physical fitness. สอนเนื้อหาทางพละให้นักเรียน' },
-    {roleused: 'Math Teacher', thairoleused: '<br>(ครูคณิตศาสตร์)', roledescriptionused: 'Teaches math and problem-solving. สอนเนื้อหาทางคณิตให้นักเรียน' },
-    {roleused: 'History Teacher', thairoleused: '<br>(ครูประวัติศาสตร์)', roledescriptionused: 'Teaches the past. สอนเนื้อหาทางประวัติศาสตร์ให้นักเรียน' },
-    {roleused: 'Computer Teacher', thairoleused: '<br>(ครูคอมพิวเตอร์)', roledescriptionused: 'Teaches technology and coding. สอนเนื้อหาทางคอมพิวเตอร์ให้นักเรียน' },
-];                            
+const COLOR_CODES = {
+info: {
+  color: "green"
+},
+warning: {
+  color: "orange",
+  threshold: WARNING_THRESHOLD
+},
+alert: {
+  color: "red",
+  threshold: ALERT_THRESHOLD
+}
+};
 
-const SpaceStationrole = [
-    {roleused: 'Astronaut', thairoleused: '<br>(นักบินอวกาศ)', roledescriptionused: 'Individuals trained to travel into space and perform various activities there. ผู้ที่ได้รับการฝึกอบรมเพื่อเดินทางไปยังอวกาศเพื่อดำเนินกิจกรรมต่าง ๆ ในอวกาศ'},
-    {roleused: 'Mission Commander', thairoleused: '<br>(ผู้บังคับการภารกิจ)', roledescriptionused: 'Responsible for leading and overseeing space missions. ผิดชอบในการนำและกำกับภารกิจอวกาศ'},
-    {roleused: 'Alien', thairoleused: '<br>(เอเลี่ยน)', roledescriptionused: 'Extraterrestrial life forms from outside Earth. สิ่งมีชีวิตนอกโลก'},
-    {roleused: 'Astrobiologist', thairoleused: '<br>(นักชีวศาสตร์อวกาศ)', roledescriptionused: 'Scientists who study extraterrestrial life and environments on other celestial bodies. ศึกษาชีวิตนอกโลกและสภาวะสภาพแวดล้อมที่สว่างอย่างอุดมสมบูรณ์บนดาวอื่น ๆ'},
-    {roleused: 'Space Scientist', thairoleused: '<br>(นักวิทยาศาสตร์อวกาศ)', roledescriptionused: 'Researchers who study space-related phenomena and celestial bodies. วิจัยและทดลองทางดาราศาสตร์ที่เกี่ยวข้องกับอวกาศและสวรรค์ทางดาราศาสตร์อื่น ๆ'},
-    {roleused: 'Payload Specialist', thairoleused: '<br>(นักวิชาการเครื่องบรรจุ)', roledescriptionused: 'Professionals responsible for managing and operating scientific experiments and equipment on spacecraft. รับผิดชอบการจัดการและการทำงานกับการทดลองและอุปกรณ์วิทยาศาสตร์บนยานอวกาศ'},
-    {roleused: 'Communicationist', thairoleused: '<br>(เจ้าหน้าที่สื่อสาร)', roledescriptionused: 'Responsible for maintaining and controlling communications during space missions. รับผิดชอบในการรักษาสื่อสารและควบคุมการสื่อสารในภารกิจอวกาศ'},
-    {roleused: 'Mission Operator', thairoleused: '<br>(ผู้ควบคุมการภารกิจ)', roledescriptionused: 'Responsible for managing various operations during space missions. รับผิดชอบในการดำเนินการต่าง ๆ ในภารกิจอวกาศ'},
-    {roleused: 'Medical Officer', thairoleused: '<br>(เจ้าหน้าที่แพทย์)', roledescriptionused: 'Professionals responsible for the health and well-being of astronauts and mission personnel. รับผิดชอบดูแลสุขภาพของนักบินและภารกิจ'},
-    {roleused: 'Biomedical Scientist', thairoleused: '<br>(นักวิทยาศาสตร์ชีวแพทย์)', roledescriptionused: ' Scientists specializing in medical and health-related research in space and celestial environments. ศึกษาการแพทย์และสุขภาพในอวกาศและสวรรค์'},
-    {roleused: 'Astrophysicist', thairoleused: '<br>(นักฟิสิกส์ดาราศาสตร์)', roledescriptionused: 'Scientists who study astrophysics, the physics of celestial bodies and the universe. ศึกษาดาราศาสตร์และกฎกลึงทางฟิสิกส์ที่มีผลต่ออวกาศและวิวัฒนาการของดวงดาว'},
-    {roleused: 'Space Engineer', thairoleused: '<br>(วิศวกรอวกาศ)', roledescriptionused: 'Engineers who design and build spacecraft and related equipment. ออกแบบและสร้างอุปกรณ์และยานอวกาศ'},
-    {roleused: 'Navigation Specialist', thairoleused: '<br>(นักชี้นำ)', roledescriptionused: 'Experts in guiding spacecraft to their intended destinations in space. นำทางในอวกาศเพื่อให้ยานอวกาศเดินทางไปยังจุดที่ต้องการ'},
-    {roleused: 'Space Psychologist', thairoleused: '<br>(นักจิตวิทยาอวกาศ)', roledescriptionused: 'Cares for astronauts mental health. ศึกษาสุขภาพจิตของนักบินในอวกาศ'},
-    {roleused: 'Supply Officer', thairoleused: '<br>(เจ้าหน้าที่คลังของ)', roledescriptionused: 'Manages mission supplies and equipment. จัดหาพัสดุในอวกาศเพื่อรองรับภารกิจ'},
-    {roleused: 'Astrogeologist', thairoleused: '<br>(นักธรณีวิทยาดาราศาสตร์)', roledescriptionused: 'Studies celestial bodies geology. ศึกษาสภาพธรณีวิทยาของดวงดาวและสวรรค์'},
-    {roleused: 'Flight Surgeon', thairoleused: '<br>(แพทย์ดูแลอวกาศ)', roledescriptionused: 'Monitors astronaut health in space. ดูแลสุขภาพของนักบินในอวกาศและบริเวณด้วย'},
-    {roleused: 'Space Chef', thairoleused: '<br>(เชฟอวกาศ)', roledescriptionused: 'Prepares meals for space missions. รับผิดชอบการเตรียมอาหารในสถานที่ที่ไม่มีแร่และโปรตีนในอวกาศ'},
-    {roleused: 'Space Tourist', thairoleused: '<br>(นักท่องเที่ยวอวกาศ)', roledescriptionused: 'Enjoys recreational space travel. เดินทางไปยังอวกาศเพื่อสัมผัสประสบการณ์ไม่เหมือนใคร'},
-    {roleused: 'Space Station Janitor', thairoleused: '<br>(ภารโรงสถานีอวกาศ)', roledescriptionused: 'Maintains space station cleanliness. ดูแลความสะอาดในสถานีอวกาศและรักษาสภาพแวดล้อมในระบบปิด'},
-];
+let timePassed = 0;
+let extraTime = 0;
+let timeLeft = initialTime;
+let timerInterval = null;
+let remainingPathColor = COLOR_CODES.info.color;
 
-const Bankrole = [
-    {roleused: 'Bank Teller', thairoleused: '<br>(พนักงานสาขาธนาคาร)', roledescriptionused: 'Responsible for assisting bank customers with their financial transactions. รับผิดชอบในการช่วยลูกค้าธนาคารในการทำธุรกรรมทางการเงินของพวกเขา'},
-    {roleused: 'Loan Officer', thairoleused: '<br>(เจ้าหน้าที่อนุมัติสินเชื่อ)', roledescriptionused: 'Evaluates and approves loan applications for individuals and businesses. ประเมินและอนุมัติการสมัครสินเชื่อสำหรับบุคคลและธุรกิจ'},
-    {roleused: 'Branch Manager', thairoleused: '<br>(ผู้จัดการสาขาธนาคาร)', roledescriptionused: 'Manages the daily operations of a bank branch. จัดการกับการดำเนินงานประจำวันของสาขาธนาคาร'},
-    {roleused: 'Financial Advisor', thairoleused: '<br>(ที่ปรึกษาทางการเงิน)', roledescriptionused: 'Provides financial advice and investment recommendations to clients. ให้คำแนะนำทางการเงินและข้อเสนอแนะในการลงทุนแก่ลูกค้า'},
-    {roleused: 'Credit Analyst', thairoleused: '<br>(นักวิเคราะห์เครดิต)', roledescriptionused: 'Analyzes the creditworthiness of individuals and businesses. วิเคราะห์ความคุ้มครองในการให้สินเชื่อแก่บุคคลและธุรกิจ'},
-    {roleused: 'Bank Auditor', thairoleused: '<br>(ผู้ตรวจสอบธนาคาร)', roledescriptionused: 'Conducts internal audits to ensure compliance and financial accuracy. ดำเนินการตรวจสอบภายในเพื่อให้มั่นใจในการปฏิบัติตามกฏระเบียบและความถูกต้องทางการเงิน'},
-    {roleused: 'Investment Banker', thairoleused: '<br>(นักลงทุนธนาคาร)', roledescriptionused: 'Manages financial transactions for corporate clients and offers investment advice. จัดการธุรกรรมทางการเงินสำหรับลูกค้าบริษัทและให้คำแนะนำในการลงทุน'},
-    {roleused: 'Mortgage Broker', thairoleused: '<br>(โบรกเกอร์สินเชื่อบ้าน)', roledescriptionused: 'Helps individuals find and secure mortgage loans. ช่วยให้บุคคลค้นหาและรับสินเชื่อจดจำนอง'},
-    {roleused: 'Financial Analyst', thairoleused: '<br>(นักวิเคราะห์การเงิน)', roledescriptionused: 'Analyzes financial data and provides insights for investment decisions. วิเคราะห์ข้อมูลการเงินและให้ข้อมูลเชิงลึกสำหรับการตัดสินใจในการลงทุน'},
-    {roleused: 'Security Guard', thairoleused: '<br>(ยาม)', roledescriptionused: 'Ensures the safety and security of a bank premises and customers. รักษาความปลอดภัยและความมั่นคงของที่ตั้งและลูกค้าของธนาคาร'},
-    {roleused: 'Treasury Analyst', thairoleused: '<br>(นักวิเคราะห์สินทรัพย์)', roledescriptionused: 'Manages a company financial assets and cash flow. จัดการทรัพยากรการเงินและกระแสเงินสดของบริษัท'},
-    {roleused: 'Commercial Banker', thairoleused: '<br>(นักธุรกิจธนาคาร)', roledescriptionused: 'Provides financial services and loans to businesses. ให้บริการทางการเงินและสินเชื่อแก่ธุรกิจ'},
-    {roleused: 'Financial Planner', thairoleused: '<br>(นักวางแผนการเงิน)', roledescriptionused: 'Helps individuals and businesses create financial plans and achieve financial goals. ช่วยให้บุคคลและธุรกิจสร้างแผนการเงินและบรรลุเป้าหมายทางการเงิน'},
-    {roleused: 'Credit Manager', thairoleused: '<br>(ผู้จัดการแผนกเครดิต)', roledescriptionused: 'Manages a company credit policies and evaluates credit risks. จัดการนโยบายเครดิตของบริษัทและประเมินความเสี่ยงทางเครดิต'},
-    {roleused: 'Depositor', thairoleused: '<br>(ผู้ฝากเงิน)', roledescriptionused: 'Individuals or businesses that deposit money into a bank. บุคคลหรือธุรกิจที่ฝากเงินในธนาคาร'},
-    {roleused: 'Branch Administrator', thairoleused: '<br>(ผู้ดูแลสาขา)', roledescriptionused: 'Responsible for administrative tasks within a bank branch. รับผิดชอบงานด้านการบริหารที่สาขาธนาคาร'},
-    {roleused: 'Investment Analyst', thairoleused: '<br>(นักวิเคราะห์การลงทุน)', roledescriptionused: 'Analyzes investments and provides recommendations for portfolio management. วิเคราะห์การลงทุนและให้ข้อเสนอแนะในการบริหารพอร์ตการลงทุน'},
-    {roleused: 'Millionaire', thairoleused: '<br>(เศรษฐี)', roledescriptionused: 'A person with a net worth of one million or more. บุคคลที่มีสุทธินิยมเป็นหนึ่งล้านหรือมากกว่า'},
-    {roleused: 'Risk Analyst', thairoleused: '<br>(นักวิเคราะห์ความเสี่ยง)', roledescriptionused: 'Assesses and manages risks associated with financial activities. ประเมินและจัดการความเสี่ยงที่เกี่ยวข้องกับกิจกรรมทางการเงิน'},
-    {roleused: 'Financial Controller', thairoleused: '<br>(ผู้ควบคุมการเงิน)', roledescriptionused: 'Oversees a company financial operations and reporting. ควบคุมกิจกรรมทางการเงินและรายงานของบริษัท'},
-];
+if (selectedValue === "9999999") {
+  document.getElementById("base-timer-path-remaining").classList.add(remainingPathColor);
+  document.getElementById("base-timer-label").innerHTML = `Infinite`;
+} else {
+  document.getElementById("base-timer-path-remaining").classList.add(remainingPathColor);
+  document.getElementById("base-timer-label").innerHTML = `${formatTime(timeLeft)}`;
+}
 
-const SupermarketRole = [
-    {roleused: 'Cashier', thairoleused: '<br>(พนักงานเก็บเงิน)', roledescriptionused: 'Cashiers handle customer payments at checkout. พนักงานรับเงินจ่ายเงินให้กับลูกค้าที่จุดจ่ายเงิน'},
-    {roleused: 'Store Manager', thairoleused: '<br>(ผู้จัดการร้านสุขภัณฑ์)', roledescriptionused: 'Store Managers oversee daily store operations. ผู้จัดการร้านค้าควบคุมการดำเนินงานประจำวันของร้าน'},
-    {roleused: 'Stock Clerk', thairoleused: '<br>(พนักงานเก็บรายการสินค้า)', roledescriptionused: 'Stock Clerks manage inventory and restocking. พนักงานจัดเก็บคลังสินค้าจัดการสินค้าในคลังและการเติมสินค้า'},
-    {roleused: 'Customer Service', thairoleused: '<br>(ตัวแทนบริการลูกค้า)', roledescriptionused: 'Customer Service assists and supports customers. บริการลูกค้าให้ความช่วยเหลือและสนับสนุนลูกค้า'},
-    {roleused: 'Deli Worker', thairoleused: '<br>(พนักงานร้านของสด)', roledescriptionused: 'Deli Workers prepare and serve deli items. พนักงานร้านอาหารที่เตรียมและเสิร์ฟอาหารอาหารบริเวณร้านอาหาร'},
-    {roleused: 'Bakery Staff', thairoleused: '<br>(พนักงานร้านเบเกอรี่)', roledescriptionused: 'Bakery Staff work in the bakery department. พนักงานขนมปังทำงานในแผนกขนมปัง'},
-    {roleused: 'Butcher', thairoleused: '<br>(พนักงานร้านเนื้อสัตว์)', roledescriptionused: 'Butchers prepare and sell meat products. พ่อครัวเตรียมและขายผลิตภัณฑ์เนื้อสัตว์'},
-    {roleused: 'Store Cleaner', thairoleused: '<br>(พนักงานทำความสะอาดร้าน)', roledescriptionused: 'Store Cleaners maintain store cleanliness. พนักงานทำความสะอาดร้านค้ารักษาร้านค้าให้สะอาด'},
-    {roleused: 'Shelf Stocker', thairoleused: '<br>(พนักงานเตรียมสินค้าใส่ชั้น)', roledescriptionused: 'Shelf Stockers replenish product shelves. พนักงานเติมสินค้าลงบนชั้น'},
-    {roleused: 'Security Guard', thairoleused: '<br>(ยาม)', roledescriptionused: 'Security Guards ensure store security. พนักงานรักษาความปลอดภัยในร้านค้า'},
-    {roleused: 'Cashier Supervisor', thairoleused: '<br>(ผู้ควบคุมงานเก็บเงิน)', roledescriptionused: 'Cashier Supervisors oversee cashier teams. ผู้ควบคุมแผนกการจ่ายเงินควบคุมทีมพนักงานจ่ายเงิน'},
-    {roleused: 'Service Manager', thairoleused: '<br>(ผู้จัดการบริการลูกค้า)', roledescriptionused: 'Service Managers manage customer service. ผู้จัดการบริการจัดการบริการลูกค้า'},
-    {roleused: 'Grocery Manager', thairoleused: '<br>(ผู้จัดการแผนกซื้อของชำ)', roledescriptionused: 'Grocery Managers oversee grocery departments. ผู้จัดการซุปเปอร์มาร์เก็ตควบคุมแผนกของซุปเปอร์มาร์เก็ต'},
-    {roleused: 'Cashier Assistant', thairoleused: '<br>(ผู้ช่วยเหลือพนักงานเก็บเงิน)', roledescriptionused: 'Cashier Assistants support cashiers. ผู้ช่วยจ่ายเงินสนับสนุนพนักงานจ่ายเงิน'},
-    {roleused: 'Customer', thairoleused: '<br>(ลูกค้า)', roledescriptionused: 'Customers shop and purchase items. ลูกค้าเข้ามาช้อปปิ้งและซื้อสินค้า'},
-    {roleused: 'Bakery Assistant', thairoleused: '<br>(ผู้ช่วยเหลือพนักงานร้านเบเกอรี่)', roledescriptionused: 'Bakery Assistants support bakery staff. ผู้ช่วยทำขนมปังสนับสนุนพนักงานขนมปัง'},
-    {roleused: 'Dairy Clerk', thairoleused: '<br>(พนักงานผลิตภัณฑ์นม)', roledescriptionused: 'Dairy Clerks handle dairy products. พนักงานแผนกนมดูแลสินค้านม'},
-    {roleused: 'Cart Collector', thairoleused: '<br>(พนักงานรวบรวมรถเข็นสินค้า)', roledescriptionused: 'Cart Collectors gather shopping carts. พนักงานเก็บรถเข็นช็อปปิ้งรถเข็นรวบรวมรถเข็นช็อปปิ้ง'},
-    {roleused: 'Store Greeter', thairoleused: '<br>(พนักงานต้อนรับลูกค้า)', roledescriptionused: 'Store Greeters welcome customers. พนักงานต้อนรับลูกค้าในร้านค้า'},
-    {roleused: 'Supermarket Dog', thairoleused: '<br>(หมาหน้าร้านค้า)', roledescriptionused: 'Supermarket Dogs are friendly in front stores. หมาหน้าร้านค้าเพื่อความเป็นมิตรในร้านค้า'},
-];
+function startTimer() {
+  timerInterval = setInterval(() => {
+    timePassed = timePassed += 1;
+    if (extraTime != 0){
+      timeLeft = extraTime - timePassed;
+    } else {
+      timeLeft = initialTime - timePassed;
+    }
+    
+    // Ensure timeLeft is not negative
+    if (timeLeft < 0) {
+      timeLeft = 0;
+    }
+    if (selectedValue === "9999999") {
+      document.getElementById("base-timer-label").innerHTML = `Infinite`;
+    }else {
+      document.getElementById("base-timer-label").innerHTML = formatTime(timeLeft);
+    }
+    setCircleDasharray();
+    setRemainingPathColor(timeLeft);
 
-const Beachrole = [
-    {roleused: 'Lifeguard', thairoleused: '<br>(นักดูแลชายหาด)', roledescriptionused: 'Ensures beach safety and responds to emergencies. รักษาความปลอดภัยในชายหาดและตอบสนองกรณีฉุกเฉิน'},
-    {roleused: 'Surfer', thairoleused: '<br>(นักโต้คลื่น)', roledescriptionused: 'Rides ocean waves using surfboards. ขี่คลื่นทะเลด้วยบอร์ดเซิร์ฟ'},
-    {roleused: 'Beach Cleaner', thairoleused: '<br>(พนักงานทำความสะอาดชายหาด)', roledescriptionused: 'Maintains beach cleanliness. รักษาความสะอาดชายหาด'},
-    {roleused: 'Beach Photographer', thairoleused: '<br>(ช่างภาพชายหาด)', roledescriptionused: 'Captures moments at the beach. ถ่ายรูปช็อตและฉากต่าง ๆ ที่ชายหาดเพื่อให้บริการถ่ายภาพแก่คนที่มาชายหาด'},
-    {roleused: 'Beach Vendor', thairoleused: '<br>(พ่อค้าแม่ค้าชายหาด)', roledescriptionused: 'Sells products and services on the beach. ขายสินค้าและบริการบนชายหาด'},
-    {roleused: 'Beachgoer', thairoleused: '<br>(คนไปชายหาด)', roledescriptionused: 'Visits the beach for relaxation. มาชายหาดเพื่อผ่อนคลาย'},
-    {roleused: 'Beach Bartender', thairoleused: '<br>(บาร์เทนเดอร์ชายหาด)', roledescriptionused: 'Serves drinks at beachside bars. ทำงานที่บาร์ติดชายหาดโดยให้บริการเครื่องดื่มและค็อกเทลแก่ผู้มาชายหาด'},
-    {roleused: 'Beach Volleyball Player', thairoleused: '<br>(นักเล่นวอลเลย์บอลชายหาด)', roledescriptionused: 'Participate in beach volleyball matches and tournaments on the sand. นักเล่นวอลเลย์บอลชายหาดร่วมงานแข่งวอลเลย์บอลชายหาดและทัวร์นาเมนต์บนทราย'},
-    {roleused: 'Beach DJ', thairoleused: '<br>(ดีเจชายหาด)', roledescriptionused: 'Provide music and entertainment on the beach, creating a lively atmosphere. ให้บริการดนตรีและความบันเทิงบนชายหาดเพื่อสร้างบรรยากาศเต็มไปด้วยความสนุกสนาน'},
-    {roleused: 'Yoga Instructor', thairoleused: '<br>(ครูสอนโยคะชายหาด)', roledescriptionused: 'Lead yoga sessions on the beach, promoting relaxation and fitness. นำเซสชันโยคะบนชายหาดเพื่อส่งเสริมความผ่อนคลายและสุขภาพ'},
-    {roleused: 'Party Planner', thairoleused: '<br>(ผู้วางแผนปาร์ตี้ชายหาด)', roledescriptionused: 'Organize and manage beach parties and events. วางแผนปาร์ตี้ชายหาดจัดการและบริหารงานปาร์ตี้และกิจกรรมบนชายหาด'},
-    {roleused: 'Beachcomber', thairoleused: '<br>(คนเดินชายหาด)', roledescriptionused: 'Individuals who search for seashells and treasures on the beach. ผู้ที่ค้นหาหอยทะเลและของมีค่าต่าง ๆ บนชายหาด'},
-    {roleused: 'Cabana Attendant', thairoleused: '<br>(พนักงานรับใช้คาบานาชายหาด)', roledescriptionused: 'Assist visitors with renting and setting up cabanas on the beach. ช่วยเยี่ยมชมในการเช่าและตั้งคาบานาบนชายหาด'},
-    {roleused: 'Umbrella Rental', thairoleused: '<br>(บริการเช่าร่มชายหาด)', roledescriptionused: 'Provides the service of renting umbrellas to beachgoers for shade. บริการเช่าร่มชายหาดให้คนที่มาชายหาดเพื่อร่มเงา'},
-    {roleused: 'Resort Manager', thairoleused: '<br>(ผู้จัดการรีสอร์ทชายหาด)', roledescriptionused: 'Oversee the operations and management of beachfront resorts. ควบคุมการดำเนินงานประจำวันและประสบการณ์ของแขกในรีสอร์ทริมชายหาด'},
-    {roleused: 'Beach Property Owner', thairoleused: '<br>(เจ้าของที่ดินชายหาด)', roledescriptionused: 'Responsible for owning and managing beachfront properties. บุคคลที่เคยทำการลงทุนในที่ดินบริเวณชายหาดและเป็นเจ้าของสิทธิในพื้นที่นี้'},
-    {roleused: 'Volleyball Coach', thairoleused: '<br>(โค้ชวอลเลย์บอลชายหาด)', roledescriptionused: 'Instructs and trains individuals or teams in the sport of beach volleyball. ครูที่สอนและแนะนำการเล่นวอลเลย์บอลชายหาดให้ผู้เรียน'},
-    {roleused: 'Beach Dog', thairoleused: '<br>(หมาชายหาด)', roledescriptionused: 'Friendly canine companions enjoying the beach atmosphere. หมาที่มีโอกาสสนุกกับชายหาดและคนๆ รอบข้างในบรรยากาศแห่งการพักผ่อนแบบอิสระบนชายหาด'},
-    {roleused: 'Bikini Girl', thairoleused: '<br>(สาวบิกินี่)', roledescriptionused: 'Individuals wearing stylish swimwear, adding to the beach vibe. ผู้หญิงที่เลือกสวมใส่ชุดว่ายน้ำและพร้อมสนุกกับทะเลและดวงอาทิตย์ที่ชายหาด'},
-    {roleused: 'Drowning Person', thairoleused: '<br>(คนจมน้ำ)', roledescriptionused: 'Individuals in distress and needing immediate rescue assistance in the water. บุคคลที่ต้องการความช่วยเหลือหรือการกู้ชีวิตเมื่อตกลงน้ำในทะเลหรือสระว่ายน้ำ'},
-];
+    if (timeLeft <= 0) {
+      onTimesUp();
+    }
+  }, 1000);
+}
+startTimer();
 
-const ChurchRole = []
-const ForestRole = []
-const PoliceStationRole = []
+function onTimesUp() {
+  clearInterval(timerInterval);
+  setTimeout(function () {
+    document.querySelector(".base-timer__extra").style.visibility = "visible";
+    document.querySelector(".base-timer__label").style.visibility = "hidden";
+  }, 5000);
+}
+
+function ExtraTime() {
+  extraTime = 64;
+  startTimer();
+  document.querySelector(".base-timer__extra").style.visibility = "hidden";
+  document.querySelector(".base-timer__label").style.visibility = "visible";
+}
+
+
+document.getElementsByClassName("base-timer__extra")[0].addEventListener("click", function () {
+  ExtraTime()
+});
+
+function formatTime(time) {
+  const minutes = Math.floor(Math.max(time, 0) / 60);
+  let seconds = Math.max(time, 0) % 60;
+
+  if (seconds < 10) {
+    seconds = `0${seconds}`;
+  }
+
+  return `${minutes}:${seconds}`;
+}
+
+
+var audiocl = document.getElementById("Soundclock");
+function setRemainingPathColor(timeLeft) {
+const { alert, warning, info } = COLOR_CODES;
+if (timeLeft <= alert.threshold) {
+  document
+    .getElementById("base-timer-path-remaining")
+    .classList.remove(warning.color);
+  document
+    .getElementById("base-timer-path-remaining")
+    .classList.add(alert.color);
+} else if (timeLeft <= warning.threshold) {
+  audiocl.play();
+  document
+    .getElementById("base-timer-path-remaining")
+    .classList.remove(info.color);
+  document
+    .getElementById("base-timer-path-remaining")
+    .classList.add(warning.color);
+}
+}
+
+function calculateTimeFraction() {
+const rawTimeFraction = timeLeft / initialTime;
+return rawTimeFraction - (1 / initialTime) * (1 - rawTimeFraction);
+}
+
+function setCircleDasharray() {
+const circleDasharray = `${(
+  calculateTimeFraction() * FULL_DASH_ARRAY
+).toFixed(0)} 283`;
+document
+  .getElementById("base-timer-path-remaining")
+  .setAttribute("stroke-dasharray", circleDasharray);
+}
+}                
+function customtime() {
+var customvalue = prompt("Custom Timer (minute unit)");
+
+if (customvalue === null) {
+  document.getElementById("timeInput").value = "300"; // Select 5-minute option
+  document.getElementById("timeInput").selectedIndex = 0;
+} else {
+  customvalue = parseInt(customvalue);
+  if (!isNaN(customvalue) && customvalue >= 1 && customvalue <= 60) {
+    var newOption = document.createElement("option");
+    newOption.value = customvalue * 60;
+    newOption.textContent = customvalue + " Minute";
+    document.getElementById("timeInput").appendChild(newOption);
+    document.getElementById("timeInput").value = customvalue * 60;
+  } else {
+    alert("Please enter a valid number between 1 and 60.");
+    document.getElementById("timeInput").value = "300"; // Select 5-minute option
+    document.getElementById("timeInput").selectedIndex = 0;
+  }
+}
+}
+
+function changePlaceholder() {
+  const engInput = document.querySelector('.RQENG');
+  const thaiInput = document.querySelector('.RQTHAI');
+
+  const randomIndex = Math.floor(Math.random() * RandomQuestion.length);
+  const randomQuestion = RandomQuestion[randomIndex];
+
+  engInput.placeholder = randomQuestion.Eng;
+  thaiInput.placeholder = randomQuestion.Thai;
+}
+
+document.getElementsByClassName("startvotebutton")[0].addEventListener("click", function () {
+  console.log("start voting");
+  console.log("timeLeft:", document.getElementById("base-timer-label").innerHTML);
+  if (document.getElementById("base-timer-label").innerHTML != "0:00" || document.getElementById("base-timer-label").innerHTML === "Infinite"){
+    showConfirmation();
+  } else {
+    votesectionstart()
+    createVotingSection();
+  }
+});
+
+function showConfirmation() {
+  if ((document.getElementById("base-timer-label").innerHTML != "0:00")){
+    var result = confirm("Do you want to start voting before the timer ran out?");
+  }else if (document.getElementById("base-timer-label").innerHTML === "Infinite"){
+    var result = confirm("Do you want to start voting?"); 
+  }
+  if (result) {
+    votesectionstart()
+  }
+}
+
+
+function votesectionstart() {
+  console.log("asdasdang");
+  setStyles("votingbox", { visibility: "visible" });
+  setStyles("votingcontainer", { height: "130dvh" });
+  setStyles("timesectioncontainer", { display: "none" });
+
+  createRadioCheckList();
+  brightrerun()
+}
+
+function createRadioCheckList() {
+  var radioContainer = document.querySelector(".radioContainer");
+  radioContainer.innerHTML = "";
+
+  displayedNames.forEach(function (item) {
+    var radioLabel = document.createElement("label");
+    var radioInput = document.createElement("input");
+
+    radioInput.type = "radio";
+    radioInput.name = "playerRadio";
+    radioInput.value = item.number;
+    radioInput.classList.add("inputvote");
+
+    radioLabel.textContent = item.number + ". " + item.name;
+    radioLabel.appendChild(radioInput);
+    radioLabel.classList.add("labelvote");
+
+    radioContainer.appendChild(radioLabel);
+  });
+}
