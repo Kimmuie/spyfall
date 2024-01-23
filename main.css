@@ -1118,7 +1118,7 @@ input:checked + .slider:before {
   overflow-wrap: break-word;
   pointer-events: auto;
   box-sizing: border-box;
-  transition: top ease-in-out 0.5s;
+  transition: top ease-in-out 0.5s, transform ease-in-out 0.5s;
   border: 0.5dvh dotted #750E21;
 }
 
@@ -1222,7 +1222,7 @@ input:checked + .slider:before {
 
 .nameDisplay{
   width: 25dvh;
-  left: 49.2dvh;
+  left: 49.5dvh;
   top: 5dvh;
   position:absolute;
   z-index: 5;
@@ -1238,8 +1238,9 @@ input:checked + .slider:before {
   font-family: 'Kanit', sans-serif;
   font-weight: bold;
   padding: 0.25dvh;
-  border: 0.5dvh double #750E21;
-  border-right: 0.5dvh groove #750E21;
+  border-top: 0.5dvh double #750E21;
+  border-left: 0dvh ;
+  border-right: 0.5dvh groove #960c25;
   border-bottom: 0.5dvh double #750E21;
   border-top-right-radius: 2dvh;
   border-bottom-right-radius: 2dvh;
@@ -1782,19 +1783,29 @@ input:checked + .slider:before {
   overflow-wrap: break-word;
   pointer-events: auto;
   box-sizing: border-box;
-  border: 0.5dvh dotted #750E21;
+  border: 0.75dvh solid #750E21;
 }
 
 .votingheader {
+  border-radius: 6dvh 6dvh 0dvh 0dvh;
+  width: 60dvh;
+  height: 11.5dvh;
+  top: -0.5dvh;
+  background: linear-gradient(to right, #750E21, #FF4949, #750E21);
   font-size: 6dvh;
-  margin-top: 3dvh;
-  display: block;
-  position: relative;
+  padding-top: 2dvh;  
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  position: absolute;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  pointer-events: none;
   z-index: 2;
-  color: var(--before-font,black);
+  color: black;
+}
+
+.votingheader:hover {
+  color: var(--hover-font,black);
 }
 
 .labelvote{
@@ -1809,6 +1820,7 @@ input:checked + .slider:before {
   border: 0.5dvh double #750E21;
   background-color: transparent;
   padding: 0.2dvh;
+  cursor: pointer;
 }
 
 .labelvote:hover,
@@ -1819,6 +1831,29 @@ input:checked + .slider:before {
 
 .labelvote:first-child {
   margin-top: 11dvh;
+}
+
+.inputvote {
+  cursor: pointer;
+  position: absolute;
+  right: 3dvh;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #750E21; /* Adjust border for better visibility */
+  border-radius: 5dvh; /* Change to 0 for a square radio input */
+  width: 2dvh;
+  height: 2dvh;
+  box-sizing: border-box;
+}
+
+.inputvote:checked {
+  right: 2.25dvh;
+  width: 3.5dvh;
+  height: 3.5dvh;
+  background-image: url('./1Spyfall.png');
+  background-size: cover;
 }
 
 .radioContainer{
