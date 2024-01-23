@@ -867,6 +867,7 @@ function movepacket() {
   },700);
 }
 
+let spyonvote1;
 function startGame() {
   const selectedValue = document.getElementById("spySelector").value;
   if (displayedNames.length < 3) {
@@ -888,6 +889,8 @@ function startGame() {
       randomSpyIndex1 = Math.floor(Math.random() * displayedNames.length);
       randomSpyIndex2 = undefined;
     }
+    spyonvote1 = randomSpyIndex1; 
+
 
     setStyles("offlinebox", { display:"none"});
     setStyles("lds-dual-ring", { display:"block"});
@@ -904,41 +907,83 @@ function startGame() {
                       "<br>Space Station",
                       "<br>Bank",
                       "<br>Supermarket",
-                      "<br>Beach"];
+                      "<br>Beach",
+                      "<br>Church",
+                      "<br>Forest",
+                      "<br>Police Station",
+                      "<br>Pirate Ship",
+                      "<br>Submarine",
+                      "<br>Restaurant",
+                      "<br>Cemetary"];
       const randomPlace = Math.floor(Math.random() * place.length);
       const chosenPlace = place[randomPlace];
 
       let role;
       switch (chosenPlace) {
         case "<br>Hospital":
-            role = Hospitalrole;
-            Cardimage = "zHospital.png";
+            role = HospitalRole;
+            Cardimage = "1CardHospital.png";
             break;
     
         case "<br>School":
-            role = Schoolrole;
-            Cardimage = "zSchool.png";
+            role = SchoolRole;
+            Cardimage = "1CardSchool.png";
             break;
     
         case "<br>Space Station":
-            role = SpaceStationrole;
-            Cardimage = "zSpacestation.png";
+            role = SpaceStationRole;
+            Cardimage = "1CardSpacestation.png";
             break;
     
         case "<br>Bank":
-            role = Bankrole;
-            Cardimage = "zBank.png";
+            role = BankRole;
+            Cardimage = "1CardBank.png";
             break;
     
         case "<br>Supermarket":
             role = SupermarketRole;
-            Cardimage = "zSupermarket.png";
+            Cardimage = "1CardSupermarket.png";
             break;
     
         case "<br>Beach":
-            role = Beachrole;
-            Cardimage = "zBeach.png";
+            role = BeachRole;
+            Cardimage = "1CardBeach.png";
             break;
+    
+        case "<br>Church":
+            role = ChurchRole;
+            Cardimage = "1CardChurch.png";
+            break;
+                
+        case "<br>Forest":
+          role = ForestRole;
+          Cardimage = "1CardForest.png";
+          break;      
+              
+        case "<br>Police Station":
+          role = PoliceStationRole;
+          Cardimage = "1CardPoliceStaion.png";
+          break;      
+              
+        case "<br>Pirate Ship":
+          role = PirateShipRole;
+          Cardimage = "1CardPirateShip.png";
+          break;      
+              
+        case "<br>Submarine":
+          role = SubmarineRole;
+          Cardimage = "1CardSubmarine.png";
+          break;      
+              
+        case "<br>Restaurant":
+          role = RestaurantRole;
+          Cardimage = "1CardRestaurant.png";
+          break;      
+              
+        case "<br>Cemetary":
+          role = CemeteryRole;
+          Cardimage = "1CardCemetary.png";
+          break;      
       }
 
       const randomRole = Math.floor(Math.random() * role.length);
@@ -1205,13 +1250,16 @@ function showConfirmation() {
 
 
 function votesectionstart() {
-  console.log("asdasdang");
   setStyles("votingbox", { visibility: "visible" });
   setStyles("votingcontainer", { height: "130dvh" });
   setStyles("timesectioncontainer", { display: "none" });
 
+  
+  var audiocl = document.getElementById("Soundclock");
+  audiocl.muted = true;
   createRadioCheckList();
   brightrerun()
+  attachRadioEventListeners();
 }
 
 function createRadioCheckList() {
@@ -1233,4 +1281,67 @@ function createRadioCheckList() {
 
     radioContainer.appendChild(radioLabel);
   });
+}
+
+
+function attachRadioEventListeners() {
+  var radioInputs = document.querySelectorAll('.inputvote');
+
+  radioInputs.forEach(function (radioInput) {
+    radioInput.addEventListener('click', function () {
+      var allLabels = document.querySelectorAll('.labelvote');
+      allLabels.forEach(function (label) {
+        label.style.backgroundColor = 'transparent';
+        label.style.color = 'var(--before-fontsp,black)';
+      });
+      setInnerHTML("votingheader", "Confirm Vote?");
+      var selectedLabel = radioInput.closest('label');
+      selectedLabel.style.backgroundColor = '#750E21';
+      selectedLabel.style.color = 'white';
+      setProperty("votingheader", {"--hover-font": "white",});
+      var votingHeader = document.querySelector('.votingheader');
+      votingHeader.classList.add("redbuttonhover");
+    });
+  });  
+}
+
+var votingHeader = document.querySelector('.votingheader');
+votingHeader.addEventListener('click', function () {
+  if (votingHeader.innerHTML === "Confirm Vote?") {
+    var selectedLabelInnerHtml = getSelectedLabelInnerHtml();
+    var selectedLabelInnerHtmlforvote = getSelectedLabelInnerHtmlforvote();
+    
+    if (selectedLabelInnerHtml) {
+      var vote = confirm("Do you confirm to vote " + selectedLabelInnerHtml + " ?");
+      
+      if (vote) {
+        if (selectedLabelInnerHtmlforvote === spyonvote1) {
+          alert("Congraturation, you caught the spy!");
+        } else {
+          alert("Game Over, wrong guess. This player is not a spy.");
+        }
+      }
+    }
+  }
+});
+
+function getSelectedLabelInnerHtml() {
+  var selectedLabel = document.querySelector('.labelvote input:checked');
+  return selectedLabel ? selectedLabel.parentNode.cloneNode(true).innerHTML.replace(/<input[^>]*>/, '').trim() : '';
+}
+
+function getSelectedLabelInnerHtmlforvote() {
+  var selectedLabel = document.querySelector('.labelvote input:checked');
+  
+  if (selectedLabel) {
+    var labelContent = selectedLabel.parentNode.cloneNode(true).innerHTML;
+    var match = labelContent.match(/^\d+/);
+    
+    if (match) {
+      var extractedNumber = parseInt(match[0], 10);
+      return extractedNumber - 1;
+    }
+  }
+  
+  return NaN;
 }
