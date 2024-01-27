@@ -1,3 +1,6 @@
-Hi everyone my name is Kim, i want to show my little project I hope you guys enjoy click the link below to play
+Hi everyone my name is Kim, i want to show my little project for my programming road, I hope you guys enjoy click the link below to play
 
-Play : https://kimmuie.github.io/Spyfall/?fbclid=PAAabmgh-43U1T8HYmR0TEveZiexXWA5FtYm4mUsiKoJpV2EV6xWT_SHhwGJk
+Play Spyfall: https://kimmuie.github.io/Spyfall/?fbclid=PAAaYyJje1pbrHDH4Z9C82BV16ZxNK9IHtdOYO_MUldxEHetYdGo8veHbzt64 
+
+
+IG : kimmuie_
