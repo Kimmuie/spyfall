@@ -39,8 +39,13 @@ document.getElementsByClassName("leftboxhide")[0].addEventListener("click", func
 
   if (lbh.textContent === "HIDE") {
       console.log("Hide Leftbox");
+    if (window.matchMedia("(max-height: 1400px) and (orientation: portrait)").matches){
+      setStyles("leftbox", { left: "-37.5dvh" });
+      setStyles("leftboxhide", { left: "0.5dvh" });
+    } else {
       setStyles("leftbox", { left: "-35dvh" });
       setStyles("leftboxhide", { left: "3dvh" });
+    }
     lbh.textContent = "UNHIDE";
     audiopu.play();
   } else if (lbh.textContent === "UNHIDE") {
@@ -498,8 +503,8 @@ document.getElementsByClassName("listicon")[0].addEventListener("click", functio
       } else if (window.matchMedia("(max-height: 950px) and (orientation: portrait)").matches) {
         setStyles("alertbox", { transform: "scale(0.45)" });
       }
-      setStyles("leftbox", { left: "-35dvh" });
-      setStyles("leftboxhide", { left: "3dvh" });
+      setStyles("leftbox", { left: "-37.5dvh" });
+      setStyles("leftboxhide", { left: "0.5dvh" });
       setStyles("middlebutton", { width: "40dvh", height: "10dvh", fontSize: "4dvh" });
       setStyles("unavailable", { fontSize: "2dvh" });
       setStyles("middlehead", { top: "15dvh" });
