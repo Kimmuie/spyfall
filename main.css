@@ -1,40 +1,4 @@
 
-@media only screen and (max-height: 1400px) and (orientation: portrait) {
-  @keyframes pop-in {
-    0% {
-      transform: scale(0.1);
-      opacity: 0;
-    }
-    40% {
-      transform: scale(0.75);
-      opacity: 1;
-    }
-    80% {
-      transform: scale(0.7);
-    }
-    100% {
-      transform: scale(0.65);
-    }
-  }
-
-  @keyframes pop-out {
-    0% {
-      transform: scale(0.65);
-      opacity: 1;
-    }
-    30% {
-      transform: scale(0.7);
-    }
-    70% {
-      transform: scale(0.75);
-    }
-    100% {
-      transform: scale(0.1);
-      opacity: 0;
-    }
-  }
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -42,6 +6,11 @@
   font-family: "Kanit", sans-serif;
   font-family: "Rubik", sans-serif;
   font-family: "Sedgwick Ave Display", cursive;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button{
+  border: 0;
 }
 
 body {
@@ -55,7 +24,7 @@ body {
   height: 100dvh;
   background-position: center;
   background-size: cover;
-  background-image: url(./1BGwhite.gif);
+  background-image: url(./image/1BGwhite.gif);
   display: block;
 }
 
@@ -272,7 +241,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  text-align: center; 
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -524,7 +493,7 @@ body {
   font-size:  var(--before-BR-fontsize,3dvh);
   font-family: "Rubik", sans-serif;
   font-weight: bold;
-  content: "HTML,CSS,JAVASCRIPT";
+  content: "HTML-CSS-JAVASCRIPT";
   position: absolute;
   padding: var(--before-BR-padding,2dvh 0dvh 0dvh 2dvh);
 }
@@ -968,7 +937,7 @@ body {
 }
 
 .guideslider{
-  background-image: url(./1FlagThai.png);
+  background-image: url(./image/1FlagThai.png);
 }
 
 .soundslider{
@@ -994,7 +963,7 @@ input:checked + .slider {
 }
 
 input:checked + .guideslider {
-  background-image: url(./1FlagEng.png);
+  background-image: url(./image/1FlagEng.png);
 }
 
 input:checked + .soundslider {
@@ -1262,20 +1231,11 @@ input:checked + .slider:before {
   cursor: pointer;
 }
 
-.homeicon:hover,
-.homeicon:active {
-  content: url('1homehover.png');
-}
-
 .homeicon{
   top: 9dvh;
   display: none;
 }
 
-.listicon:hover,
-.listicon:active {
-  content: url('1listhover.png');
-}
 .listicon{
   top: 18dvh;
   display: none;
@@ -1737,11 +1697,6 @@ input:checked + .slider:before {
   transition: ease-in-out 0.5s;
 }
 
-.diceicon:hover,
-.diceicon:active {
-  content: url('1Dicehover.png');
-}
-
 .diceicon{
   pointer-events: auto;
   top: 73dvh;
@@ -1852,7 +1807,7 @@ input:checked + .slider:before {
   right: 2.25dvh;
   width: 3.5dvh;
   height: 3.5dvh;
-  background-image: url('./1Spyfall.png');
+  background-image: url('./image/1Spyfall.png');
   background-size: cover;
 }
 
