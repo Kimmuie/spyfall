@@ -311,7 +311,7 @@ document.getElementsByClassName("alertboxcontactTM")[0].addEventListener("click"
       console.log("Popdown TruemoneyQRCODE");
       items[i].style.animation = "pop-down 0.5s ease-in-out";
       items[i].style.display = "block";
-      itemsIMG[i].src = "1TMQRcode.jpg";
+      itemsIMG[i].src = "./image/1TMQRcode.jpg";
       items[i].classList.replace('noqrcode', 'Truemoney');
     } else if (items[i].classList.contains("Promptpay")) {
       for (let j = 0; j < items.length; j++) {
@@ -324,7 +324,7 @@ document.getElementsByClassName("alertboxcontactTM")[0].addEventListener("click"
           console.log("Popdown TruemoneyQRCODE");
           items[j].style.animation = "pop-down 0.5s ease-in-out";
           items[j].style.display = "block";
-          itemsIMG[j].src = "1TMQRcode.jpg";
+          itemsIMG[j].src = "./image/1TMQRcode.jpg";
         });
       }
     }else {
@@ -352,7 +352,7 @@ document.getElementsByClassName("alertboxcontactPM")[0].addEventListener("click"
       console.log("Popdown PromptpayQRCODE");
       items[i].style.animation = "pop-down 0.5s ease-in-out";
       items[i].style.display = "block";
-      itemsIMG[i].src = "1PMQRcode.jpg";
+      itemsIMG[i].src = "./image/1PMQRcode.jpg";
       items[i].classList.replace('noqrcode', 'Promptpay');
     } else if (items[i].classList.contains("Truemoney")) {
       for (let j = 0; j < items.length; j++) {
@@ -365,7 +365,7 @@ document.getElementsByClassName("alertboxcontactPM")[0].addEventListener("click"
           console.log("Popdown PromptpayQRCODE");
           items[j].style.animation = "pop-down 0.5s ease-in-out";
           items[j].style.display = "block";
-          itemsIMG[j].src = "1PMQRcode.jpg";
+          itemsIMG[j].src = "./image/1PMQRcode.jpg";
         });
       }
     } else {
@@ -645,7 +645,7 @@ document.getElementsByClassName("toprightbrightbutton")[0].addEventListener("cli
       setProperty("changediv", { "--before-backgroundchange": "linear-gradient(to bottom, #272829, #61677A, #272829)" });
       setProperty("changedivsp", { "--before-backgroundchangesp1": "linear-gradient(to bottom, #61677A, #272829)", "--before-backgroundchangesp2": "linear-gradient(to bottom, #61677A, #272829)" });
       setProperty("changedivsmol", { "--before-backgroundchangesmol": "#272829" });
-      setStyles("changegif", { backgroundImage: "url(./1BGblack.gif)" });
+      setStyles("changegif", { backgroundImage: "url(./image/1BGblack.gif)" });
     } else if (sun[i].style.display === "none") {
       console.log("Turn Bright");
       setStyles("gg-sun", { display: "block" });
@@ -657,7 +657,7 @@ document.getElementsByClassName("toprightbrightbutton")[0].addEventListener("cli
       setProperty("changediv", { "--before-backgroundchange": "linear-gradient(to bottom, #6C737E, #CFD2CF, #6C737E)" });
       setProperty("changedivsp", { "--before-backgroundchangesp1": "linear-gradient(to bottom, #CFD2CF, #6C737E)", "--before-backgroundchangesp2": "linear-gradient(to bottom, #CFD2CF, #6C737E)" });
       setProperty("changedivsmol", { "--before-backgroundchangesmol": "#6C737E" });
-      setStyles("changegif", { backgroundImage: "url(./1BGwhite.gif)" });
+      setStyles("changegif", { backgroundImage: "url(./image/1BGwhite.gif)" });
     }
   }
 });
@@ -752,6 +752,7 @@ document.addEventListener("visibilitychange", handleVisibilityChange);
 document.getElementsByClassName("offlinebutton")[0].addEventListener("click", function () {
   var audiopu = document.getElementById("Soundpopup");
   setStyles("middlebuttoncontainer", { display: "none" });
+  setStyles("bottomrightcode", { display: "none" });
   setStyles("offlinemenu", { height: "130dvh" });
   setStyles("offlinebox", { display:"block"});
   setStyles("homeicon", { display:"block"});
