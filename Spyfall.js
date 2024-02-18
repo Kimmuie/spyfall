@@ -928,67 +928,67 @@ function startGame() {
       switch (chosenPlace) {
         case "<br>Hospital":
             role = HospitalRole;
-            Cardimage = "1CardHospital.png";
+            Cardimage = "./image/1HCardospital.png";
             break;
     
         case "<br>School":
             role = SchoolRole;
-            Cardimage = "1CardSchool.png";
+            Cardimage = "./image/1CardSchool.png";
             break;
     
         case "<br>Space Station":
             role = SpaceStationRole;
-            Cardimage = "1CardSpacestation.png";
+            Cardimage = "./image/1CardSpacestation.png";
             break;
     
         case "<br>Bank":
             role = BankRole;
-            Cardimage = "1CardBank.png";
+            Cardimage = "./image/1CardBank.png";
             break;
     
         case "<br>Supermarket":
             role = SupermarketRole;
-            Cardimage = "1CardSupermarket.png";
+            Cardimage = "./image/1CardSupermarket.png";
             break;
     
         case "<br>Beach":
             role = BeachRole;
-            Cardimage = "1CardBeach.png";
+            Cardimage = "./image/1CardBeach.png";
             break;
     
         case "<br>Church":
             role = ChurchRole;
-            Cardimage = "1CardChurch.png";
+            Cardimage = "./image/1CardChurch.png";
             break;
                 
         case "<br>Forest":
           role = ForestRole;
-          Cardimage = "1CardForest.png";
+          Cardimage = "./image/1CardForest.png";
           break;      
               
         case "<br>Police Station":
           role = PoliceStationRole;
-          Cardimage = "1CardPoliceStaion.png";
+          Cardimage = "./image/1CardPoliceStaion.png";
           break;      
               
         case "<br>Pirate Ship":
           role = PirateShipRole;
-          Cardimage = "1CardPirateShip.png";
+          Cardimage = "./image/1CardPirateShip.png";
           break;      
               
         case "<br>Submarine":
           role = SubmarineRole;
-          Cardimage = "1CardSubmarine.png";
+          Cardimage = "./image/1CardSubmarine.png";
           break;      
               
         case "<br>Restaurant":
           role = RestaurantRole;
-          Cardimage = "1CardRestaurant.png";
+          Cardimage = "./image/1CardRestaurant.png";
           break;      
               
         case "<br>Cemetary":
           role = CemeteryRole;
-          Cardimage = "1CardCemetary.png";
+          Cardimage = "./image/1CardCemetary.png";
           break;      
       }
 
