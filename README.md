@@ -5,4 +5,4 @@ Spyfall is a social deduction game where players ask each other questions to unc
 
 [Play Spyfall](https://kimmuie.github.io/spyfall/)
 
-IG : kimmuie_
+[ig: kimmuie_](https://instagram.com/kimmuie_)  
