@@ -3,6 +3,6 @@
 Spyfall is a social deduction game where players ask each other questions to uncover the spy among them, who must figure out the location without revealing their identity.
 
 
-Play Spyfall: https://kimmuie.github.io/spyfall/
+[Play Spyfall](https://kimmuie.github.io/spyfall/)
 
 IG : kimmuie_
