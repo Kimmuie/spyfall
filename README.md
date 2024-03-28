@@ -3,6 +3,6 @@
 Spyfall is a social deduction game where players ask each other questions to uncover the spy among them, who must figure out the location without revealing their identity.
 
 
-[Play Spyfall](https://kimmuie.github.io/spyfall/)
+Click here to play [Red Koala Spyfall](https://kimmuie.github.io/spyfall/)
 
 [ig: kimmuie_](https://instagram.com/kimmuie_)  
