@@ -30,13 +30,14 @@ This game has a host, join, and offline button, but only the offline button work
 
 ### Website Interface
 <div>
-  <img src="./illustration/UI1.png"  title="UI" height="200"/>
-  <img src="./illustration/UI2.png"  title="UI" height="200"/>
-  <img src="./illustration/UI3.png"  title="UI" height="300"/>
-  <img src="./illustration/UI4.png"  title="UI" height="300"/>
-  <img src="./illustration/UI5.png"  title="UI" height="300"/>
-  <img src="./illustration/UI6.png"  title="UI" height="300"/>
+  <img src="./illustration/UI1.png"  title="UI" height="280"/>
+  <img src="./illustration/UI2.png"  title="UI" height="280"/>
+  <img src="./illustration/UI3.png"  title="UI" height="280"/>
+  <img src="./illustration/UI4.png"  title="UI" height="280"/>
+  <img src="./illustration/UI5.png"  title="UI" height="280"/>
+  <img src="./illustration/UI6.png"  title="UI" height="280"/>
 </div>
 
 
+<br>  
 This website is responsive, but there are a few bugs. You can click here to play [Red Koala Spyfall](https://kimmuie.github.io/spyfall/)
