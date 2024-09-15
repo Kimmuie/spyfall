@@ -928,7 +928,7 @@ function startGame() {
       switch (chosenPlace) {
         case "<br>Hospital":
             role = HospitalRole;
-            Cardimage = "./image/1HCardospital.png";
+            Cardimage = "./image/1CardHospital.png";
             break;
     
         case "<br>School":
