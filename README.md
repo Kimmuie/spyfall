@@ -21,6 +21,8 @@ This game has a host, join, and offline button, but only the offline button work
   <img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" title="HTML5"width="40" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" title="JavaScript"width="40" height="40"/>&nbsp;
 </div>
+<br>  
+This website is responsive, but there are a few bugs. You can click here to play  [Red Koala Spyfall](https://kimmuie.github.io/spyfall/)
 
 ### Flowchart 
 <div>
@@ -37,7 +39,3 @@ This game has a host, join, and offline button, but only the offline button work
   <img src="./illustration/UI5.png"  title="UI" height="280"/>
   <img src="./illustration/UI6.png"  title="UI" height="280"/>
 </div>
-
-
-<br>  
-This website is responsive, but there are a few bugs. You can click here to play  [Red Koala Spyfall](https://kimmuie.github.io/spyfall/)
