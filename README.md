@@ -22,14 +22,11 @@ This game has a host, join, and offline button, but only the offline button work
   <img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" title="JavaScript"width="40" height="40"/>&nbsp;
 </div>
 <br>  
-This website is responsive, but there are a few bugs. You can click here to play  [Red Koala Spyfall](https://kimmuie.github.io/spyfall/)
+This website is responsive, but there are a few bugs. You can [click here](https://kimmuie.github.io/spyfall/) to play  [Red Koala Spyfall](https://kimmuie.github.io/spyfall/)
 
 [ig: kimmuie_](https://kimmuie.github.io/spyfall/)  
 
-[ig: kimmuie_](https://instagram.com/kimmuie_)  
-
-[ig: kimmuie_](https://instagram.com/kimmuie_)  
-[ig: kimmuie_](https://instagram.com/kimmuie_)  
+[ig: kimmuie_](https://instagram.com/kimmuie_)
 
 ### Flowchart 
 <div>
