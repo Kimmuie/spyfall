@@ -40,4 +40,4 @@ This game has a host, join, and offline button, but only the offline button work
 
 
 <br>  
-This website is responsive, but there are a few bugs. You can click here to play [Red Koala Spyfall](https://kimmuie.github.io/spyfall/)
+This website is responsive, but there are a few bugs. You can click here to play  [Red Koala Spyfall](https://kimmuie.github.io/spyfall/)
